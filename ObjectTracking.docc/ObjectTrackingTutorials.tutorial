@@ -1,0 +1,43 @@
+@Tutorials(name: "Object Tracking 공간 경험 만들기") {
+    @Intro(title: "현실의 물체에 가상 콘텐츠 연결하기") {
+        Vision Pro가 현실의 특정 물체를 알아보고 계속 따라가게 하려면, 먼저 그 물체가 어떤 모습인지 알려 주는 자료가 필요합니다. 실제 물체와 같은 형태와 크기를 가진 USDZ 3D model을 준비한 뒤, Create ML을 이용해 Object Tracking용 `.referenceobject` 파일을 만듭니다.
+
+        이후 Reality Composer Pro에서 이 파일을 추적 대상에 연결하고, 현실 물체를 기준으로 가상 콘텐츠를 배치합니다. 가상 비행기의 Animation과 실제 보물상자에 가려지는 Occlusion까지 더한 뒤 Apple Vision Pro에서 전체 경험을 확인합니다.
+
+        학습은 추적 자산 만들기, Object Tracking 경험 구성하기, 가상 콘텐츠 확장하기, 실기기에서 검증하기 순서로 진행합니다. Reference Object 제작부터 Object Tracking Scene 구성, 반복 Animation과 Occlusion 추가, Apple Vision Pro에서의 최종 확인까지 하나의 흐름으로 완성합니다.
+    }
+
+    @Chapter(name: "추적 자산 만들기") {
+        현실 물체를 추적하려면 먼저 그 물체의 형태와 크기를 표현한 USDZ가 필요합니다. 이 장에서는 준비한 USDZ를 Create ML에 넣고, Vision Pro가 물체를 인식할 때 사용할 `.referenceobject`를 만듭니다.
+
+        @Image(source: chapter-reference-object-pipeline, alt: "현실 물체를 표현한 USDZ를 Create ML에서 학습하여 reference object를 만드는 흐름")
+
+        @TutorialReference(tutorial: "doc:CreateAReferenceObject")
+    }
+
+    @Chapter(name: "Object Tracking 경험 구성하기") {
+        Chapter 1에서 만든 `.referenceobject`를 Reality Composer Pro의 Object Anchor에 연결합니다. 이어서 RCP Scene을 Mixed Immersive Space의 `RealityView`에 추가해 Object Tracking 구성을 visionOS 앱에서 활성화합니다.
+
+        @Image(source: chapter-object-tracking-experience, alt: "reference object를 Reality Composer Pro의 Object Anchor에 연결하고 visionOS RealityView에서 활성화하는 흐름")
+
+        @TutorialReference(tutorial: "doc:ConfigureObjectTrackingInRealityComposerPro")
+        @TutorialReference(tutorial: "doc:LoadTheRCPSceneInVisionOS")
+    }
+
+    @Chapter(name: "가상 콘텐츠 확장하기") {
+        추적된 TreasureChest 좌표계 안에 Transform-only `Pivot`을 만들고, `ToyBiplane`이 그 중심을 반복해서 돌도록 Timeline과 Behavior를 연결합니다. 이어서 현실 보물상자와 정렬된 geometry에 Occlusion Material을 적용해 가상 비행기의 앞뒤 깊이 관계를 표현합니다.
+
+        @Image(source: chapter-virtual-content, alt: "TreasureChestAnchor 좌표계 안에서 ToyBiplane이 Pivot을 중심으로 돌고 Occlusion geometry가 깊이 관계를 만드는 흐름")
+
+        @TutorialReference(tutorial: "doc:AddOrbitAnimation")
+        @TutorialReference(tutorial: "doc:AddOcclusion")
+    }
+
+    @Chapter(name: "실기기에서 검증하기") {
+        Mac에서 자산과 Scene 구성을 마쳤다면 Apple Vision Pro에서 실제 TreasureChest를 바라보며 전체 연결을 확인합니다. 물체 인식, 가상 콘텐츠 배치, 반복 Orbit Animation과 Occlusion을 차례로 관찰하고, 문제가 있다면 어느 단계부터 확인해야 하는지 구분합니다.
+
+        @Image(source: chapter-device-validation, alt: "Apple Vision Pro에서 실제 물체 인식부터 가상 콘텐츠, 반복 Animation과 Occlusion까지 순서대로 검증하는 흐름")
+
+        @TutorialReference(tutorial: "doc:ValidateOnAppleVisionPro")
+    }
+}

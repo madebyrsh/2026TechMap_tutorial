@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Object Anchor hierarchy</title>
+  <desc id="description">Root 아래 TreasureChestAnchor가 있고 Anchoring Component와 ToyBiplane이 연결된 구조</desc>
+  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
+  <text x="800" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="60" font-weight="700" fill="#152033">Object Anchor와 가상 콘텐츠</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="120" y="220" width="1360" height="560" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <rect x="190" y="275" width="290" height="105" rx="25" fill="#E8EEF7" stroke="#63799C" stroke-width="5"/>
+    <text x="335" y="342" text-anchor="middle" font-size="38" font-weight="700" fill="#152033">Root</text>
+    <path d="M335 380 V455 H520" fill="none" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <rect x="520" y="415" width="470" height="115" rx="28" fill="#DCEFE5" stroke="#3B8A65" stroke-width="6"/>
+    <text x="755" y="486" text-anchor="middle" font-size="39" font-weight="700" fill="#152033">TreasureChestAnchor</text>
+    <path d="M755 530 V620 H580" fill="none" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M755 620 H1080" fill="none" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <rect x="300" y="620" width="430" height="105" rx="25" fill="#F0E9F8" stroke="#7755A6" stroke-width="5"/>
+    <text x="515" y="663" text-anchor="middle" font-size="30" font-weight="700" fill="#152033">Anchoring Component</text>
+    <text x="515" y="701" text-anchor="middle" font-size="24" fill="#455A7A">Object · TreasureChest.referenceobject</text>
+    <rect x="875" y="620" width="410" height="105" rx="25" fill="#E3EDF9" stroke="#4778B8" stroke-width="5"/>
+    <text x="1080" y="680" text-anchor="middle" font-size="36" font-weight="700" fill="#152033">ToyBiplane</text>
+  </g>
+</svg>

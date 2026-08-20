@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Reference Object cue와 가상 콘텐츠 배치</title>
+  <desc id="description">반투명 보물상자 cue를 기준으로 ToyBiplane의 local transform을 조절하는 관계</desc>
+  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
+  <text x="800" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="700" fill="#152033">Reference Object cue를 기준으로 배치하기</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="120" y="220" width="1360" height="540" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <path d="M360 560 L485 400 L760 400 L885 560 Z" fill="#D8C7A3" fill-opacity="0.28" stroke="#9B7A3D" stroke-width="7" stroke-dasharray="18 14"/>
+    <rect x="430" y="320" width="385" height="105" rx="30" fill="#D8C7A3" fill-opacity="0.28" stroke="#9B7A3D" stroke-width="7" stroke-dasharray="18 14"/>
+    <text x="622" y="625" text-anchor="middle" font-size="31" font-weight="700" fill="#7A5D2D">반투명 Reference Object cue</text>
+    <g transform="translate(960 345)">
+      <path d="M0 100 H250" stroke="#4778B8" stroke-width="28" stroke-linecap="round"/>
+      <path d="M115 25 L165 100 L115 175" fill="#DCE8F7" stroke="#4778B8" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M35 55 L85 100 L35 145" fill="#DCE8F7" stroke="#4778B8" stroke-width="7" stroke-linejoin="round"/>
+      <circle cx="205" cy="100" r="35" fill="#DCE8F7" stroke="#4778B8" stroke-width="7"/>
+    </g>
+    <path d="M870 470 H940" stroke="#63799C" stroke-width="9" stroke-linecap="round"/>
+    <path d="M922 447 L950 470 L922 493" fill="none" stroke="#63799C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1100" y="610" text-anchor="middle" font-size="33" font-weight="700" fill="#152033">ToyBiplane</text>
+    <text x="1100" y="655" text-anchor="middle" font-size="27" fill="#455A7A">Anchor 기준 local Transform</text>
+  </g>
+</svg>

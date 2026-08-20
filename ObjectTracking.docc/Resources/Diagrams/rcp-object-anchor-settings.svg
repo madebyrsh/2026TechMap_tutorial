@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Object Anchor 설정</title>
+  <desc id="description">TreasureChestAnchor의 Anchoring Component가 Object target과 TreasureChest reference object를 사용하는 관계</desc>
+  <rect width="1600" height="900" rx="64" fill="#F4F7FB"/>
+  <text x="800" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="60" font-weight="700" fill="#152033">Object Anchor 설정</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="150" y="230" width="1300" height="500" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <rect x="225" y="300" width="470" height="330" rx="32" fill="#DCEFE5" stroke="#3B8A65" stroke-width="6"/>
+    <text x="460" y="380" text-anchor="middle" font-size="40" font-weight="700" fill="#152033">TreasureChestAnchor</text>
+    <text x="460" y="445" text-anchor="middle" font-size="31" fill="#455A7A">Anchoring Component</text>
+    <text x="460" y="510" text-anchor="middle" font-size="29" font-weight="700" fill="#152033">Target</text>
+    <rect x="365" y="535" width="190" height="62" rx="20" fill="#FFFFFF" stroke="#3B8A65" stroke-width="4"/>
+    <text x="460" y="578" text-anchor="middle" font-size="30" font-weight="700" fill="#3B8A65">Object</text>
+    <path d="M735 465 H850" stroke="#63799C" stroke-width="11" stroke-linecap="round"/>
+    <path d="M830 439 L865 465 L830 491" fill="none" stroke="#63799C" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="890" y="330" width="440" height="270" rx="32" fill="#F0E9F8" stroke="#7755A6" stroke-width="6"/>
+    <text x="1110" y="405" text-anchor="middle" font-size="31" font-weight="700" fill="#152033">Anchor Object</text>
+    <path d="M1045 450 H1150 L1195 495 V555 H1010 V450 Z" fill="#FFFFFF" stroke="#7755A6" stroke-width="5"/>
+    <path d="M1150 450 V495 H1195" fill="none" stroke="#7755A6" stroke-width="5"/>
+    <text x="1110" y="575" text-anchor="middle" font-size="25" font-weight="700" fill="#152033">TreasureChest.referenceobject</text>
+  </g>
+</svg>

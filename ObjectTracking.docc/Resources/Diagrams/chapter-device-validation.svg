@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Apple Vision Pro 실기기 검증 흐름</title>
+  <desc id="description">실제 물체 인식, 가상 콘텐츠 표시, 반복 Animation, Occlusion을 Apple Vision Pro에서 순서대로 검증하는 흐름</desc>
+  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
+  <text x="800" y="110" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="700" fill="#152033">Apple Vision Pro에서 전체 경험 확인하기</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="95" y="180" width="1410" height="570" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <g fill="#E8F0FC" stroke="#4778B8" stroke-width="5">
+      <rect x="150" y="300" width="275" height="205" rx="30"/>
+      <rect x="490" y="300" width="275" height="205" rx="30"/>
+      <rect x="830" y="300" width="275" height="205" rx="30"/>
+      <rect x="1170" y="300" width="275" height="205" rx="30"/>
+    </g>
+    <g fill="#152033" text-anchor="middle">
+      <text x="287" y="375" font-size="34" font-weight="700">실제 물체 인식</text>
+      <text x="287" y="430" font-size="26">.referenceobject</text>
+      <text x="627" y="375" font-size="34" font-weight="700">가상 콘텐츠 표시</text>
+      <text x="627" y="430" font-size="26">TreasureChestAnchor</text>
+      <text x="967" y="375" font-size="34" font-weight="700">반복 Animation</text>
+      <text x="967" y="430" font-size="26">Pivot + Timelines</text>
+      <text x="1307" y="375" font-size="34" font-weight="700">Occlusion</text>
+      <text x="1307" y="430" font-size="26">앞은 보이고 뒤는 가림</text>
+    </g>
+    <g stroke="#63799C" stroke-width="8" stroke-linecap="round" fill="#63799C">
+      <path d="M425 402 H475"/>
+      <path d="M475 402 l-20 -13 v26 z" stroke="none"/>
+      <path d="M765 402 H815"/>
+      <path d="M815 402 l-20 -13 v26 z" stroke="none"/>
+      <path d="M1105 402 H1155"/>
+      <path d="M1155 402 l-20 -13 v26 z" stroke="none"/>
+    </g>
+    <rect x="310" y="590" width="980" height="90" rx="26" fill="#DCEFE5" stroke="#3B8A65" stroke-width="5"/>
+    <text x="800" y="648" text-anchor="middle" font-size="30" font-weight="700" fill="#225D43">앞 단계가 확인되어야 다음 결과의 원인을 정확히 판단할 수 있습니다.</text>
+  </g>
+</svg>

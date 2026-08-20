@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Tracked Transform hierarchy</title>
+  <desc id="description">TreasureChestAnchor 아래 Pivot, ToyBiplane, Occlusion이 형제이고 Orbit action이 Pivot과 ToyBiplane을 참조하는 구조</desc>
+  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
+  <text x="800" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="700" fill="#152033">Tracked Transform과 local Transform</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="95" y="165" width="1410" height="650" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <rect x="180" y="215" width="1240" height="110" rx="28" fill="#DCEFE5" stroke="#3B8A65" stroke-width="6"/>
+    <text x="800" y="265" text-anchor="middle" font-size="39" font-weight="700" fill="#152033">TreasureChestAnchor</text>
+    <text x="800" y="302" text-anchor="middle" font-size="25" fill="#356D54">실제 TreasureChest의 tracked Transform</text>
+    <path d="M800 325 V390 M330 390 H1270" fill="none" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M330 390 V430 M800 390 V430 M1270 390 V430" fill="none" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <rect x="175" y="430" width="310" height="125" rx="26" fill="#F0E9F8" stroke="#7755A6" stroke-width="5"/>
+    <text x="330" y="480" text-anchor="middle" font-size="35" font-weight="700" fill="#152033">Pivot</text>
+    <text x="330" y="522" text-anchor="middle" font-size="23" fill="#455A7A">Transform-only · (0, 4cm, 0)</text>
+    <rect x="645" y="430" width="310" height="125" rx="26" fill="#E3EDF9" stroke="#4778B8" stroke-width="5"/>
+    <text x="800" y="480" text-anchor="middle" font-size="35" font-weight="700" fill="#152033">ToyBiplane</text>
+    <text x="800" y="522" text-anchor="middle" font-size="23" fill="#455A7A">Orbit target</text>
+    <rect x="1115" y="430" width="310" height="125" rx="26" fill="#F7EEE3" stroke="#B87935" stroke-width="5"/>
+    <text x="1270" y="480" text-anchor="middle" font-size="35" font-weight="700" fill="#152033">Occlusion</text>
+    <text x="1270" y="522" text-anchor="middle" font-size="23" fill="#455A7A">실물에 정렬된 geometry</text>
+    <rect x="445" y="640" width="710" height="100" rx="28" fill="#EEF3F9" stroke="#63799C" stroke-width="5"/>
+    <text x="800" y="682" text-anchor="middle" font-size="32" font-weight="700" fill="#152033">OrbitToyBiplane · Orbit action</text>
+    <text x="800" y="718" text-anchor="middle" font-size="24" fill="#455A7A">pivot → Pivot · target → ToyBiplane</text>
+    <path d="M640 640 C560 590 445 580 350 555" fill="none" stroke="#7755A6" stroke-width="7" stroke-dasharray="13 10"/>
+    <path d="M960 640 C1000 590 930 575 830 555" fill="none" stroke="#4778B8" stroke-width="7" stroke-dasharray="13 10"/>
+    <text x="215" y="790" font-size="25" fill="#455A7A">실선: Transform 부모-자식</text>
+    <text x="1070" y="790" font-size="25" fill="#455A7A">점선: Orbit 참조</text>
+  </g>
+</svg>

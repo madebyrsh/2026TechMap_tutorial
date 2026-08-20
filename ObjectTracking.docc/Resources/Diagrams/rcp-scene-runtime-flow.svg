@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">RCP Scene runtime flow</title>
+  <desc id="description">ObjectTrackingScene이 RealityKitContent bundle에서 Swift의 RealityView로 불려오는 흐름</desc>
+  <rect width="1600" height="900" rx="64" fill="#F4F7FB"/>
+  <text x="800" y="135" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="60" font-weight="700" fill="#152033">RCP Scene을 visionOS에서 열기</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">
+    <rect x="90" y="295" width="350" height="260" rx="34" fill="#FFFFFF" stroke="#7755A6" stroke-width="6"/>
+    <text x="265" y="370" font-size="31" font-weight="700" fill="#152033">RealityKitContent</text>
+    <text x="265" y="420" font-size="25" fill="#455A7A">ObjectTrackingScene.usda</text>
+    <text x="265" y="462" font-size="25" fill="#455A7A">Reference Object</text>
+    <text x="265" y="504" font-size="25" fill="#455A7A">Virtual Content</text>
+    <path d="M470 425 H570" stroke="#63799C" stroke-width="11" stroke-linecap="round"/>
+    <path d="M550 399 L585 425 L550 451" fill="none" stroke="#63799C" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="610" y="295" width="380" height="260" rx="34" fill="#FFFFFF" stroke="#3B8A65" stroke-width="6"/>
+    <text x="800" y="370" font-size="34" font-weight="700" fill="#152033">ImmersiveView</text>
+    <text x="800" y="425" font-size="25" fill="#455A7A">Entity(named:in:)</text>
+    <text x="800" y="470" font-size="25" fill="#455A7A">content.add(...)</text>
+    <path d="M1020 425 H1120" stroke="#63799C" stroke-width="11" stroke-linecap="round"/>
+    <path d="M1100 399 L1135 425 L1100 451" fill="none" stroke="#63799C" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1160" y="295" width="350" height="260" rx="34" fill="#FFFFFF" stroke="#4778B8" stroke-width="6"/>
+    <text x="1335" y="370" font-size="36" font-weight="700" fill="#152033">RealityView</text>
+    <text x="1335" y="425" font-size="26" fill="#455A7A">Object Anchor</text>
+    <text x="1335" y="468" font-size="26" fill="#455A7A">가상 Entity</text>
+    <text x="1335" y="511" font-size="26" fill="#455A7A">Mixed ImmersiveSpace</text>
+  </g>
+  <text x="800" y="690" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="36" fill="#455A7A">Swift가 Scene을 불러와 RealityView에 추가하면 RCP 구성이 실행됩니다.</text>
+</svg>

@@ -1,0 +1,135 @@
+@Tutorial(time: 35) {
+    @Intro(title: "Reality Composer Pro에서 Object Tracking 설정하기") {
+        Chapter 1에서는 현실 물체를 인식하는 데 사용할 `.referenceobject`를 만들었습니다. 이제 Reality Composer Pro에서 이 파일을 Object Anchor에 연결하고, 추적된 물체와 함께 움직일 가상 콘텐츠를 배치합니다.
+
+        완성 예제에서는 `TreasureChest.referenceobject`를 `TreasureChestAnchor`에 연결하고, 가상 비행기 `ToyBiplane`을 Anchor 아래에 둡니다. 학습자는 같은 구조를 자신의 Reference Object와 가상 콘텐츠에 적용할 수 있습니다.
+
+        @Image(source: object-anchor-hierarchy, alt: "Root 아래 TreasureChestAnchor가 있고 Anchoring Component와 ToyBiplane이 자식으로 연결된 구조")
+    }
+
+    @Section(title: "Reality Composer Pro Scene 열기") {
+        @ContentAndMedia {
+            Chapter 1에서 만든 Reference Object는 추적에 필요한 학습 결과입니다. 앱에서 사용하려면 어떤 Entity가 이 파일을 추적 대상으로 사용할지 Reality Composer Pro에서 정해야 합니다.
+
+            현재 Xcode 프로젝트에는 `RealityKitContent` local package와 `ObjectTrackingScene`이 이미 있습니다. 새 visionOS 프로젝트에서 처음 구성한다면 Immersive Space Renderer로 RealityKit을 선택해 Reality Composer Pro package가 포함된 프로젝트에서 시작합니다.
+        }
+
+        @Steps {
+            @Step {
+                **RealityKitContent package를 찾습니다.** Xcode의 Project navigator에서 `Packages > RealityKitContent`를 펼치고 `Package.realitycomposerpro`를 선택합니다.
+            }
+
+            @Step {
+                **Reality Composer Pro를 엽니다.** Xcode 편집기에서 `Open in Reality Composer Pro`를 선택합니다.
+            }
+
+            @Step {
+                **ObjectTrackingScene을 엽니다.** 현재 프로젝트에서는 `ObjectTrackingScene`을 선택합니다. 자신의 프로젝트에서 새 Scene을 만들었다면 Swift에서 불러올 수 있도록 알아보기 쉬운 이름을 사용합니다.
+            }
+
+            @Step {
+                **추적에 필요한 자산을 확인합니다.** `RealityKitContent.rkassets`에 Chapter 1에서 만든 `.referenceobject`와 화면에 보여 줄 가상 3D model이 있는지 확인합니다. 완성 예제에서는 `TreasureChest.referenceobject`와 `ToyBiplane.usdz`를 사용합니다.
+            }
+        }
+
+        Scene을 열었지만 아직 Reference Object와 Entity의 관계는 정해지지 않았습니다. 다음 단계에서 현실 물체를 따라갈 Object Anchor를 만듭니다.
+    }
+
+    @Section(title: "Reference Object를 Object Anchor에 연결하기") {
+        @ContentAndMedia {
+            Anchoring Component는 Entity가 어떤 현실 기준을 따라갈지 정합니다. Object Tracking에서는 Target을 `Object`로 설정하고 Chapter 1에서 만든 `.referenceobject`를 Anchor Object로 선택합니다.
+
+            현재 프로젝트의 완성 Scene에는 `TreasureChestAnchor`와 설정이 이미 들어 있습니다. 구조를 확인할 때는 같은 Entity를 다시 만들지 말고 기존 설정을 선택해 살펴봅니다. 자신의 Scene을 구성할 때는 아래 순서대로 추가합니다.
+        }
+
+        @Steps {
+            @Step {
+                **Anchor로 사용할 Entity를 만듭니다.** Scene navigator에서 Transform Entity를 추가하고 추적할 물체를 알아볼 수 있는 이름으로 바꿉니다. TreasureChest 예제에서는 `TreasureChestAnchor`를 사용합니다.
+            }
+
+            @Step {
+                **Anchoring Component를 추가합니다.** Anchor Entity를 선택한 뒤 Inspector의 `Add Component`에서 `Anchoring`을 추가합니다.
+            }
+
+            @Step {
+                **Target을 Object로 바꿉니다.** Anchoring Component의 `Target`에서 `Object`를 선택합니다. World나 Plane을 선택하면 Reference Object를 이용한 Object Tracking 구성이 아닙니다.
+
+                @Image(source: rcp-object-anchor-settings, alt: "TreasureChestAnchor의 Anchoring Component에서 Target을 Object로 설정한 관계도")
+            }
+
+            @Step {
+                **Reference Object를 선택합니다.** `Anchor Object`에서 Chapter 1에서 내보낸 `.referenceobject` 파일을 선택합니다. TreasureChest 예제에서는 `TreasureChest.referenceobject`를 사용합니다.
+
+                @Image(source: rcp-object-anchor-settings, alt: "Object target과 TreasureChest reference object가 TreasureChestAnchor에 연결된 설정 관계도")
+            }
+
+            @Step {
+                **반투명 배치 가이드를 확인합니다.** Anchor Object가 연결되면 3D View에 현실 물체를 나타내는 반투명 model이 나타나는지 확인합니다. 이 model은 앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치를 맞추기 위한 가이드입니다.
+
+                @Image(source: reference-object-cue-placement, alt: "반투명 TreasureChest reference object cue와 그 옆에 배치하는 ToyBiplane 관계도")
+            }
+        }
+
+        이제 Anchor Entity는 어떤 현실 물체를 따라가야 하는지 알고 있습니다. 다음 단계에서는 가상 콘텐츠가 이 Anchor의 좌표계를 사용하도록 부모-자식 관계를 만듭니다.
+    }
+
+    @Section(title: "가상 콘텐츠를 Anchor 아래에 배치하기") {
+        @ContentAndMedia {
+            Object Anchor가 현실 물체를 따라가더라도 가상 콘텐츠가 Anchor와 관계없는 곳에 있으면 함께 움직이지 않습니다. 현실 물체에 붙어 보여야 하는 Entity는 Object Anchor의 자식으로 배치해야 합니다.
+
+            자식 Entity의 Transform은 추적된 현실 물체를 기준으로 한 local Transform이 됩니다. 따라서 반투명 가이드를 보면서 가상 콘텐츠의 위치, 회전과 크기를 조절할 수 있습니다.
+
+            @Image(source: object-anchor-hierarchy, alt: "TreasureChestAnchor 아래에 Anchoring Component와 가상 ToyBiplane이 배치된 hierarchy")
+        }
+
+        @Steps {
+            @Step {
+                **가상 콘텐츠를 Scene에 추가합니다.** 학습자가 보여 주려는 3D model을 Scene에 추가합니다. 현재 예제에서는 `ToyBiplane.usdz`를 참조하는 `ToyBiplane` Entity를 사용합니다.
+            }
+
+            @Step {
+                **가상 Entity를 Object Anchor의 자식으로 옮깁니다.** Scene navigator에서 가상 Entity를 Anchor Entity 아래로 끌어 놓습니다. 최종 구조가 `Root > TreasureChestAnchor > ToyBiplane`인지 확인합니다.
+
+                @Image(source: object-anchor-hierarchy, alt: "Root 아래 TreasureChestAnchor가 있고 그 자식으로 ToyBiplane이 배치된 hierarchy")
+            }
+
+            @Step {
+                **반투명 가이드를 기준으로 위치를 정합니다.** 현실 물체에서 가상 콘텐츠가 나타나야 할 곳을 생각하며 Position, Rotation, Scale을 조절합니다. 다른 물체와 model을 사용한다면 TreasureChest 예제의 Transform 값을 그대로 복사하지 않습니다.
+
+                @Image(source: reference-object-cue-placement, alt: "Reference Object cue를 기준으로 ToyBiplane의 local Transform을 조정하는 관계도")
+            }
+
+            @Step {
+                **Anchor를 움직이지 않고 자식 Transform을 조절합니다.** Anchor Entity 자체는 추적 좌표의 기준으로 두고, 화면에 보일 콘텐츠의 배치는 자식 Entity의 local Transform으로 조정합니다.
+            }
+        }
+
+        현재 완성 Scene에는 Chapter 3에서 사용할 `Pivot`과 `Occlusion`도 `TreasureChestAnchor` 아래에 있습니다. 이번 단계에서는 이를 새로 구성하지 않습니다.
+    }
+
+    @Section(title: "Object Tracking 구성을 점검하고 저장하기") {
+        @ContentAndMedia {
+            Swift에서 Scene을 불러오기 전에 RCP 구성이 완전한지 확인합니다. 여기서 이름이나 hierarchy가 잘못되면 앱이 Scene을 열어도 현실 물체와 가상 콘텐츠가 연결되지 않습니다.
+        }
+
+        @Steps {
+            @Step {
+                **Object Anchor 설정을 확인합니다.** Anchor Entity에 Anchoring Component가 있고, Target은 `Object`, Anchor Object는 학습자가 만든 `.referenceobject`인지 확인합니다.
+            }
+
+            @Step {
+                **가상 콘텐츠의 hierarchy를 확인합니다.** 현실 물체와 함께 움직일 Entity가 Object Anchor의 자식인지 확인합니다.
+            }
+
+            @Step {
+                **배치 가이드와 가상 콘텐츠를 비교합니다.** Reference Object의 방향과 실제 크기를 기준으로 가상 콘텐츠가 의도한 위치에 놓였는지 여러 방향에서 살펴봅니다.
+            }
+
+            @Step {
+                **Scene 이름을 확인하고 저장합니다.** 현재 프로젝트에서는 `ObjectTrackingScene`이라는 이름을 사용합니다. Reality Composer Pro에서 변경 내용을 저장한 뒤 Xcode로 돌아갑니다.
+            }
+        }
+
+        Reality Composer Pro 안의 Object Tracking 구성은 완료됐습니다. <doc:LoadTheRCPSceneInVisionOS>에서는 Swift가 `ObjectTrackingScene`을 불러와 Mixed Immersive Space의 `RealityView`에 추가하도록 연결합니다.
+    }
+}

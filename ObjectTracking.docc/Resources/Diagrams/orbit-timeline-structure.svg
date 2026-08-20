@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Orbit Timeline과 Behavior 연결</title>
+  <desc id="description">OnAddedToScene Behavior가 LoopOrbitToyBiplane을 재생하고 OrbitToyBiplane의 Orbit action이 Pivot과 ToyBiplane을 참조하는 구조</desc>
+  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
+  <text x="800" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="700" fill="#152033">Orbit 실행 연결</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="105" y="180" width="390" height="205" rx="30" fill="#DCEFE5" stroke="#3B8A65" stroke-width="6"/>
+    <text x="300" y="235" text-anchor="middle" font-size="33" font-weight="700" fill="#152033">OnAddedToScene</text>
+    <text x="300" y="285" text-anchor="middle" font-size="25" fill="#356D54">Trigger: Anchor가 Scene에 추가됨</text>
+    <text x="300" y="330" text-anchor="middle" font-size="25" fill="#356D54">Action: Play Timeline</text>
+    <path d="M495 282 H600" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M600 282 l-24 -15 v30 z" fill="#63799C"/>
+    <rect x="600" y="180" width="400" height="205" rx="30" fill="#F0E9F8" stroke="#7755A6" stroke-width="6"/>
+    <text x="800" y="235" text-anchor="middle" font-size="33" font-weight="700" fill="#152033">LoopOrbitToyBiplane</text>
+    <text x="800" y="285" text-anchor="middle" font-size="25" fill="#62458A">Play Timeline action</text>
+    <text x="800" y="330" text-anchor="middle" font-size="25" fill="#62458A">OrbitToyBiplane 반복</text>
+    <path d="M1000 282 H1105" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M1105 282 l-24 -15 v30 z" fill="#63799C"/>
+    <rect x="1105" y="180" width="390" height="205" rx="30" fill="#E3EDF9" stroke="#4778B8" stroke-width="6"/>
+    <text x="1300" y="235" text-anchor="middle" font-size="33" font-weight="700" fill="#152033">OrbitToyBiplane</text>
+    <text x="1300" y="282" text-anchor="middle" font-size="25" fill="#244B7C">Orbit action · 13s</text>
+    <text x="1300" y="325" text-anchor="middle" font-size="25" fill="#244B7C">Y축 · Counter Clockwise</text>
+    <text x="1300" y="360" text-anchor="middle" font-size="25" fill="#244B7C">Orient To Path</text>
+    <path d="M1300 385 V480" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M1300 480 l-15 -24 h30 z" fill="#63799C"/>
+    <rect x="830" y="525" width="300" height="125" rx="27" fill="#F0E9F8" stroke="#7755A6" stroke-width="5"/>
+    <text x="980" y="578" text-anchor="middle" font-size="34" font-weight="700" fill="#152033">Pivot</text>
+    <text x="980" y="620" text-anchor="middle" font-size="23" fill="#62458A">회전 중심</text>
+    <rect x="1190" y="525" width="300" height="125" rx="27" fill="#E3EDF9" stroke="#4778B8" stroke-width="5"/>
+    <text x="1340" y="578" text-anchor="middle" font-size="34" font-weight="700" fill="#152033">ToyBiplane</text>
+    <text x="1340" y="620" text-anchor="middle" font-size="23" fill="#244B7C">움직이는 target</text>
+    <path d="M1245 480 C1170 500 1080 510 1010 525" fill="none" stroke="#7755A6" stroke-width="7" stroke-dasharray="12 9"/>
+    <path d="M1360 480 V525" fill="none" stroke="#4778B8" stroke-width="7" stroke-dasharray="12 9"/>
+    <rect x="165" y="505" width="530" height="190" rx="30" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <text x="430" y="560" text-anchor="middle" font-size="31" font-weight="700" fill="#152033">Transform 관계</text>
+    <text x="430" y="608" text-anchor="middle" font-size="25" fill="#455A7A">Pivot과 ToyBiplane은</text>
+    <text x="430" y="645" text-anchor="middle" font-size="25" fill="#455A7A">TreasureChestAnchor 아래의 형제</text>
+    <text x="800" y="790" text-anchor="middle" font-size="27" fill="#455A7A">Timeline은 궤도를 정의하고 Behavior는 Scene에 추가되는 시점에 반복 재생을 시작합니다.</text>
+  </g>
+</svg>

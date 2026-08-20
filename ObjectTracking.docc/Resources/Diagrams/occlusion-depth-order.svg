@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Occlusion 깊이 관계</title>
+  <desc id="description">실제 TreasureChest와 정렬된 보이지 않는 Occlusion geometry가 앞의 ToyBiplane은 보이게 하고 뒤의 ToyBiplane은 가리는 관계</desc>
+  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
+  <text x="800" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="700" fill="#152033">실물과 가상 콘텐츠의 깊이 관계</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+    <rect x="95" y="165" width="1410" height="650" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
+    <circle cx="220" cy="490" r="78" fill="#E8EEF7" stroke="#63799C" stroke-width="6"/>
+    <circle cx="220" cy="455" r="25" fill="#63799C"/>
+    <path d="M170 560 Q220 515 270 560" fill="none" stroke="#63799C" stroke-width="16" stroke-linecap="round"/>
+    <text x="220" y="620" text-anchor="middle" font-size="29" font-weight="700" fill="#152033">사용자</text>
+    <path d="M320 490 H480" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M480 490 l-25 -15 v30 z" fill="#63799C"/>
+    <rect x="490" y="420" width="260" height="125" rx="28" fill="#E3EDF9" stroke="#4778B8" stroke-width="5"/>
+    <text x="620" y="470" text-anchor="middle" font-size="32" font-weight="700" fill="#152033">ToyBiplane</text>
+    <text x="620" y="515" text-anchor="middle" font-size="24" fill="#244B7C">앞쪽 · 보임</text>
+    <path d="M820 610 L895 335 H1165 L1240 610 Z" fill="#C99D6B" fill-opacity="0.22" stroke="#B87935" stroke-width="8" stroke-dasharray="16 12"/>
+    <path d="M870 400 H1190" stroke="#B87935" stroke-width="7"/>
+    <text x="1030" y="455" text-anchor="middle" font-size="34" font-weight="700" fill="#80501F">실제 TreasureChest</text>
+    <text x="1030" y="500" text-anchor="middle" font-size="25" fill="#80501F">+ 정렬된 보이지 않는 geometry</text>
+    <text x="1030" y="545" text-anchor="middle" font-size="24" fill="#80501F">Occlusion Material</text>
+    <rect x="1290" y="420" width="200" height="125" rx="28" fill="#F4E3E3" stroke="#B65B5B" stroke-width="5"/>
+    <text x="1390" y="470" text-anchor="middle" font-size="29" font-weight="700" fill="#152033">ToyBiplane</text>
+    <text x="1390" y="515" text-anchor="middle" font-size="24" fill="#8C4141">뒤쪽 · 가림</text>
+    <path d="M1285 420 L1495 545 M1495 420 L1285 545" stroke="#B65B5B" stroke-width="12" stroke-linecap="round" opacity="0.72"/>
+    <text x="800" y="735" text-anchor="middle" font-size="28" fill="#455A7A">.referenceobject는 추적을, USDZ geometry와 Occlusion Material은 깊이 경계를 담당합니다.</text>
+  </g>
+</svg>
