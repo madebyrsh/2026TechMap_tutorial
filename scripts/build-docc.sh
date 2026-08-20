@@ -23,3 +23,5 @@ xcrun docc convert ObjectTracking.docc \
   --hosting-base-path /2026TechMap_tutorial \
   --transform-for-static-hosting \
   --warnings-as-errors
+
+cp scripts/docc-root-redirect.html .build/site/index.html

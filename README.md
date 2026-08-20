@@ -11,7 +11,7 @@ Apple Vision Pro와 visionOS에서 Object Tracking 공간 경험을 만드는 �
 
 ## 공개 문서
 
-https://madebyrsh.github.io/2026TechMap_tutorial/
+https://madebyrsh.github.io/2026TechMap_tutorial/tutorials/objecttrackingtutorials/
 
 ## 로컬 정적 빌드
 
