@@ -1,0 +1,309 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["TreasureChestAnchor", "OrbitToyBiplane", "LoopOrbitToyBiplane", "OcclusionMaterial"]
+    rel material:binding = None (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+
+    def Xform "TreasureChestAnchor" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Occlusion", "Pivot", "Anchoring", "ToyBiplane", "RCP_BehaviorsContainer", "OnAddedToScene"]
+        def RealityKitComponent "Anchoring"
+        {
+            uniform token info:id = "RealityKit.Anchoring"
+
+            def RealityKitStruct "descriptor"
+            {
+                token type = "Object"
+                asset url = @TreasureChest.referenceobject@
+            }
+        }
+
+        def Xform "Pivot" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["ToyBiplane", "Anchoring"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0.04, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "ToyBiplane" (
+            active = true
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
+            references = @ToyBiplane.usdz@
+        )
+        {
+            quatf xformOp:orient = (0.99999994, 0, 0, 0)
+            float3 xformOp:scale = (0.15, 0.15, 0.15)
+            float3 xformOp:translate = (-0.1, 0.03, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "geom"
+            {
+                over "realistic"
+                {
+                    over "materials"
+                    {
+                        over "usdpreviewsurface3sg"
+                        {
+                            string inputs:file5:varname (
+                                customData = {
+                                    dictionary realitykit = {
+                                        float2 positionInSubgraph = (245.375, 1167.5)
+                                    }
+                                }
+                            )
+                            string inputs:file6:varname (
+                                customData = {
+                                    dictionary realitykit = {
+                                        float2 positionInSubgraph = (458.375, 1167.5)
+                                    }
+                                }
+                            )
+                            string inputs:file7:varname (
+                                customData = {
+                                    dictionary realitykit = {
+                                        float2 positionInSubgraph = (669.875, 1167.5)
+                                    }
+                                }
+                            )
+                            string inputs:file8:varname (
+                                customData = {
+                                    dictionary realitykit = {
+                                        float2 positionInSubgraph = (883.375, 1167.5)
+                                    }
+                                }
+                            )
+                            string inputs:file16:varname (
+                                customData = {
+                                    dictionary realitykit = {
+                                        float2 positionInSubgraph = (1102.875, 1167.5)
+                                    }
+                                }
+                            )
+                            token outputs:realitykit:vertex
+                            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1263.25, 540)
+
+                            over "Lookup_st"
+                            {
+                                float2 ui:nodegraph:node:pos = (91, 431.5)
+                            }
+
+                            over "file16_mtlx"
+                            {
+                                float2 ui:nodegraph:node:pos = (350, 540)
+                            }
+
+                            over "file6_mtlx"
+                            {
+                                float2 ui:nodegraph:node:pos = (622.75, 718.5)
+                            }
+
+                            over "file16_mtlx_scale"
+                            {
+                                float2 ui:nodegraph:node:pos = (622.75, 540)
+                            }
+
+                            over "file5_mtlx"
+                            {
+                                float2 ui:nodegraph:node:pos = (622.75, 979.5)
+                            }
+
+                            over "file7_mtlx"
+                            {
+                                float2 ui:nodegraph:node:pos = (622.75, 361.5)
+                            }
+
+                            over "file16_mtlx_offset"
+                            {
+                                float2 ui:nodegraph:node:pos = (816.25, 540)
+                            }
+
+                            over "toy_biplane_realistic_mat_mtlx"
+                            {
+                                float2 ui:nodegraph:node:pos = (1010, 540)
+                            }
+
+                            over "file8_mtlx"
+                            {
+                                float2 ui:nodegraph:node:pos = (622.75, 100.5)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/TreasureChestAnchor/OnAddedToScene>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/TreasureChestAnchor/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/TreasureChestAnchor/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/TreasureChestAnchor>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/LoopOrbitToyBiplane>
+                rel animationLibraryKeyOverrideKey = </Root/TreasureChestAnchor/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+
+        def Xform "Occlusion" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "OcclusionTreasureChest" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                references = @TreasureChest.usdz@
+            )
+            {
+                reorder nameChildren = ["Materials", "Geometry", "OcclusionMaterial"]
+                rel material:binding = None (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "Materials"
+                {
+                    over "Texture"
+                    {
+                        token inputs:frame:stPrimvarName (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (-111.5, 87.5)
+                                    int stackingOrderInSubgraph = 4
+                                }
+                            }
+                        )
+                        token outputs:mtlx:surface.connect = </Root/TreasureChestAnchor/Occlusion/OcclusionTreasureChest/Materials/Texture/PreviewSurface.outputs:out>
+                        token outputs:realitykit:vertex
+                        token outputs:surface.connect = </Root/TreasureChestAnchor/Occlusion/OcclusionTreasureChest/Materials/Texture/surfaceShader.outputs:surface>
+                        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (125, 110.5)
+
+                        over "surfaceShader" (
+                            active = false
+                        )
+                        {
+                        }
+
+                        def Shader "PreviewSurface"
+                        {
+                            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                            token outputs:out
+                            float2 ui:nodegraph:node:pos = (-368.51562, 94.56641)
+                            int ui:nodegraph:node:stackingOrder = 6
+                        }
+                    }
+                }
+
+                over "Geometry"
+                {
+                    over "Mesh" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        rel material:binding = </Root/TreasureChestAnchor/Occlusion/OcclusionTreasureChest/OcclusionMaterial> (
+                            bindMaterialAs = "weakerThanDescendants"
+                        )
+                        float3 xformOp:translate = (0, 0, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                    }
+                }
+
+                def Material "OcclusionMaterial"
+                {
+                    token outputs:mtlx:surface.connect = </Root/TreasureChestAnchor/Occlusion/OcclusionTreasureChest/OcclusionMaterial/Occlusion.outputs:out>
+                    token outputs:realitykit:vertex
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+                    int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 7
+
+                    def Shader "Occlusion"
+                    {
+                        uniform token info:id = "ND_realitykit_occlusion_surfaceshader"
+                        token outputs:out
+                        float2 ui:nodegraph:node:pos = (58.289062, 95.82422)
+                        int ui:nodegraph:node:stackingOrder = 6
+                        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+                    }
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "OrbitToyBiplane"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                float3 axis = (0, 1, 0)
+                int blendLayer = 300
+                double duration = 13
+                uniform token info:id = "92C359A3-059D-4BA1-81BB-7040E742A20B"
+                token orbitDirection = "counterClockwise"
+                bool orientToPath = 1
+                rel pivotEntity = </Root/TreasureChestAnchor/Pivot>
+                double startTime = 0
+                rel target = </Root/TreasureChestAnchor/ToyBiplane>
+            }
+        }
+    }
+
+    def RealityKitTimeline "LoopOrbitToyBiplane"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 13
+                uniform token info:id = "26C517FD-09D3-4463-9A9A-44A0E7F2E07A"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/OrbitToyBiplane>
+            }
+        }
+    }
+}
+

@@ -4,3 +4,7 @@
 DerivedData/
 xcuserdata/
 *.xcuserstate
+.swiftpm/
+PluginData/
+build/
+*.rcuserdata
