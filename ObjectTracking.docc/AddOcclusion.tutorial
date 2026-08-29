@@ -1,30 +1,32 @@
 @Tutorial(time: 30) {
     @Intro(title: "실제 물체에 맞는 Occlusion 추가하기") {
-        Orbit Animation만 적용하면 `ToyBiplane`이 실제 TreasureChest 뒤를 지나도 항상 앞에 그려질 수 있습니다. 이 Tutorial에서는 실제 물체와 같은 형태의 geometry를 보물상자에 맞춰 놓고 Occlusion Material을 적용해 자연스러운 앞뒤 관계를 만듭니다.
+        Orbit Animation만 적용하면 `ToyBiplane`이 실제 TreasureChest 뒤를 지나도 항상 앞에 보일 수 있습니다. 자연스러운 깊이 관계를 만들려면 실제 물체의 가림 영역을 RealityKit에 알려 줘야 합니다.
 
-        Occlusion geometry는 화면에서 보이지 않지만 깊이 정보를 기록해 뒤쪽의 가상 콘텐츠를 가립니다. 실제 물체를 대신 그리는 model이 아니라 RealityKit에 현실 물체의 경계를 알려 주는 가상 깊이 표면입니다.
+        이 Tutorial에서는 실제 물체와 같은 형태의 geometry를 보물상자에 맞추고 Occlusion Material을 적용합니다. Occlusion geometry는 화면에 보이지 않지만 깊이 정보를 기록해 뒤쪽의 가상 콘텐츠를 가립니다.
+
+        완성하면 비행기가 실제 보물상자의 앞에서는 보이고 뒤에서는 자연스럽게 가려집니다. 이 geometry는 실제 물체를 대신 그리는 모델이 아니라 현실 물체의 경계를 나타내는 가상 깊이 표면입니다.
 
         @Image(source: occlusion-depth-order, alt: "보이지 않는 TreasureChest Occlusion geometry가 앞쪽 ToyBiplane은 보이게 하고 뒤쪽 ToyBiplane은 가리는 깊이 관계")
     }
 
     @Section(title: "실제 물체를 나타내는 geometry 준비하기") {
         @ContentAndMedia {
-            Occlusion 경계가 실제 물체와 맞으려면 geometry의 형태, 크기와 방향이 현실 물체에 충분히 가까워야 합니다. 단순한 Box로 충분한 물체도 있지만 뚜껑과 돌출 부분이 있는 TreasureChest에는 같은 USDZ geometry를 사용하는 편이 더 정확합니다.
+            Occlusion 경계가 실제 물체와 맞으려면 geometry의 형태, 크기, 방향이 현실 물체와 비슷해야 합니다. 단순한 Box로 충분한 물체도 있습니다. 뚜껑과 돌출 부분이 있는 TreasureChest에는 같은 USDZ geometry를 사용하는 편이 더 정확합니다.
 
-            `.referenceobject`는 인식과 추적을 위한 학습 결과이므로 material을 적용해 Scene geometry로 렌더링하는 자산이 아닙니다. 현재 예제는 별도의 `TreasureChest.usdz`를 Occlusion geometry로 사용합니다.
+            `.referenceobject`는 인식과 추적을 위한 학습 결과입니다. Material을 적용해 Scene geometry로 렌더링하는 자산이 아닙니다. 현재 예제는 별도의 `TreasureChest.usdz`를 Occlusion geometry로 사용합니다.
         }
 
         @Steps {
             @Step {
-                **Occlusion에 사용할 geometry를 준비합니다.** 실제 물체와 같은 좌표 기준, 크기와 형태를 가진 USDZ 또는 충분히 가까운 단순 geometry를 준비합니다. 현재 예제에서는 `TreasureChest.usdz`를 사용합니다.
+                **Occlusion에 사용할 geometry를 준비합니다.** 실제 물체와 같은 좌표 기준, 크기, 형태를 가진 USDZ를 사용합니다. 충분히 가까운 단순 geometry를 대신 사용할 수도 있습니다. 현재 예제에서는 `TreasureChest.usdz`를 사용합니다.
             }
 
             @Step {
-                **TreasureChestAnchor 아래에 Occlusion container를 만듭니다.** Transform Entity를 추가하고 `Occlusion`으로 이름을 바꿉니다. 현재 예제의 container Transform은 Position `(0, 0, 0)`, Rotation `(0, 0, 0)`, Scale `(1, 1, 1)`입니다.
+                **TreasureChestAnchor 아래에 Occlusion 컨테이너를 만듭니다.** Transform Entity를 추가하고 `Occlusion`으로 이름을 바꿉니다. 현재 예제의 컨테이너 Transform은 Position `(0, 0, 0)`, Rotation `(0, 0, 0)`, Scale `(1, 1, 1)`입니다.
             }
 
             @Step {
-                **geometry를 Occlusion container 아래에 배치합니다.** `TreasureChest.usdz`를 Scene에 추가하고 `OcclusionTreasureChest`로 이름을 바꾼 뒤 `TreasureChestAnchor/Occlusion` 아래로 옮깁니다.
+                **geometry를 Occlusion 컨테이너 아래에 배치합니다.** `TreasureChest.usdz`를 Scene에 추가하고 `OcclusionTreasureChest`로 이름을 바꿉니다. 그런 다음 `TreasureChestAnchor/Occlusion` 아래로 옮깁니다.
 
                 @Image(source: tracked-transform-hierarchy, alt: "TreasureChestAnchor 아래 Occlusion container와 OcclusionTreasureChest geometry가 배치된 hierarchy")
             }
@@ -35,18 +37,18 @@
 
     @Section(title: "Reference Object cue와 geometry 정렬하기") {
         @ContentAndMedia {
-            RCP 3D View의 반투명 Reference Object cue는 실제 물체가 Anchor 좌표계에서 차지할 위치와 방향을 보여 줍니다. Occlusion geometry를 cue와 겹쳐 놓으면 추적된 실제 물체와 같은 좌표를 사용하게 됩니다.
+            RCP 3D View의 반투명 Reference Object cue는 실제 물체의 위치와 방향을 보여 줍니다. Occlusion geometry를 cue와 겹쳐 놓으면 추적된 물체와 같은 Anchor 좌표계를 사용하게 됩니다.
 
             @Image(source: occlusion-depth-order, alt: "Reference Object cue와 같은 위치에 정렬된 TreasureChest Occlusion geometry")
         }
 
         @Steps {
             @Step {
-                **Reference Object cue를 보이게 하고 geometry를 선택합니다.** 정면만 보지 말고 위, 옆과 비스듬한 시점에서도 두 형태를 비교할 준비를 합니다.
+                **Reference Object cue를 표시하고 geometry를 선택합니다.** 정면뿐 아니라 위, 옆, 비스듬한 시점에서도 두 형태를 비교합니다.
             }
 
             @Step {
-                **geometry의 위치, 방향과 크기를 cue에 맞춥니다.** 현재 예제는 같은 기준으로 제작한 `TreasureChest.usdz`를 사용하므로 `OcclusionTreasureChest`의 Position과 Rotation은 `(0, 0, 0)`, Scale은 `(1, 1, 1)`입니다. 자신의 USDZ가 다른 원점이나 단위를 사용한다면 이 값을 직접 조정합니다.
+                **geometry의 위치, 방향, 크기를 cue에 맞춥니다.** 현재 예제는 같은 기준으로 제작한 `TreasureChest.usdz`를 사용합니다. 따라서 `OcclusionTreasureChest`의 Position과 Rotation은 `(0, 0, 0)`, Scale은 `(1, 1, 1)`입니다. 자신의 USDZ가 다른 원점이나 단위를 사용한다면 값을 직접 조정하세요.
             }
 
             @Step {
@@ -59,22 +61,22 @@
 
     @Section(title: "Occlusion Material 만들고 적용하기") {
         @ContentAndMedia {
-            일반 material은 geometry 자체를 화면에 그립니다. Occlusion Material은 표면을 보이지 않게 유지하면서 뒤쪽의 가상 geometry를 가릴 수 있도록 깊이 관계에 참여합니다.
+            일반 Material은 geometry 자체를 화면에 그립니다. Occlusion Material은 표면을 보이지 않게 유지하면서 깊이 관계에 참여합니다. 그 결과 뒤쪽의 가상 geometry를 가릴 수 있습니다.
 
             @Image(source: occlusion-depth-order, alt: "Occlusion Material이 적용된 보이지 않는 geometry와 앞뒤 가상 비행기의 깊이 관계")
         }
 
         @Steps {
             @Step {
-                **새 Material을 만들고 Occlusion shader를 선택합니다.** Project Browser 또는 선택한 material의 Inspector에서 material을 추가하고 Shader를 `Occlusion`으로 설정합니다. 완성 예제의 material 이름은 `OcclusionMaterial`입니다.
+                **새 Material을 만들고 Occlusion Shader를 선택합니다.** Project Browser 또는 선택한 Material의 Inspector에서 Material을 추가합니다. Shader를 `Occlusion`으로 설정하세요. 완성 예제의 Material 이름은 `OcclusionMaterial`입니다.
             }
 
             @Step {
-                **OcclusionTreasureChest의 실제 Mesh에 material을 적용합니다.** model의 container 이름만 선택하지 말고 geometry를 그리는 Mesh의 Material Slot이 `OcclusionMaterial`을 사용하는지 확인합니다. 현재 저장 결과에서는 `OcclusionTreasureChest/Geometry/Mesh`가 이 material에 binding됩니다.
+                **OcclusionTreasureChest의 실제 Mesh에 Material을 적용합니다.** 모델의 컨테이너가 아니라 geometry를 그리는 Mesh를 선택합니다. Material Slot이 `OcclusionMaterial`을 사용하는지 확인하세요. 저장된 Scene에서는 `OcclusionTreasureChest/Geometry/Mesh`에 이 Material이 바인딩됩니다.
             }
 
             @Step {
-                **geometry가 보이지 않는지 확인합니다.** material 적용 뒤 TreasureChest texture가 그대로 보인다면 원래 material이 남아 있거나 다른 Mesh에 적용했을 수 있습니다. Hierarchy와 Material Slot을 다시 확인합니다.
+                **geometry가 보이지 않는지 확인합니다.** Material을 적용한 뒤에도 TreasureChest 텍스처가 보이면 원래 Material이 남아 있거나 다른 Mesh에 적용했을 수 있습니다. 계층 구조와 Material Slot을 다시 확인하세요.
             }
         }
 
@@ -107,7 +109,7 @@
             }
 
             @Step {
-                **뒤쪽 깊이 관계를 확인합니다.** 비행기가 보물상자 뒤로 이동하면 겹치는 부분만 Occlusion geometry에 가려져야 합니다. RCP preview로 기본 구성을 확인한 뒤, 실제 물체와의 정렬은 Apple Vision Pro에서 최종 검증합니다.
+                **뒤쪽 깊이 관계를 확인합니다.** 비행기가 보물상자 뒤로 이동하면 겹치는 부분만 Occlusion geometry에 가려져야 합니다. RCP 미리보기에서 기본 구성을 확인하세요. 실제 물체와의 정렬은 Apple Vision Pro에서 최종 검증합니다.
             }
         }
 

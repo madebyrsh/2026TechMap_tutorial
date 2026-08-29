@@ -1,34 +1,34 @@
 @Tutorial(time: 30) {
     @Intro(title: "USDZ로 Reference Object 만들기") {
-        Vision Pro가 현실의 특정 물체를 알아보고 계속 따라가게 하려면, 먼저 그 물체가 어떤 모습인지 알려 주는 자료가 필요합니다.
+        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면, 먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.
 
-        이 Tutorial에서는 실제 추적 대상과 같은 형태와 크기를 가진 USDZ 3D model을 준비합니다. 그런 다음 Create ML에서 새로운 Object Tracking 프로젝트를 만들고, USDZ를 학습해 `.referenceobject` 파일로 내보냅니다.
+        이 Tutorial에서는 실제 추적 대상과 같은 형태와 크기의 USDZ 3D 모델을 준비합니다. 그런 다음 Create ML에서 Object Tracking 프로젝트를 만들고 USDZ를 학습합니다.
 
-        완성 프로젝트의 TreasureChest 자산을 결과 비교에 활용할 수 있지만, 실습은 학습자가 추적하려는 물체와 그 물체를 표현하는 USDZ로 진행합니다.
+        학습이 끝나면 결과를 `.referenceobject` 파일로 내보냅니다. 완성 프로젝트의 TreasureChest 자산은 결과를 비교할 때 활용하고, 실습에는 자신이 추적하려는 물체와 그 물체를 표현하는 USDZ를 사용합니다.
     }
 
     @Section(title: "Create ML을 시작하기 전에 준비하기") {
         @ContentAndMedia {
-            Vision Pro가 현실의 물체를 알아보려면 그 물체의 형태와 크기를 표현하는 3D model이 필요합니다. Object Tracking에서는 이 3D model을 USDZ 파일로 준비합니다.
+            Vision Pro가 현실의 물체를 인식하려면 그 형태와 크기를 표현하는 3D 모델이 필요합니다. Object Tracking에서는 이 모델을 USDZ 파일로 준비합니다.
 
             예를 들어 완성 프로젝트는 실제 TreasureChest를 추적합니다. 따라서 Create ML에 넣을 `TreasureChest.usdz`도 실제 보물상자의 전체 형태와 크기를 충분히 정확하게 표현해야 합니다.
 
-            Apple은 3D model이 현실 물체의 외형을 더 잘 표현할수록 추적 품질에 도움이 된다고 안내합니다. 모든 model이 무조건 사진처럼 보여야 한다는 뜻은 아닙니다. 다음 요소가 실제 추적 대상과 잘 맞는지 확인하는 것이 중요합니다.
+            3D 모델이 현실 물체의 외형을 잘 표현할수록 추적 품질을 높이는 데 도움이 됩니다. 모델이 반드시 사진처럼 보여야 하는 것은 아닙니다. 다음 요소가 실제 추적 대상과 잘 맞는지 확인하세요.
 
             - **전체 형태**: 손잡이, 모서리, 빈 공간처럼 물체의 구조를 구분하는 부분이 반영되어 있는지 확인합니다.
             - **실제 크기**: USDZ의 가로, 높이, 깊이가 현실 물체와 같은 단위를 사용하고 정확한 크기로 만들어졌는지 확인합니다.
             - **방향과 원점**: 앞·뒤와 위·아래가 올바른지 확인합니다. 이 기준은 이후 Reality Composer Pro에서 가상 콘텐츠를 배치할 때도 사용됩니다.
             - **눈에 띄는 외형적 특징**: 무늬나 장식처럼 물체를 구분하기 쉬운 특징이 빠지지 않았는지 확인합니다.
-            - **재질과 표면 표현**: 색, texture, 반사처럼 물체의 인상에 영향을 주는 표면이 현실과 충분히 비슷한지 확인합니다.
+            - **재질과 표면 표현**: 색, 텍스처, 반사처럼 물체의 인상에 영향을 주는 표면이 현실과 충분히 비슷한지 확인합니다.
 
             USDZ는 여러 방법으로 준비할 수 있습니다.
 
             - 이미 가지고 있는 정확한 USDZ를 사용할 수 있습니다.
-            - Blender나 Cinema 4D 같은 일반적인 3D 제작 도구로 model을 만들 수 있습니다.
-            - 제품의 정확한 설계 자료가 있다면 CAD 도구로 model을 만들 수 있습니다.
+            - Blender나 Cinema 4D 같은 일반적인 3D 제작 도구로 모델을 만들 수 있습니다.
+            - 제품의 정확한 설계 자료가 있다면 CAD 도구로 모델을 만들 수 있습니다.
             - iPhone이나 iPad에서 Object Capture를 사용해 실제 물체를 스캔할 수 있습니다.
 
-            Object Capture는 여러 방향에서 촬영한 사진을 분석해 3D model을 만드는 RealityKit 기능입니다. 이 Tutorial에서는 촬영과 처리 과정을 다시 실습하지 않습니다. 자세한 방법은 [Object Capture 공식 문서](https://developer.apple.com/documentation/realitykit/realitykit-object-capture), [사진 촬영 가이드](https://developer.apple.com/documentation/realitykit/capturing-photographs-for-realitykit-object-capture/), [Meet Object Capture for iOS](https://developer.apple.com/videos/play/wwdc2023/10191/)에서 확인하세요.
+            Object Capture는 여러 방향에서 촬영한 사진을 분석해 3D 모델을 만드는 RealityKit 기능입니다. 이 Tutorial에서는 촬영과 처리 과정을 다루지 않습니다. 자세한 방법은 [Object Capture 공식 문서](https://developer.apple.com/documentation/realitykit/realitykit-object-capture), [사진 촬영 가이드](https://developer.apple.com/documentation/realitykit/capturing-photographs-for-realitykit-object-capture/), [Meet Object Capture for iOS](https://developer.apple.com/videos/play/wwdc2023/10191/)에서 확인하세요.
         }
 
         @Steps {
@@ -37,7 +37,7 @@
             }
 
             @Step {
-                **현실 물체를 표현하는 USDZ를 준비하고 비교합니다.** 3D viewer에서 파일을 열어 전체 형태, 실제 크기, 방향, 주요 특징과 표면이 추적할 물체와 충분히 잘 맞는지 확인합니다.
+                **현실 물체를 표현하는 USDZ를 준비합니다.** 3D Viewer에서 파일을 열고 실제 물체와 비교합니다. 전체 형태, 크기, 방향, 주요 특징과 표면이 충분히 잘 맞는지 확인하세요.
             }
         }
 
@@ -48,7 +48,7 @@
         @ContentAndMedia {
             앞 단계에서는 Vision Pro가 추적할 현실 물체와 그 물체를 표현하는 USDZ를 준비했습니다.
 
-            이제 Create ML을 열고 새로운 Object Tracking 프로젝트를 만듭니다. Create ML은 준비한 USDZ를 학습해, Vision Pro가 현실에서 해당 물체를 인식하고 추적할 때 사용할 `.referenceobject`를 생성합니다.
+            이제 Create ML을 열고 Object Tracking 프로젝트를 만듭니다. Create ML은 준비한 USDZ를 학습해 `.referenceobject`를 생성합니다. Vision Pro는 이 파일을 이용해 현실에서 해당 물체를 인식하고 추적합니다.
         }
 
         @Steps {
@@ -61,7 +61,7 @@
             }
 
             @Step {
-                **Spatial 영역을 선택합니다.** Template 선택 화면의 왼쪽 목록에서 `Spatial`을 선택해 공간 경험용 Template을 표시합니다.
+                **Spatial 영역을 선택합니다.** Template 선택 화면의 왼쪽 목록에서 `Spatial`을 선택합니다. 공간 경험용 Template이 나타납니다.
             }
 
             @Step {
@@ -73,29 +73,29 @@
             }
 
             @Step {
-                **준비한 USDZ를 추가합니다.** 빈 Object Tracking 학습 화면이 나타나면 앞 단계에서 준비한, 실제 추적 대상 물체를 표현하는 USDZ 파일을 3D model이 표시되는 영역인 3D viewport로 끌어 놓습니다.
+                **준비한 USDZ를 추가합니다.** 앞 단계에서 준비한 USDZ 파일을 빈 Object Tracking 학습 화면의 3D viewport로 끌어 놓습니다. 이 파일은 실제 추적 대상 물체를 표현해야 합니다.
             }
         }
 
-        3D viewport에 model이 나타나면 Create ML이 입력 파일을 읽은 상태입니다. 다음 단계에서 외형과 dimensions를 다시 확인하고, 현실에서 물체를 바라볼 방향을 설정합니다.
+        3D viewport에 모델이 나타나면 Create ML이 입력 파일을 읽은 상태입니다. 다음 단계에서 외형과 Dimensions를 다시 확인하고, 현실에서 물체를 바라볼 방향을 설정합니다.
     }
 
     @Section(title: "Model 정보와 Viewing Angles 확인하기") {
         @ContentAndMedia {
-            Training을 시작하기 전에 Create ML에 들어온 3D model이 현실 물체와 제대로 대응하는지 다시 확인해야 합니다.
+            Training을 시작하기 전에 Create ML에 추가한 3D 모델이 현실 물체와 제대로 대응하는지 다시 확인합니다.
 
-            Dimensions는 model의 실제 가로, 높이, 깊이를 나타냅니다. 이 값이 현실 물체와 다르면 추적 결과를 기준으로 배치한 가상 콘텐츠가 물체의 앞이나 뒤로 어긋날 수 있습니다.
+            Dimensions는 모델의 실제 가로, 높이, 깊이를 나타냅니다. 이 값이 현실 물체와 다르면 가상 콘텐츠의 위치가 물체의 앞이나 뒤로 어긋날 수 있습니다.
 
             Viewing Angles는 Vision Pro가 현실에서 물체를 어느 방향에서 보게 될지 Create ML에 알려 주는 설정입니다. 사용자가 물체의 모든 면을 돌아볼 수 있는지, 아니면 책상 위에 놓인 물체의 위쪽과 앞쪽만 보게 되는지를 생각해 설정합니다.
         }
 
         @Steps {
             @Step {
-                **3D viewport에서 model의 외형을 살펴봅니다.** model을 회전하고 확대하면서 빠진 형태, 잘못된 방향, 눈에 띄는 material이나 texture 문제가 없는지 확인합니다.
+                **3D viewport에서 모델의 외형을 살펴봅니다.** 모델을 회전하고 확대하면서 빠진 형태나 잘못된 방향이 없는지 확인합니다. 눈에 띄는 Material이나 텍스처 문제도 살펴보세요.
             }
 
             @Step {
-                **Dimensions를 실제 물체와 비교합니다.** Create ML에 표시된 가로, 높이, 깊이를 현실 물체의 측정값과 비교하고, 값이 다르면 Training 전에 원본 USDZ의 scale을 바로잡습니다.
+                **Dimensions를 실제 물체와 비교합니다.** 표시된 가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다. 값이 다르면 Training 전에 원본 USDZ의 Scale을 바로잡습니다.
             }
 
             @Step {
@@ -107,23 +107,23 @@
             }
         }
 
-        입력 model과 Viewing Angles를 확인했다면 Create ML이 어떤 물체를 어떤 방향에서 학습해야 하는지 준비된 상태입니다.
+        입력 모델과 Viewing Angles를 확인하면 Create ML이 어떤 물체를 어느 방향에서 학습해야 하는지 준비가 끝납니다.
     }
 
     @Section(title: "Training하고 Reference Object 내보내기") {
         @ContentAndMedia {
-            Create ML은 앞에서 준비한 3D model과 설정을 바탕으로, 현실에서 해당 물체를 알아보고 위치와 방향을 추적하는 데 사용할 Object Tracking model을 학습합니다.
+            Create ML은 앞에서 준비한 3D 모델과 설정을 바탕으로 Object Tracking 모델을 학습합니다. 이 모델은 현실에서 해당 물체를 인식하고 위치와 방향을 추적하는 데 사용됩니다.
 
             Training 시간은 Mac의 성능, USDZ의 복잡도와 선택한 설정에 따라 달라집니다. 이 Tutorial의 예상 시간에는 Training을 기다리는 시간이 포함되지 않습니다.
         }
 
         @Steps {
             @Step {
-                **Training 전에 입력 내용을 마지막으로 확인합니다.** 올바른 USDZ가 들어 있는지, dimensions가 현실 물체와 맞는지, 필요한 Viewing Angles가 선택되어 있는지 확인합니다.
+                **Training 전에 입력 내용을 마지막으로 확인합니다.** 올바른 USDZ가 들어 있는지 확인합니다. Dimensions가 현실 물체와 맞고 필요한 Viewing Angles가 선택되어 있는지도 살펴보세요.
             }
 
             @Step {
-                **Training을 시작합니다.** Create ML에서 Train을 실행하고 3D model을 Object Tracking용으로 학습합니다.
+                **Training을 시작합니다.** Create ML에서 Train을 실행해 3D 모델을 Object Tracking용으로 학습합니다.
             }
 
             @Step {
@@ -135,7 +135,7 @@
             }
 
             @Step {
-                **두 파일의 역할을 확인합니다.** 입력한 USDZ는 현실 물체를 표현한 3D model이고, 새로 저장한 `.referenceobject`는 Vision Pro가 그 물체를 인식하고 추적하는 데 사용할 학습 결과입니다.
+                **두 파일의 역할을 확인합니다.** 입력한 USDZ는 현실 물체를 표현한 3D 모델입니다. 새로 저장한 `.referenceobject`는 Vision Pro가 그 물체를 인식하고 추적하는 데 사용하는 학습 결과입니다.
             }
         }
 

@@ -1,34 +1,36 @@
 @Tutorial(time: 35) {
     @Intro(title: "ToyBiplane에 Orbit Animation 추가하기") {
-        `TreasureChestAnchor`가 실제 보물상자를 따라가고 있지만, `ToyBiplane`은 아직 한 위치에 머뭅니다. 이 Tutorial에서는 Anchor 좌표계 안에 Transform-only `Pivot`을 만들고, 비행기가 그 중심을 반복해서 돌도록 Timeline과 Behavior를 연결합니다.
+        `TreasureChestAnchor`는 실제 보물상자를 따라가지만 `ToyBiplane`은 아직 한 위치에 머뭅니다. 비행기를 움직이려면 궤도의 중심과 Animation을 구성해야 합니다.
 
-        완성 예제의 Orbit은 `ToyBiplane`을 target으로, 형제 Entity인 `Pivot`을 회전 중심으로 사용합니다. `ToyBiplane`을 `Pivot`의 자식으로 만들지 않습니다.
+        이 Tutorial에서는 Anchor 좌표계 안에 Transform-only `Pivot`을 만듭니다. Timeline과 Behavior를 연결해 `ToyBiplane`이 이 중심을 반복해서 돌게 합니다.
+
+        완성된 Orbit은 `ToyBiplane`을 Target으로 사용하고 형제 Entity인 `Pivot`을 회전 중심으로 삼습니다. `ToyBiplane`을 `Pivot`의 자식으로 만들지 않습니다.
 
         @Image(source: orbit-timeline-structure, alt: "TreasureChestAnchor 아래의 Pivot과 ToyBiplane을 Orbit Timeline, 반복 Timeline, OnAddedToScene Behavior가 연결하는 구조")
     }
 
     @Section(title: "Anchor 좌표계 안에 회전 중심 만들기") {
         @ContentAndMedia {
-            Orbit에는 움직일 target과 회전 중심이 필요합니다. 중심을 별도의 Transform Entity로 만들면 model geometry를 움직이지 않고도 궤도의 위치를 조절할 수 있습니다.
+            Orbit에는 움직일 Target과 회전 중심이 필요합니다. 중심을 별도의 Transform Entity로 만들면 모델 geometry를 움직이지 않고도 궤도의 위치를 조절할 수 있습니다.
 
-            현재 완성 Scene을 살펴보는 경우 같은 이름의 Entity를 다시 만들지 말고 기존 `Pivot`의 설정을 확인합니다. 자신의 Scene을 구성하는 경우 아래 순서대로 추가합니다.
+            완성 Scene을 살펴본다면 같은 이름의 Entity를 다시 만들지 말고 기존 `Pivot`의 설정을 확인하세요. 자신의 Scene을 구성한다면 아래 순서대로 추가합니다.
 
             @Image(source: tracked-transform-hierarchy, alt: "TreasureChestAnchor 아래 Pivot, ToyBiplane, Occlusion이 형제로 배치된 hierarchy")
         }
 
         @Steps {
             @Step {
-                **TreasureChestAnchor 아래에 Transform Entity를 추가하고 Pivot으로 이름을 바꿉니다.** Scene navigator에서 `TreasureChestAnchor`를 선택한 뒤 Transform Entity를 추가합니다. `Pivot`이 `ToyBiplane`의 부모가 아니라 Anchor 아래의 형제인지 확인합니다.
+                **TreasureChestAnchor 아래에 Transform Entity를 추가합니다.** 이름을 `Pivot`으로 바꿉니다. `Pivot`이 `ToyBiplane`의 부모가 아니라 Anchor 아래의 형제인지 확인하세요.
 
                 @Image(source: tracked-transform-hierarchy, alt: "TreasureChestAnchor 아래에서 Pivot과 ToyBiplane이 형제인 hierarchy")
             }
 
             @Step {
-                **Pivot의 위치를 궤도 중심으로 조정합니다.** 현재 TreasureChest 예제는 Position을 `(0, 0.04, 0)`으로 두어 Anchor 원점보다 4cm 높은 곳을 중심으로 사용합니다. 자신의 물체에서는 Reference Object cue를 보면서 원하는 궤도 중심을 정합니다.
+                **Pivot의 위치를 궤도 중심으로 조정합니다.** TreasureChest 예제의 Position은 `(0, 0.04, 0)`입니다. Anchor 원점보다 4cm 높은 곳을 중심으로 사용합니다. 자신의 물체에서는 Reference Object cue를 보면서 원하는 중심을 정하세요.
             }
 
             @Step {
-                **ToyBiplane의 시작 위치를 확인합니다.** 현재 예제의 Position은 `(-0.1, 0.03, 0)`, Scale은 `(0.15, 0.15, 0.15)`입니다. Pivot과 target의 위치 차이가 궤도 반지름을 만들므로 비행기를 Pivot과 같은 위치에 두지 않습니다.
+                **ToyBiplane의 시작 위치를 확인합니다.** 현재 예제의 Position은 `(-0.1, 0.03, 0)`, Scale은 `(0.15, 0.15, 0.15)`입니다. Pivot과 Target의 위치 차이가 궤도 반지름을 만듭니다. 비행기를 Pivot과 같은 위치에 두지 마세요.
             }
         }
 
@@ -38,52 +40,52 @@
 
     @Section(title: "Orbit Timeline 구성하기") {
         @ContentAndMedia {
-            Timeline은 시간에 따라 실행할 action을 담습니다. 첫 번째 Timeline은 한 바퀴의 Orbit 자체를 정의합니다. 반복 실행은 다음 Section에서 별도의 Timeline과 Behavior로 연결합니다.
+            Timeline에는 시간에 따라 실행할 Action을 담습니다. 첫 번째 Timeline은 한 바퀴의 Orbit을 정의합니다. 반복 재생은 다음 Section에서 별도의 Timeline과 Behavior로 연결합니다.
 
             @Image(source: orbit-timeline-structure, alt: "OrbitToyBiplane Timeline의 Orbit action이 ToyBiplane target과 Pivot을 참조하는 구조")
         }
 
         @Steps {
             @Step {
-                **Timeline 편집기에서 OrbitToyBiplane Timeline을 만듭니다.** 새 Timeline을 추가하고 한 바퀴의 역할을 알 수 있도록 `OrbitToyBiplane`으로 이름을 바꿉니다.
+                **Timeline 편집기에서 Timeline을 만듭니다.** 새 Timeline을 추가하고 `OrbitToyBiplane`으로 이름을 바꿉니다. 한 바퀴의 움직임을 정의하는 Timeline임을 이름으로 구분할 수 있습니다.
             }
 
             @Step {
-                **Orbit action을 Track에 추가하고 target을 ToyBiplane으로 설정합니다.** action의 `Target`에서 `TreasureChestAnchor/ToyBiplane`을 선택합니다. 실제로 위치가 변하는 Entity는 `ToyBiplane`입니다.
+                **Orbit Action을 Track에 추가합니다.** `Target`에서 `TreasureChestAnchor/ToyBiplane`을 선택합니다. 실제로 위치가 변하는 Entity는 `ToyBiplane`입니다.
             }
 
             @Step {
-                **Orbit action의 pivot을 Pivot으로 설정합니다.** `Pivot` 또는 회전 중심을 지정하는 항목에서 `TreasureChestAnchor/Pivot`을 선택합니다. target과 pivot의 이름을 반대로 선택하지 않도록 hierarchy를 다시 확인합니다.
+                **Orbit Action의 Pivot을 설정합니다.** 회전 중심을 지정하는 항목에서 `TreasureChestAnchor/Pivot`을 선택합니다. Target과 Pivot을 반대로 선택하지 않았는지 계층 구조를 확인하세요.
             }
 
             @Step {
-                **Orbit의 경로 설정을 조정합니다.** 현재 완성 예제는 Axis를 Y `(0, 1, 0)`, Direction을 Counter Clockwise, Duration을 13초로 설정하고 `Orient To Path`를 활성화합니다. 비행기가 수평으로 돌며 진행 방향을 바라보는지 Timeline preview로 확인합니다.
+                **Orbit의 경로를 설정합니다.** 완성 예제는 Axis를 Y `(0, 1, 0)`, Direction을 Counter Clockwise, Duration을 13초로 설정합니다. `Orient To Path`도 활성화합니다. Timeline 미리보기에서 비행기가 수평으로 돌며 진행 방향을 바라보는지 확인하세요.
             }
         }
 
-        현재 프로젝트의 저장 결과에서는 `target`이 `/Root/TreasureChestAnchor/ToyBiplane`, `pivotEntity`가 `/Root/TreasureChestAnchor/Pivot`을 가리킵니다. 이 prim path는 두 Entity가 형제임을 다시 보여 줍니다.
+        저장된 Scene에서 `target`은 `/Root/TreasureChestAnchor/ToyBiplane`을 가리킵니다. `pivotEntity`는 `/Root/TreasureChestAnchor/Pivot`을 가리킵니다. 두 prim path를 보면 Entity가 형제임을 알 수 있습니다.
 
         <!-- TODO: 실제 OrbitToyBiplane Timeline 전체와 선택된 Orbit Inspector를 함께 보여 주는 screenshot 추가 -->
     }
 
     @Section(title: "반복 Timeline과 Behavior 연결하기") {
         @ContentAndMedia {
-            `OrbitToyBiplane`은 한 번의 Orbit을 정의합니다. Scene이 추가될 때 자동으로 시작하고 계속 반복하려면 이를 재생하는 Timeline과 trigger/action을 가진 Behavior를 연결합니다.
+            `OrbitToyBiplane`은 한 번의 Orbit을 정의합니다. Scene이 추가될 때 자동으로 시작하고 계속 반복하려면 이를 재생하는 Timeline이 필요합니다. 이 Timeline을 Trigger와 Action을 가진 Behavior에 연결합니다.
 
             @Image(source: orbit-timeline-structure, alt: "OnAddedToScene Behavior가 LoopOrbitToyBiplane을 실행하고 다시 OrbitToyBiplane을 반복 재생하는 연결")
         }
 
         @Steps {
             @Step {
-                **LoopOrbitToyBiplane Timeline을 만들고 Play Timeline action을 추가합니다.** 재생할 Timeline으로 `OrbitToyBiplane`을 선택하고 반복 옵션을 계속 재생하도록 설정합니다. 현재 저장 결과의 `loopCount = 0`은 이 반복 구성을 나타냅니다.
+                **LoopOrbitToyBiplane Timeline을 만듭니다.** Play Timeline Action을 추가하고 재생할 Timeline으로 `OrbitToyBiplane`을 선택합니다. 반복 옵션은 계속 재생하도록 설정하세요. 저장된 Scene의 `loopCount = 0`은 이 반복 구성을 나타냅니다.
             }
 
             @Step {
-                **TreasureChestAnchor에 On Added To Scene Behavior를 만듭니다.** Behaviors에서 `On Added To Scene` trigger를 추가합니다. 이 trigger는 `TreasureChestAnchor`가 실행 중인 Scene에 참여할 때 action을 시작합니다.
+                **TreasureChestAnchor에 On Added To Scene Behavior를 만듭니다.** Behaviors에서 `On Added To Scene` Trigger를 추가합니다. 이 Trigger는 `TreasureChestAnchor`가 실행 중인 Scene에 참여할 때 Action을 시작합니다.
             }
 
             @Step {
-                **Behavior의 Play Timeline action에 LoopOrbitToyBiplane을 연결합니다.** Action이 `LoopOrbitToyBiplane`을 재생하는지 확인합니다. Scene preview에서 비행기가 여러 바퀴 연속으로 돌고, 한 바퀴가 끝날 때 멈추지 않는지 확인합니다.
+                **Behavior의 Play Timeline Action에 LoopOrbitToyBiplane을 연결합니다.** Action이 `LoopOrbitToyBiplane`을 재생하는지 확인합니다. Scene 미리보기에서 비행기가 한 바퀴 뒤에도 멈추지 않고 계속 도는지 살펴보세요.
             }
         }
 
@@ -93,7 +95,7 @@
 
     @Section(title: "Orbit 결과 점검하기") {
         @ContentAndMedia {
-            Animation이 보인다는 사실만 확인하지 말고 Transform 관계와 반복 연결을 함께 점검합니다. Simulator 또는 RCP preview는 Timeline 구성을 확인하는 데 사용할 수 있지만, 움직이는 현실 물체를 기준으로 궤도가 유지되는지는 Apple Vision Pro에서 확인해야 합니다.
+            Animation만 재생되는지 보지 말고 Transform 관계와 반복 연결도 함께 점검합니다. Simulator 또는 RCP 미리보기에서는 Timeline 구성을 확인할 수 있습니다. 움직이는 현실 물체를 기준으로 궤도가 유지되는지는 Apple Vision Pro에서 확인해야 합니다.
         }
 
         @Steps {
