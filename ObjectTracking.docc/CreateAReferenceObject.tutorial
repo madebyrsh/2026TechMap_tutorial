@@ -1,19 +1,29 @@
 @Tutorial(time: 30) {
     @Intro(title: "USDZ로 Reference Object 만들기") {
-        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면, 먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.
+        Vision Pro가 현실의 특정 물체를 인식하고 계속 추적하려면,  
+        먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.
 
-        이 Tutorial에서는 실제 추적 대상과 같은 형태와 크기의 USDZ 3D 모델을 준비합니다. 그런 다음 Create ML에서 Object Tracking 프로젝트를 만들고 USDZ를 학습합니다.
+        이 Tutorial에서는 실제 추적 대상과 같은 형태와 크기의 
+        USDZ 3D 모델을 준비합니다.  
+        그런 다음 Create ML에서 Object Tracking 프로젝트를 만들고 USDZ를 학습합니다.
 
-        학습이 끝나면 결과를 `.referenceobject` 파일로 내보냅니다. 완성 프로젝트의 TreasureChest 자산은 결과를 비교할 때 활용하고, 실습에는 자신이 추적하려는 물체와 그 물체를 표현하는 USDZ를 사용합니다.
+        학습이 끝나면 결과를 `.referenceobject` 파일로 내보냅니다.  
+        완성 프로젝트의 TreasureChest 자산은 결과를 비교할 때 활용하고,  
+        실습에는 자신이 추적하려는 물체와 그 물체를 표현하는 USDZ를 사용합니다.
     }
 
     @Section(title: "Create ML을 시작하기 전에 준비하기") {
         @ContentAndMedia {
-            Vision Pro가 현실의 물체를 인식하려면 그 형태와 크기를 표현하는 3D 모델이 필요합니다. Object Tracking에서는 이 모델을 USDZ 파일로 준비합니다.
+            Vision Pro가 현실의 물체를 인식하려면  
+            그 형태와 크기를 표현하는 3D 모델이 필요합니다.  
+            Object Tracking에서는 이 모델을 USDZ 파일로 준비합니다.
 
-            예를 들어 완성 프로젝트는 실제 TreasureChest를 추적합니다. 따라서 Create ML에 넣을 `TreasureChest.usdz`도 실제 보물상자의 전체 형태와 크기를 충분히 정확하게 표현해야 합니다.
+            예를 들어 완성 프로젝트는 실제 TreasureChest를 추적합니다.  
+            따라서 Create ML에 넣을 `TreasureChest.usdz`도  
+            실제 보물상자의 전체 형태와 크기를 충분히 정확하게 표현해야 합니다.
 
-            3D 모델이 현실 물체의 외형을 잘 표현할수록 추적 품질을 높이는 데 도움이 됩니다. 모델이 반드시 사진처럼 보여야 하는 것은 아닙니다. 다음 요소가 실제 추적 대상과 잘 맞는지 확인하세요.
+            3D 모델이 현실 물체의 외형을 잘 표현할수록 추적 품질을 높이는 데 도움이 됩니다.  
+            모델이 반드시 사진처럼 보여야 하는 것은 아닙니다. 다음 요소가 실제 추적 대상과 잘 맞는지 확인하세요.
 
             - **전체 형태**: 손잡이, 모서리, 빈 공간처럼 물체의 구조를 구분하는 부분이 반영되어 있는지 확인합니다.
             - **실제 크기**: USDZ의 가로, 높이, 깊이가 현실 물체와 같은 단위를 사용하고 정확한 크기로 만들어졌는지 확인합니다.
@@ -37,7 +47,7 @@
             }
 
             @Step {
-                **현실 물체를 표현하는 USDZ를 준비합니다.** 3D Viewer에서 파일을 열고 실제 물체와 비교합니다. 전체 형태, 크기, 방향, 주요 특징과 표면이 충분히 잘 맞는지 확인하세요.
+                **현실 물체를 표현하는 USDZ를 준비합니다.** 3D Viewer에서 파일을 열고 실제 물체와 비교합니다. 전체 형태, 크기, 방향, 주요 특징과 표면이 충분히 잘 맞는지 확인하세요. <!-- @Image(source: "usdz-model-inspection.png", alt: "3D Viewer에서 추적할 현실 물체를 표현하는 USDZ 모델을 확인하는 화면") -->
             }
         }
 
@@ -53,27 +63,27 @@
 
         @Steps {
             @Step {
-                **Create ML을 엽니다.** Xcode 메뉴에서 `Xcode > Open Developer Tool > Create ML`을 선택합니다.
+                **Create ML을 엽니다.** Xcode 메뉴에서 `Xcode > Open Developer Tool > Create ML`을 선택합니다. <!-- @Image(source: "xcode-open-create-ml.png", alt: "Xcode의 Open Developer Tool 메뉴에서 Create ML을 선택하는 화면") -->
             }
 
             @Step {
-                **새 프로젝트 만들기를 시작합니다.** Create ML 시작 화면에서 새로운 프로젝트를 만드는 항목을 선택합니다.
+                **새 프로젝트 만들기를 시작합니다.** Create ML 시작 화면에서 새로운 프로젝트를 만드는 항목을 선택합니다. <!-- @Image(source: "create-ml-new-project.png", alt: "Create ML 시작 화면에서 새 프로젝트 만들기를 선택하는 화면") -->
             }
 
             @Step {
-                **Spatial 영역을 선택합니다.** Template 선택 화면의 왼쪽 목록에서 `Spatial`을 선택합니다. 공간 경험용 Template이 나타납니다.
+                **Spatial 영역을 선택합니다.** Template 선택 화면의 왼쪽 목록에서 `Spatial`을 선택합니다. 공간 경험용 Template이 나타납니다. <!-- @Image(source: "create-ml-object-tracking-template.png", alt: "Create ML Template 선택 화면에서 Spatial 영역을 선택한 화면") -->
             }
 
             @Step {
-                **Object Tracking Template을 선택합니다.** `Object Tracking`을 선택하고 다음 화면으로 이동합니다.
+                **Object Tracking Template을 선택합니다.** `Object Tracking`을 선택하고 다음 화면으로 이동합니다. <!-- @Image(source: "create-ml-object-tracking-template.png", alt: "Create ML의 Spatial 영역에서 Object Tracking Template을 선택한 화면") -->
             }
 
             @Step {
-                **프로젝트를 생성합니다.** 추적할 물체를 알아보기 쉬운 프로젝트 이름을 입력하고 저장 위치를 지정한 뒤 프로젝트를 만듭니다.
+                **프로젝트를 생성합니다.** 추적할 물체를 알아보기 쉬운 프로젝트 이름을 입력하고 저장 위치를 지정한 뒤 프로젝트를 만듭니다. <!-- @Image(source: "create-ml-project-details.png", alt: "Create ML Object Tracking 프로젝트의 이름과 저장 위치를 지정하는 화면") -->
             }
 
             @Step {
-                **준비한 USDZ를 추가합니다.** 앞 단계에서 준비한 USDZ 파일을 빈 Object Tracking 학습 화면의 3D viewport로 끌어 놓습니다. 이 파일은 실제 추적 대상 물체를 표현해야 합니다.
+                **준비한 USDZ를 추가합니다.** 앞 단계에서 준비한 USDZ 파일을 빈 Object Tracking 학습 화면의 3D viewport로 끌어 놓습니다. 이 파일은 실제 추적 대상 물체를 표현해야 합니다. <!-- @Image(source: "create-ml-add-usdz.png", alt: "Create ML Object Tracking 프로젝트의 3D viewport에 USDZ 모델을 추가한 화면") -->
             }
         }
 
@@ -91,11 +101,11 @@
 
         @Steps {
             @Step {
-                **3D viewport에서 모델의 외형을 살펴봅니다.** 모델을 회전하고 확대하면서 빠진 형태나 잘못된 방향이 없는지 확인합니다. 눈에 띄는 Material이나 텍스처 문제도 살펴보세요.
+                **3D viewport에서 모델의 외형을 살펴봅니다.** 모델을 회전하고 확대하면서 빠진 형태나 잘못된 방향이 없는지 확인합니다. 눈에 띄는 Material이나 텍스처 문제도 살펴보세요. <!-- @Image(source: "create-ml-model-settings.png", alt: "Create ML의 3D viewport에서 Object Tracking 입력 모델의 외형을 확인하는 화면") -->
             }
 
             @Step {
-                **Dimensions를 실제 물체와 비교합니다.** 표시된 가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다. 값이 다르면 Training 전에 원본 USDZ의 Scale을 바로잡습니다.
+                **Dimensions를 실제 물체와 비교합니다.** 표시된 가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다. 값이 다르면 Training 전에 원본 USDZ의 Scale을 바로잡습니다. <!-- @Image(source: "create-ml-model-settings.png", alt: "Create ML에서 USDZ 모델의 Dimensions를 확인하는 화면") -->
             }
 
             @Step {
@@ -103,7 +113,7 @@
             }
 
             @Step {
-                **Viewing Angles를 설정합니다.** 여러 방향에서 보게 되는 물체는 필요한 방향을 넓게 포함하고, 항상 같은 자세로 놓이는 물체는 실제로 보이는 범위에 맞춰 선택합니다.
+                **Viewing Angles를 설정합니다.** 여러 방향에서 보게 되는 물체는 필요한 방향을 넓게 포함하고, 항상 같은 자세로 놓이는 물체는 실제로 보이는 범위에 맞춰 선택합니다. <!-- @Image(source: "create-ml-model-settings.png", alt: "Create ML에서 현실 물체를 관찰할 방향에 맞게 Viewing Angles를 설정하는 화면") -->
             }
         }
 
@@ -123,15 +133,15 @@
             }
 
             @Step {
-                **Training을 시작합니다.** Create ML에서 Train을 실행해 3D 모델을 Object Tracking용으로 학습합니다.
+                **Training을 시작합니다.** Create ML에서 Train을 실행해 3D 모델을 Object Tracking용으로 학습합니다. <!-- @Image(source: "create-ml-training-ready.png", alt: "Create ML에서 입력 모델과 설정을 확인하고 Object Tracking Training을 시작하는 화면") -->
             }
 
             @Step {
-                **Training이 끝날 때까지 기다립니다.** Create ML에 완료 상태와 Output이 나타나는지 확인하며, 처리 중에는 Mac이 잠자기 상태로 전환되지 않도록 합니다.
+                **Training이 끝날 때까지 기다립니다.** Create ML에 완료 상태와 Output이 나타나는지 확인하며, 처리 중에는 Mac이 잠자기 상태로 전환되지 않도록 합니다. <!-- @Image(source: "create-ml-training-result.png", alt: "Create ML에서 Object Tracking Training이 완료되고 Output이 생성된 화면") -->
             }
 
             @Step {
-                **Reference Object를 저장합니다.** Output에서 학습 결과를 선택하고, 이후 Reality Composer Pro에서 찾기 쉬운 이름과 위치에 `.referenceobject` 파일로 저장합니다.
+                **Reference Object를 저장합니다.** Output에서 학습 결과를 선택하고, 이후 Reality Composer Pro에서 찾기 쉬운 이름과 위치에 `.referenceobject` 파일로 저장합니다. <!-- @Image(source: "create-ml-export-reference-object.png", alt: "Create ML의 학습 결과를 referenceobject 파일로 내보내는 화면") -->
             }
 
             @Step {

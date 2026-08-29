@@ -1,8 +1,13 @@
 @Tutorials(name: "Object Tracking 공간 경험 만들기") {
     @Intro(title: "현실의 물체에 가상 콘텐츠 연결하기") {
-        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면, 먼저 그 물체의 모습을 알려 주는 자료가 필요합니다. 실제 물체와 같은 형태와 크기의 USDZ 3D 모델을 준비하고, Create ML에서 Object Tracking용 `.referenceobject` 파일을 만듭니다.
+        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면,  
+        먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.  
+        실제 물체와 같은 형태와 크기의 USDZ 3D 모델을 준비하고,  
+        Create ML에서 Object Tracking용 `.referenceobject` 파일을 만듭니다.
 
-        Reality Composer Pro에서는 이 파일을 추적 대상에 연결하고 현실 물체를 기준으로 가상 콘텐츠를 배치합니다. 가상 비행기의 Animation과 실제 보물상자에 가려지는 Occlusion도 추가합니다.
+        Reality Composer Pro에서는 이 파일을 추적 대상에 연결하고  
+        현실 물체를 기준으로 가상 콘텐츠를 배치합니다.  
+        가상 비행기의 Animation과 실제 보물상자에 가려지는 Occlusion도 추가합니다.
 
         학습은 추적 자산 만들기, Object Tracking 경험 구성하기, 가상 콘텐츠 확장하기, 실기기 검증 순서로 진행합니다. 마지막에는 Apple Vision Pro에서 모든 요소가 하나의 경험으로 연결되는지 확인합니다.
     }
