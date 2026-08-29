@@ -67,8 +67,7 @@
                 **현실 물체를 표현하는 USDZ를 준비합니다.**  
                 3D Viewer에서 파일을 열고 실제 물체와 비교합니다.  
                 전체 형태, 크기, 방향, 주요 특징과 표면이  
-                충분히 잘 맞는지 확인하세요. 
-                <!-- @Image(source: "usdz-model-inspection.png", alt: "3D Viewer에서 추적할 현실 물체를 표현하는 USDZ 모델을 확인하는 화면") -->
+                충분히 잘 맞는지 확인하세요. <!-- @Image(source: "usdz-model-inspection.png", alt: "3D Viewer에서 추적할 현실 물체를 표현하는 USDZ 모델을 확인하는 화면") -->
             }
         }
 
@@ -197,8 +196,7 @@
             @Step {
                 **Training이 끝날 때까지 기다립니다.** Create ML에  
                 완료 상태와 Output이 나타나는지 확인하며,  
-                처리 중에는 Mac이 잠자기 상태로 전환되지 않도록 합니다. 
-                 @Image(source: "create-ml-training-result.png", alt: "Create ML에서 Object Tracking Training이 완료되고 Output이 생성된 화면") 
+                처리 중에는 Mac이 잠자기 상태로 전환되지 않도록 합니다. <!-- @Image(source: "create-ml-training-result.png", alt: "Create ML에서 Object Tracking Training이 완료되고 Output이 생성된 화면") -->
             }
 
             @Step {
