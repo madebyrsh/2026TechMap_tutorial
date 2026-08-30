@@ -142,7 +142,8 @@
             }
 
             @Step {
-                **버튼 상태 변화를 확인합니다.** 닫힘, 처리 중, 열림 상태에 따라 버튼 문구가 바뀌고 전환 중에는 버튼이 비활성화되는지 확인합니다. <!-- @Image(source: "visionos-app-button-closed.png", alt: "visionOS Simulator에서 오브젝트 트래킹 시작 버튼이 표시된 닫힘 상태 화면") -->  <!-- @Image(source: "visionos-app-button-open.png", alt: "visionOS Simulator에서 오브젝트 트래킹 종료 버튼이 표시된 열림 상태 화면") -->
+                **버튼 상태 변화를 확인합니다.** 닫힘, 처리 중, 열림 상태에 따라 버튼 문구가 바뀌고 전환 중에는 버튼이 비활성화되는지 확인합니다. 
+                @Image(source: "visionos-app-button-closed.png", alt: "visionOS Simulator에서 오브젝트 트래킹 시작 버튼이 표시된 닫힘 상태 화면")
             }
 
             @Step {
