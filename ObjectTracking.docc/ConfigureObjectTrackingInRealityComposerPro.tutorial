@@ -26,19 +26,27 @@
 
         @Steps {
             @Step {
-                **RealityKitContent 패키지를 찾습니다.** Xcode의 Project navigator에서 `Packages > RealityKitContent`를 펼치고 `Package.realitycomposerpro`를 선택합니다. <!-- @Image(source: "xcode-realitykitcontent-package.png", alt: "Xcode Project navigator에서 RealityKitContent의 Package.realitycomposerpro를 선택한 화면") -->
+                **RealityKitContent 패키지를 찾습니다.** Xcode의 Project navigator에서 `Packages > RealityKitContent`를 펼치고 `Package.realitycomposerpro`를 선택합니다.
+
+                @Image(source: "xcode-realitykitcontent-package.png", alt: "Xcode Project navigator에서 RealityKitContent의 Package.realitycomposerpro를 선택한 화면")
             }
 
             @Step {
-                **Reality Composer Pro를 엽니다.** Xcode 편집기에서 `Open in Reality Composer Pro`를 선택합니다. <!-- @Image(source: "xcode-realitykitcontent-package.png", alt: "Xcode에서 Package.realitycomposerpro를 Reality Composer Pro로 여는 화면") -->
+                **Reality Composer Pro를 엽니다.** Xcode 편집기에서 `Open in Reality Composer Pro`를 선택합니다.
+
+                @Image(source: "xcode-realitykitcontent-package.png", alt: "Xcode에서 Package.realitycomposerpro를 Reality Composer Pro로 여는 화면")
             }
 
             @Step {
-                **ObjectTrackingScene을 엽니다.** 현재 프로젝트에서는 `ObjectTrackingScene`을 선택합니다. 새 Scene을 만들었다면 Swift에서 불러오기 쉬운 이름을 사용하세요. <!-- @Image(source: "rcp-object-tracking-scene-assets.png", alt: "Reality Composer Pro에서 ObjectTrackingScene을 선택한 화면") -->
+                **ObjectTrackingScene을 엽니다.** 현재 프로젝트에서는 `ObjectTrackingScene`을 선택합니다. 새 Scene을 만들었다면 Swift에서 불러오기 쉬운 이름을 사용하세요.
+
+                @Image(source: "rcp-object-tracking-scene-assets.png", alt: "Reality Composer Pro에서 ObjectTrackingScene을 선택한 화면")
             }
 
             @Step {
-                **추적에 필요한 자산을 확인합니다.** `RealityKitContent.rkassets`에 Chapter 1에서 만든 `.referenceobject`가 있는지 확인합니다. 화면에 보여 줄 가상 3D 모델도 필요합니다. 완성 예제에서는 `TreasureChest.referenceobject`와 `ToyBiplane.usdz`를 사용합니다. <!-- @Image(source: "rcp-object-tracking-scene-assets.png", alt: "Reality Composer Pro에서 TreasureChest reference object와 ToyBiplane USDZ 자산을 확인하는 화면") -->
+                **추적에 필요한 자산을 확인합니다.** `RealityKitContent.rkassets`에 Chapter 1에서 만든 `.referenceobject`가 있는지 확인합니다. 화면에 보여 줄 가상 3D 모델도 필요합니다. 완성 예제에서는 `TreasureChest.referenceobject`와 `ToyBiplane.usdz`를 사용합니다.
+
+                @Image(source: "rcp-object-tracking-scene-assets.png", alt: "Reality Composer Pro에서 TreasureChest reference object와 ToyBiplane USDZ 자산을 확인하는 화면")
             }
         }
 
@@ -60,26 +68,34 @@
 
         @Steps {
             @Step {
-                **Anchor로 사용할 Entity를 만듭니다.** Scene navigator에서 Transform Entity를 추가합니다. 추적할 물체를 알아볼 수 있는 이름으로 바꾸세요. TreasureChest 예제에서는 `TreasureChestAnchor`를 사용합니다. <!-- @Image(source: "rcp-add-anchor-entity.png", alt: "Reality Composer Pro에서 TreasureChestAnchor로 사용할 Transform Entity를 추가하는 화면") -->
+                **Anchor로 사용할 Entity를 만듭니다.** Scene navigator에서 Transform Entity를 추가합니다. 추적할 물체를 알아볼 수 있는 이름으로 바꾸세요. TreasureChest 예제에서는 `TreasureChestAnchor`를 사용합니다.
+
+                @Image(source: "rcp-add-anchor-entity.png", alt: "Reality Composer Pro에서 TreasureChestAnchor로 사용할 Transform Entity를 추가하는 화면")
             }
 
             @Step {
-                **Anchoring Component를 추가합니다.** Anchor Entity를 선택한 뒤 Inspector의 `Add Component`에서 `Anchoring`을 추가합니다. <!-- @Image(source: "rcp-add-anchoring-component.png", alt: "Reality Composer Pro에서 TreasureChestAnchor에 Anchoring Component를 추가하는 화면") -->
+                **Anchoring Component를 추가합니다.** Anchor Entity를 선택한 뒤 Inspector의 `Add Component`에서 `Anchoring`을 추가합니다.
+
+                @Image(source: "rcp-add-anchoring-component.png", alt: "Reality Composer Pro에서 TreasureChestAnchor에 Anchoring Component를 추가하는 화면")
             }
 
             @Step {
-                **Target을 Object로 바꿉니다.** Anchoring Component의 `Target`에서 `Object`를 선택합니다. World나 Plane은 Reference Object를 이용한 Object Tracking 대상이 아닙니다. <!-- @Image(source: "rcp-object-anchor-settings.png", alt: "Reality Composer Pro에서 TreasureChestAnchor의 Anchoring Target을 Object로 설정한 화면") -->
+                **Target을 Object로 바꿉니다.** Anchoring Component의 `Target`에서 `Object`를 선택합니다. World나 Plane은 Reference Object를 이용한 Object Tracking 대상이 아닙니다.
 
-                @Image(source: rcp-object-anchor-settings, alt: "TreasureChestAnchor의 Anchoring Component에서 Target을 Object로 설정한 관계도")
+                @Image(source: "rcp-object-anchor-settings.png", alt: "Reality Composer Pro에서 TreasureChestAnchor의 Anchoring Target을 Object로 설정한 화면")
             }
 
             @Step {
-                **Reference Object를 선택합니다.** `Anchor Object`에서 Chapter 1에서 내보낸 `.referenceobject` 파일을 선택합니다. TreasureChest 예제에서는 `TreasureChest.referenceobject`를 사용합니다. <!-- @Image(source: "rcp-object-anchor-settings2.png", alt: "Reality Composer Pro에서 TreasureChestAnchor의 Anchor Object로 TreasureChest reference object를 선택한 화면") -->
+                **Reference Object를 선택합니다.** `Anchor Object`에서 Chapter 1에서 내보낸 `.referenceobject` 파일을 선택합니다. TreasureChest 예제에서는 `TreasureChest.referenceobject`를 사용합니다.
+
+                @Image(source: "rcp-object-anchor-settings2.png", alt: "Reality Composer Pro에서 TreasureChestAnchor의 Anchor Object로 TreasureChest reference object를 선택한 화면")
 
             }
 
             @Step {
-                **반투명 배치 가이드를 확인합니다.** Anchor Object를 연결하면 3D View에 현실 물체를 나타내는 반투명 모델이 나타납니다. 이 모델은 앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치를 맞추는 가이드입니다. <!-- @Image(source: "rcp-object-anchor-settings3.png", alt: "Reality Composer Pro의 3D View에 TreasureChest Reference Object cue가 나타난 화면") -->
+                **반투명 배치 가이드를 확인합니다.** Anchor Object를 연결하면 3D View에 현실 물체를 나타내는 반투명 모델이 나타납니다. 이 모델은 앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치를 맞추는 가이드입니다.
+
+                @Image(source: "rcp-object-anchor-settings3.png", alt: "Reality Composer Pro의 3D View에 TreasureChest Reference Object cue가 나타난 화면")
 
             
             }
@@ -99,16 +115,22 @@
 
         @Steps {
             @Step {
-                **가상 콘텐츠를 Scene에 추가합니다.** 화면에 보여 줄 3D 모델을 Scene에 추가합니다. 현재 예제에서는 `ToyBiplane.usdz`를 참조하는 `ToyBiplane` Entity를 사용합니다. <!-- @Image(source: "rcp-add-toybiplane.png", alt: "Reality Composer Pro에서 ToyBiplane USDZ 자산을 ObjectTrackingScene에 추가하는 화면") -->
+                **가상 콘텐츠를 Scene에 추가합니다.** 화면에 보여 줄 3D 모델을 Scene에 추가합니다. 현재 예제에서는 `ToyBiplane.usdz`를 참조하는 `ToyBiplane` Entity를 사용합니다.
+
+                @Image(source: "rcp-add-toybiplane.png", alt: "Reality Composer Pro에서 ToyBiplane USDZ 자산을 ObjectTrackingScene에 추가하는 화면")
             }
 
             @Step {
-                **가상 Entity를 Object Anchor의 자식으로 옮깁니다.** Scene navigator에서 가상 Entity를 Anchor Entity 아래로 끌어 놓습니다. 최종 구조가 `Root > TreasureChestAnchor > ToyBiplane`인지 확인합니다. <!-- @Image(source: "rcp-anchor-hierarchy.png", alt: "Reality Composer Pro Hierarchy에서 ToyBiplane을 TreasureChestAnchor의 자식으로 배치한 화면") -->
+                **가상 Entity를 Object Anchor의 자식으로 옮깁니다.** Scene navigator에서 가상 Entity를 Anchor Entity 아래로 끌어 놓습니다. 최종 구조가 `Root > TreasureChestAnchor > ToyBiplane`인지 확인합니다.
+
+                @Image(source: "rcp-anchor-hierarchy.png", alt: "Reality Composer Pro Hierarchy에서 ToyBiplane을 TreasureChestAnchor의 자식으로 배치한 화면")
 
             }
 
             @Step {
-                **반투명 가이드를 기준으로 위치를 정합니다.** 현실 물체에서 가상 콘텐츠가 나타날 곳을 생각하며 Position, Rotation, Scale을 조절합니다. 다른 물체와 모델을 사용한다면 TreasureChest 예제의 Transform 값을 그대로 복사하지 마세요. <!-- @Image(source: "rcp-toybiplane-placement.png", alt: "Reality Composer Pro에서 Reference Object cue를 기준으로 ToyBiplane의 Transform을 조정하는 화면") -->
+                **반투명 가이드를 기준으로 위치를 정합니다.** 현실 물체에서 가상 콘텐츠가 나타날 곳을 생각하며 Position, Rotation, Scale을 조절합니다. 다른 물체와 모델을 사용한다면 TreasureChest 예제의 Transform 값을 그대로 복사하지 마세요.
+
+                @Image(source: "rcp-toybiplane-placement.png", alt: "Reality Composer Pro에서 Reference Object cue를 기준으로 ToyBiplane의 Transform을 조정하는 화면")
 
                
             }
@@ -128,7 +150,9 @@
 
         @Steps {
             @Step {
-                **Object Anchor 설정을 확인합니다.** Anchor Entity에 Anchoring Component가 있고, Target은 `Object`, Anchor Object는 학습자가 만든 `.referenceobject`인지 확인합니다. <!-- @Image(source: "rcp-object-anchor-settings4.png", alt: "Reality Composer Pro에서 Object Anchor의 Target과 Anchor Object 최종 설정을 확인하는 화면") -->
+                **Object Anchor 설정을 확인합니다.** Anchor Entity에 Anchoring Component가 있고, Target은 `Object`, Anchor Object는 학습자가 만든 `.referenceobject`인지 확인합니다.
+
+                @Image(source: "rcp-object-anchor-settings4.png", alt: "Reality Composer Pro에서 Object Anchor의 Target과 Anchor Object 최종 설정을 확인하는 화면")
             }
 
             @Step {

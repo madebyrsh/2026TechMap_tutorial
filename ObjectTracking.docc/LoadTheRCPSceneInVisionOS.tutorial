@@ -1,12 +1,18 @@
 @Tutorial(time: 55) {
     @Intro(title: "RCP Scene을 visionOS에서 불러오기") {
-        Reality Composer Pro에서 Object Anchor를 구성해도 저장된 Scene이 앱 화면에 자동으로 나타나지는 않습니다. Swift에서 `RealityKitContent` 번들의 Scene을 불러와 `RealityView`에 추가해야 합니다.
+        Reality Composer Pro에서 Object Anchor를 구성해도   
+        저장된 Scene이 앱 화면에 자동으로 나타나지는 않습니다.   
+        Swift에서 `RealityKitContent` 번들의 Scene을 불러와 `RealityView`에 추가해야 합니다.
 
-        이 Tutorial에서는 Immersive Space의 상태를 관리하고 RCP Scene을 불러오는 흐름을 연결합니다. 완성하면 버튼으로 Object Tracking 공간을 열고 닫을 수 있습니다.
+        이 Tutorial에서는 Immersive Space의 상태를 관리하고   
+        RCP Scene을 불러오는 흐름을 연결합니다.   
+        완성하면 버튼으로 Object Tracking 공간을 열고 닫을 수 있습니다.
 
-        각 Step의 코드 화면은 작업 중인 파일 전체를 보여 줍니다. Step을 이동하면 설명하는 영역으로 강조가 이동하므로 새 코드가 파일의 어디에 놓이는지 확인할 수 있습니다.
+        각 Step의 코드 화면은 작업 중인 파일 전체를 보여 줍니다.   
+        Step을 이동하면 설명하는 영역으로 강조가 이동하므로   
+        새 코드가 파일의 어디에 놓이는지 확인할 수 있습니다.
 
-        @Image(source: rcp-scene-runtime-flow, alt: "RealityKitContent의 ObjectTrackingScene을 ImmersiveView가 불러와 RealityView에 추가하는 흐름")
+        
     }
 
     @Section(title: "AppModel에 Immersive Space 상태 만들기") {
@@ -136,7 +142,7 @@
             }
 
             @Step {
-                **버튼 상태 변화를 확인합니다.** 닫힘, 처리 중, 열림 상태에 따라 버튼 문구가 바뀌고 전환 중에는 버튼이 비활성화되는지 확인합니다. <!-- @Image(source: "visionos-app-button-closed.png", alt: "visionOS Simulator에서 오브젝트 트래킹 시작 버튼이 표시된 닫힘 상태 화면") --> <!-- @Image(source: "visionos-app-button-transition.png", alt: "visionOS Simulator에서 처리 중 문구와 비활성화된 버튼이 표시된 전환 상태 화면") --> <!-- @Image(source: "visionos-app-button-open.png", alt: "visionOS Simulator에서 오브젝트 트래킹 종료 버튼이 표시된 열림 상태 화면") -->
+                **버튼 상태 변화를 확인합니다.** 닫힘, 처리 중, 열림 상태에 따라 버튼 문구가 바뀌고 전환 중에는 버튼이 비활성화되는지 확인합니다. <!-- @Image(source: "visionos-app-button-closed.png", alt: "visionOS Simulator에서 오브젝트 트래킹 시작 버튼이 표시된 닫힘 상태 화면") -->  <!-- @Image(source: "visionos-app-button-open.png", alt: "visionOS Simulator에서 오브젝트 트래킹 종료 버튼이 표시된 열림 상태 화면") -->
             }
 
             @Step {
