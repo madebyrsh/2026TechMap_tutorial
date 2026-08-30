@@ -1,17 +1,25 @@
 @Tutorial(time: 35) {
     @Intro(title: "Reality Composer Pro에서 Object Tracking 설정하기") {
-        Chapter 1에서는 현실 물체를 인식하는 데 사용할 `.referenceobject`를 만들었습니다. 이제 Reality Composer Pro에서 이 파일을 Object Anchor에 연결합니다.
+        Chapter 1에서는 현실 물체를 인식하는 데  
+        사용할 `.referenceobject`를 만들었습니다.  
+        이제 Reality Composer Pro에서 이 파일을 Object Anchor에 연결합니다.
 
-        Object Anchor 아래에는 추적된 물체와 함께 움직일 가상 콘텐츠를 배치합니다. 완성 예제에서는 `TreasureChest.referenceobject`를 `TreasureChestAnchor`에 연결하고 가상 비행기 `ToyBiplane`을 자식으로 둡니다.
+        Object Anchor 아래에는 추적된 물체와   
+        함께 움직일 가상 콘텐츠를 배치합니다.   
+        완성 예제에서는 `TreasureChest.referenceobject`를   
+        `TreasureChestAnchor`에 연결하고 가상 비행기 `ToyBiplane`을 자식으로 둡니다.
 
-        이 구성을 마치면 자신의 Reference Object와 가상 콘텐츠에도 같은 구조를 적용할 수 있습니다.
+        이 구성을 마치면 자신의 Reference Object와   
+        가상 콘텐츠에도 같은 구조를 적용할 수 있습니다.
 
-        @Image(source: object-anchor-hierarchy, alt: "Root 아래 TreasureChestAnchor가 있고 Anchoring Component와 ToyBiplane이 자식으로 연결된 구조")
     }
 
     @Section(title: "Reality Composer Pro Scene 열기") {
         @ContentAndMedia {
-            Chapter 1에서 만든 Reference Object는 추적에 필요한 학습 결과입니다. 앱에서 사용하려면 어떤 Entity가 이 파일을 추적 대상으로 사용할지 Reality Composer Pro에서 정해야 합니다.
+            Chapter 1에서 만든 Reference Object는   
+            추적에 필요한 학습 결과입니다.   
+            앱에서 사용하려면 어떤 Entity가 이 파일을   
+            추적 대상으로 사용할지 Reality Composer Pro에서 정해야 합니다.
 
             현재 Xcode 프로젝트에는 `RealityKitContent` 로컬 패키지와 `ObjectTrackingScene`이 이미 있습니다. 새 visionOS 프로젝트에서 처음 구성한다면 Immersive Space Renderer로 RealityKit을 선택하세요. Reality Composer Pro 패키지가 포함된 프로젝트에서 시작할 수 있습니다.
         }
@@ -34,14 +42,20 @@
             }
         }
 
-        Scene을 열었지만 아직 Reference Object와 Entity의 관계는 정해지지 않았습니다. 다음 단계에서 현실 물체를 따라갈 Object Anchor를 만듭니다.
+        Scene을 열었지만 아직 Reference Object와 Entity의 관계는 정해지지 않았습니다.   
+        다음 단계에서 현실 물체를 따라갈 Object Anchor를 만듭니다.
     }
 
     @Section(title: "Reference Object를 Object Anchor에 연결하기") {
         @ContentAndMedia {
-            Anchoring Component는 Entity가 어떤 현실 기준을 따라갈지 정합니다. Object Tracking에서는 Target을 `Object`로 설정합니다. 그런 다음 Chapter 1에서 만든 `.referenceobject`를 Anchor Object로 선택합니다.
+            Anchoring Component는 Entity가 어떤 현실 기준을 따라갈지 정합니다.   
+            Object Tracking에서는 Target을 `Object`로 설정합니다.   
+            그런 다음 Chapter 1에서 만든   
+            `.referenceobject`를 Anchor Object로 선택합니다.
 
-            현재 프로젝트의 완성 Scene에는 `TreasureChestAnchor`와 관련 설정이 이미 들어 있습니다. 구조를 살펴볼 때는 같은 Entity를 다시 만들지 말고 기존 설정을 확인하세요. 자신의 Scene을 구성한다면 아래 순서대로 추가합니다.
+            현재 프로젝트의 완성 Scene에는 `TreasureChestAnchor`와 관련 설정이 이미 들어 있습니다.   
+            구조를 살펴볼 때는 같은 Entity를 다시 만들지 말고 기존 설정을 확인하세요.   
+            자신의 Scene을 구성한다면 아래 순서대로 추가합니다.
         }
 
         @Steps {
@@ -60,15 +74,14 @@
             }
 
             @Step {
-                **Reference Object를 선택합니다.** `Anchor Object`에서 Chapter 1에서 내보낸 `.referenceobject` 파일을 선택합니다. TreasureChest 예제에서는 `TreasureChest.referenceobject`를 사용합니다. <!-- @Image(source: "rcp-object-anchor-settings.png", alt: "Reality Composer Pro에서 TreasureChestAnchor의 Anchor Object로 TreasureChest reference object를 선택한 화면") -->
+                **Reference Object를 선택합니다.** `Anchor Object`에서 Chapter 1에서 내보낸 `.referenceobject` 파일을 선택합니다. TreasureChest 예제에서는 `TreasureChest.referenceobject`를 사용합니다. <!-- @Image(source: "rcp-object-anchor-settings2.png", alt: "Reality Composer Pro에서 TreasureChestAnchor의 Anchor Object로 TreasureChest reference object를 선택한 화면") -->
 
-                @Image(source: rcp-object-anchor-settings, alt: "Object target과 TreasureChest reference object가 TreasureChestAnchor에 연결된 설정 관계도")
             }
 
             @Step {
-                **반투명 배치 가이드를 확인합니다.** Anchor Object를 연결하면 3D View에 현실 물체를 나타내는 반투명 모델이 나타납니다. 이 모델은 앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치를 맞추는 가이드입니다. <!-- @Image(source: "rcp-object-anchor-settings.png", alt: "Reality Composer Pro의 3D View에 TreasureChest Reference Object cue가 나타난 화면") -->
+                **반투명 배치 가이드를 확인합니다.** Anchor Object를 연결하면 3D View에 현실 물체를 나타내는 반투명 모델이 나타납니다. 이 모델은 앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치를 맞추는 가이드입니다. <!-- @Image(source: "rcp-object-anchor-settings3.png", alt: "Reality Composer Pro의 3D View에 TreasureChest Reference Object cue가 나타난 화면") -->
 
-                @Image(source: reference-object-cue-placement, alt: "반투명 TreasureChest reference object cue와 그 옆에 배치하는 ToyBiplane 관계도")
+            
             }
         }
 
@@ -92,13 +105,12 @@
             @Step {
                 **가상 Entity를 Object Anchor의 자식으로 옮깁니다.** Scene navigator에서 가상 Entity를 Anchor Entity 아래로 끌어 놓습니다. 최종 구조가 `Root > TreasureChestAnchor > ToyBiplane`인지 확인합니다. <!-- @Image(source: "rcp-anchor-hierarchy.png", alt: "Reality Composer Pro Hierarchy에서 ToyBiplane을 TreasureChestAnchor의 자식으로 배치한 화면") -->
 
-                @Image(source: object-anchor-hierarchy, alt: "Root 아래 TreasureChestAnchor가 있고 그 자식으로 ToyBiplane이 배치된 hierarchy")
             }
 
             @Step {
                 **반투명 가이드를 기준으로 위치를 정합니다.** 현실 물체에서 가상 콘텐츠가 나타날 곳을 생각하며 Position, Rotation, Scale을 조절합니다. 다른 물체와 모델을 사용한다면 TreasureChest 예제의 Transform 값을 그대로 복사하지 마세요. <!-- @Image(source: "rcp-toybiplane-placement.png", alt: "Reality Composer Pro에서 Reference Object cue를 기준으로 ToyBiplane의 Transform을 조정하는 화면") -->
 
-                @Image(source: reference-object-cue-placement, alt: "Reference Object cue를 기준으로 ToyBiplane의 local Transform을 조정하는 관계도")
+               
             }
 
             @Step {
@@ -116,7 +128,7 @@
 
         @Steps {
             @Step {
-                **Object Anchor 설정을 확인합니다.** Anchor Entity에 Anchoring Component가 있고, Target은 `Object`, Anchor Object는 학습자가 만든 `.referenceobject`인지 확인합니다. <!-- @Image(source: "rcp-object-anchor-settings.png", alt: "Reality Composer Pro에서 Object Anchor의 Target과 Anchor Object 최종 설정을 확인하는 화면") -->
+                **Object Anchor 설정을 확인합니다.** Anchor Entity에 Anchoring Component가 있고, Target은 `Object`, Anchor Object는 학습자가 만든 `.referenceobject`인지 확인합니다. <!-- @Image(source: "rcp-object-anchor-settings4.png", alt: "Reality Composer Pro에서 Object Anchor의 Target과 Anchor Object 최종 설정을 확인하는 화면") -->
             }
 
             @Step {
