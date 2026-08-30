@@ -1,158 +1,130 @@
-@Tutorial(time: 35) {
+@Tutorial(time: 25) {
     @Intro(title: "Apple Vision Pro에서 전체 경험 검증하기") {
-        지금까지 Mac에서 추적 자산을 만들고 Reality Composer Pro에서 가상 콘텐츠를 구성했습니다. 이제 Apple Vision Pro에서 실제 물체를 인식하는지 확인합니다.
+        Chapter 1~3에서 만든 Object Tracking 경험을 Apple Vision Pro에서 최종 확인합니다. 새로운 기능을 추가하는 단계가 아니라, 지금까지 만든 기능이 하나의 경험으로 자연스럽게 연결되는지 점검하는 마지막 단계입니다.
 
-        Simulator에서는 앱 빌드와 Immersive Space, RCP Scene의 연결을 검증할 수 있습니다. 실제 물체와 `.referenceobject`가 일치하는지는 확인할 수 없습니다.
+        Simulator에서는 앱 실행, Immersive Space 열기, Reality Composer Pro Scene 연결을 확인할 수 있습니다. 실제 물체와 `.referenceobject`가 일치해 인식되는지는 Apple Vision Pro에서 확인해야 합니다.
 
-        이 Tutorial에서는 가상 콘텐츠가 실제 물체를 따라가는지 살펴봅니다. 반복 Animation과 Occlusion 경계까지 확인하면 전체 Object Tracking 경험의 실기기 검증이 끝납니다.
+        실제 물체 인식부터 가상 콘텐츠의 위치, 반복 Animation, Occlusion까지 차례로 검증합니다.
 
-        @Image(source: chapter-device-validation, alt: "실제 물체 인식, ToyBiplane 표시, 반복 Orbit Animation, Occlusion을 Apple Vision Pro에서 순서대로 확인하는 과정")
+        @Image(source: chapter-device-validation, alt: "Apple Vision Pro에서 실제 물체 인식, 가상 콘텐츠, 반복 Animation, Occlusion을 확인하는 흐름")
     }
 
-    @Section(title: "Apple Vision Pro에서 확인할 준비하기") {
+    @Section(title: "실제 물체 인식 확인하기") {
         @ContentAndMedia {
-            Chapter 1에서 `.referenceobject`를 만들 때 기준으로 삼은 실제 물체를 준비합니다. 가능하면 USDZ와 `.referenceobject`가 표현하는 바로 그 물체를 사용하세요. 같은 종류라도 형태나 크기가 다르면 인식이 어렵거나 추적 좌표가 맞지 않을 수 있습니다.
+            `.referenceobject`는 Object Anchor가 실제 물체를 인식하고 추적하는 데 사용됩니다. 물체를 인식하면 `TreasureChestAnchor`가 tracked 좌표계의 기준이 되고, 그 아래의 `ToyBiplane`이 실제 물체를 기준으로 나타납니다.
 
-            물체는 여러 방향에서 안전하게 관찰할 수 있는 곳에 둡니다. 반사나 가림이 심하지 않은 환경에서 시작하세요. 이 Tutorial은 조명별 성공률이나 추적 성능을 측정하는 시험은 아닙니다.
+            `.referenceobject → Object Anchor → 실제 물체 인식 → 가상 콘텐츠 표시`의 연결이 올바른지 확인합니다.
+
+            @Image(source: device-validation-flow, alt: "reference object와 Object Anchor를 통해 실제 물체를 인식하고 가상 콘텐츠를 표시하는 흐름")
         }
 
         @Steps {
             @Step {
-                **추적 대상으로 사용한 실제 물체를 준비합니다.** TreasureChest 예제에서는 `TreasureChest.referenceobject`에 대응하는 실제 보물상자를 사용합니다. 자신의 자산으로 Chapter 1~3을 진행했다면 같은 물체를 준비하세요.
+                **Chapter 1에서 사용한 실제 물체를 준비합니다.** TreasureChest 예제에서는 `TreasureChest.referenceobject`를 만들 때 기준으로 삼은 실제 보물상자를 사용합니다.
             }
 
             @Step {
-                **Apple Vision Pro를 실행 대상 기기로 선택합니다.** Signing과 기기 연결을 마친 뒤 Xcode에서 Apple Vision Pro를 선택하고 앱을 실행합니다. 이 Tutorial에서는 Signing이나 배포 설정 자체를 다루지 않습니다. <!-- @Image(source: "xcode-vision-pro-run-destination.png", alt: "Xcode에서 연결된 Apple Vision Pro를 앱의 실행 대상으로 선택한 화면") -->
+                **Apple Vision Pro에서 Object Tracking을 시작합니다.** 앱의 `오브젝트 트래킹 시작` 버튼을 선택하고 `ObjectTrackingSpace`가 열리는지 확인합니다.
             }
 
             @Step {
-                **앱의 기본 Window가 나타나는지 확인합니다.** `오브젝트 트래킹 시작` 버튼이 보이면 visionOS 앱과 SwiftUI 진입 화면이 정상적으로 실행된 상태입니다. 아직 현실 물체 인식을 확인한 것은 아닙니다. <!-- @Image(source: "vision-pro-app-window.png", alt: "Apple Vision Pro에서 오브젝트 트래킹 시작 버튼이 표시된 앱의 기본 Window") -->
+                **실제 TreasureChest를 바라봤을 때 `ToyBiplane`이 나타나는지 확인합니다.** 가상 콘텐츠가 나타나면 Object Anchor가 실제 물체를 인식한 것입니다.
+            }
+
+            @Step {
+                **고개를 움직여 가상 콘텐츠의 기준 위치를 확인합니다.** `ToyBiplane`과 궤도 중심이 실제 물체의 tracked Transform을 따라 안정적으로 유지되는지 관찰합니다.
             }
         }
-
-        <!-- TODO: Apple Vision Pro에서 실제 TreasureChest를 바라보기 전 또는 아직 인식되지 않은 상태의 실제 촬영 자료 추가 -->
     }
 
-    @Section(title: "실제 물체가 인식되는지 확인하기") {
+    @Section(title: "Animation 확인하기") {
         @ContentAndMedia {
-            이제 `.referenceobject → Object Anchor → 실제 물체 인식 → 가상 콘텐츠 표시`의 연결을 실제 공간에서 확인합니다.
+            Chapter 3에서 만든 Orbit Animation이 실제 물체를 기준으로 동작하는지 확인합니다. `OnAddedToScene`이 `LoopOrbitToyBiplane`을 시작하고, 반복 Timeline이 한 바퀴의 `OrbitToyBiplane`을 계속 재생합니다.
 
-            `ToyBiplane`이 나타나면 RCP의 `TreasureChestAnchor`가 실제 물체를 찾은 것입니다. Anchor 좌표계 아래의 콘텐츠도 함께 활성화된 상태입니다.
-
-            @Image(source: device-validation-flow, alt: "reference object가 Object Anchor에 연결되고 실제 TreasureChest 인식 후 ToyBiplane이 표시되는 검증 흐름")
+            `Pivot`은 별도의 World Anchor가 아니라 `TreasureChestAnchor` 안에서 궤도 중심을 정하는 로컬 Transform입니다.
         }
 
         @Steps {
             @Step {
-                **오브젝트 트래킹 시작 버튼을 선택합니다.** 버튼이 `처리 중...`을 거쳐 `오브젝트 트래킹 종료`로 바뀌면 앱이 `ObjectTrackingSpace`를 연 상태입니다. <!-- @Image(source: "vision-pro-app-window.png", alt: "Apple Vision Pro 앱 Window에서 오브젝트 트래킹 시작 버튼을 선택하는 화면") -->
+                **`ToyBiplane`이 TreasureChest를 중심으로 움직이는지 확인합니다.** 비행기가 실제 물체와 무관한 지점이 아니라 Chapter 3에서 구성한 궤도를 따라야 합니다.
             }
 
             @Step {
-                **실제 TreasureChest를 시야에 둡니다.** 여러 면의 특징이 보이도록 천천히 바라보세요. 물체 전체가 지나치게 가려지지 않고 Viewing Angles에 포함되는 방향에서 관찰해야 합니다. <!-- @Image(source: "vision-pro-before-object-recognition.png", alt: "Apple Vision Pro에서 가상 콘텐츠가 나타나기 전 실제 TreasureChest를 시야에 둔 화면") -->
+                **`Pivot`이 올바른 궤도 중심인지 확인합니다.** 비행기가 `TreasureChestAnchor` 좌표계 안의 `Pivot`을 중심으로 도는지 관찰합니다.
             }
 
             @Step {
-                **ToyBiplane이 실제 보물상자를 기준으로 나타나는지 확인합니다.** 비행기가 나타나면 Object Anchor가 실제 물체를 인식한 것입니다. Anchor 아래의 가상 콘텐츠도 tracked Transform을 기준으로 표시된 상태입니다. <!-- @Image(source: "vision-pro-object-tracking-result.png", alt: "Apple Vision Pro에서 실제 TreasureChest를 인식한 뒤 ToyBiplane이 나타난 화면") -->
+                **진행 방향과 `Orient To Path` 결과를 확인합니다.** 비행기가 의도한 방향으로 이동하고 경로의 진행 방향을 바라보는지 살펴봅니다.
             }
 
             @Step {
-                **고개를 조금 움직여 가상 콘텐츠의 기준 위치를 확인합니다.** 비행기 궤도의 중심이 실제 보물상자에 붙어 있는 것처럼 유지되는지 관찰합니다. 빠른 이동이나 추적 안정성 측정은 이 기본 검증에 포함하지 않습니다.
+                **한 바퀴가 끝난 뒤에도 Animation이 계속되는지 확인합니다.** `LoopOrbitToyBiplane`이 `OrbitToyBiplane`을 반복해 재생하면 Animation 연결이 정상입니다.
             }
         }
-
-        <!-- TODO: 실제 TreasureChest 인식 후 ToyBiplane이 처음 나타난 상태의 실제 촬영 자료 추가 -->
     }
 
-    @Section(title: "물체를 기준으로 Animation 확인하기") {
+    @Section(title: "Occlusion 확인하기") {
         @ContentAndMedia {
-            RCP에서 만든 설정은 실제 공간에서 하나의 연속 동작으로 나타납니다. `OnAddedToScene`이 `LoopOrbitToyBiplane`을 시작합니다. 이 반복 Timeline은 한 바퀴의 `OrbitToyBiplane`을 계속 재생합니다.
+            Occlusion geometry는 실제 TreasureChest를 대신 그리는 모델이 아니라, 현실 물체의 깊이 경계를 표현하는 보이지 않는 geometry입니다. `Geometry > Mesh`에 적용된 `OcclusionMaterial`이 뒤쪽의 `ToyBiplane`을 가립니다.
 
-            Orbit Action은 `ToyBiplane`을 Target으로 움직이고 Transform-only `Pivot`을 회전 중심으로 사용합니다.
+            `.referenceobject`는 실제 물체를 인식하고 추적하며, Occlusion geometry는 그 좌표계 안에서 앞뒤 관계를 표현합니다. 두 자산은 같은 물체를 기준으로 하지만 역할이 다릅니다.
 
-            Pivot은 별도의 World Anchor가 아닙니다. 실제 보물상자의 tracked Transform을 제공하는 `TreasureChestAnchor` 안에서 궤도 중심을 정하는 로컬 Transform입니다.
+            @Image(source: occlusion-depth-order, alt: "실제 TreasureChest와 Occlusion geometry를 기준으로 ToyBiplane의 앞뒤 가림을 확인하는 흐름")
         }
 
         @Steps {
             @Step {
-                **ToyBiplane이 보물상자를 중심으로 움직이는지 확인합니다.** 비행기가 보물상자와 무관한 지점을 돌지 않고, Chapter 3에서 배치한 `Pivot` 위치를 중심으로 일정한 궤도를 그리는지 관찰합니다. <!-- @Image(source: "vision-pro-orbit-animation.png", alt: "Apple Vision Pro에서 ToyBiplane이 실제 TreasureChest를 기준으로 공전하는 화면") -->
+                **비행기가 실제 TreasureChest 앞에 있을 때 전체가 보이는지 확인합니다.** 앞쪽의 가상 콘텐츠는 Occlusion geometry에 가려지지 않아야 합니다.
             }
 
             @Step {
-                **비행기의 진행 방향과 궤도를 확인합니다.** 비행기가 Y Axis를 기준으로 Counter Clockwise 방향으로 도는지 살펴봅니다. 경로 방향을 바라본다면 `Orient To Path` 설정도 반영된 것입니다. <!-- @Image(source: "vision-pro-orbit-animation.png", alt: "Apple Vision Pro에서 ToyBiplane이 궤도의 진행 방향을 바라보며 움직이는 화면") -->
+                **비행기가 측면에서 뒤로 이동할 때 겹치는 부분부터 가려지는지 확인합니다.** 가림 경계가 실제 물체의 실루엣과 대체로 일치하는지 관찰합니다.
             }
 
             @Step {
-                **한 바퀴가 끝난 뒤에도 계속 움직이는지 확인합니다.** 약 13초의 Orbit이 끝난 뒤 멈추지 않고 다음 바퀴를 시작하면 `LoopOrbitToyBiplane`과 `OnAddedToScene`의 반복 연결이 정상입니다.
+                **비행기가 실제 TreasureChest 뒤에 있을 때 가려지는지 확인합니다.** 뒤쪽에서도 보인다면 geometry 정렬이나 Material 적용을 다시 확인해야 합니다.
+            }
+
+            @Step {
+                **비행기가 다시 앞으로 나오면 전체가 보이는지 확인합니다.** 한 바퀴 동안 앞과 뒤의 깊이 관계가 자연스럽게 바뀌어야 합니다.
             }
         }
-
-        <!-- TODO: ToyBiplane이 TreasureChest 앞과 측면을 지나며 한 바퀴 도는 실제 영상 추가 -->
     }
 
-    @Section(title: "실제 물체와 가상 콘텐츠의 가림 관계 확인하기") {
+    @Section(title: "전체 경험 확인하기") {
         @ContentAndMedia {
-            `TreasureChestAnchor/Occlusion/OcclusionTreasureChest`는 실제 보물상자의 형태를 따르는 보이지 않는 깊이 표면입니다. Mesh에 적용된 `OcclusionMaterial`은 뒤쪽의 가상 geometry를 가립니다. 그 결과 비행기가 현실 물체의 앞과 뒤를 오가는 것처럼 보입니다.
-
-            `.referenceobject`는 실제 물체를 인식하고 tracked Transform을 제공하며, Occlusion geometry는 그 좌표계 안에서 현실 물체의 깊이 경계를 표현합니다. 둘은 같은 물체를 기준으로 하지만 서로 대신할 수 없습니다.
-
-            @Image(source: occlusion-depth-order, alt: "실제 TreasureChest와 정렬된 Occlusion geometry가 뒤쪽 ToyBiplane을 가리는 깊이 관계")
-        }
-
-        @Steps {
-            @Step {
-                **비행기가 보물상자 앞을 지날 때 전체가 보이는지 확인합니다.** 고개를 움직여 실제 물체와 비행기의 상대적인 앞뒤 위치를 분명하게 관찰합니다. <!-- @Image(source: "vision-pro-occlusion-front.png", alt: "Apple Vision Pro에서 ToyBiplane이 실제 TreasureChest 앞을 지나며 전체가 보이는 화면") -->
-            }
-
-            @Step {
-                **비행기가 측면을 지나 뒤로 들어가는 과정을 확인합니다.** 비행기가 보물상자의 실루엣과 겹치기 시작할 때 겹치는 부분부터 자연스럽게 가려지는지 봅니다. <!-- @Image(source: "vision-pro-occlusion-transition.png", alt: "Apple Vision Pro에서 ToyBiplane이 TreasureChest 측면과 겹치며 일부 가려지는 화면") -->
-            }
-
-            @Step {
-                **비행기가 실제 보물상자 뒤에 있을 때 가려지는지 확인합니다.** 가려지는 경계가 실제 물체와 대체로 일치하면 Occlusion geometry의 정렬과 Occlusion Material이 정상적으로 작동하는 것입니다. <!-- @Image(source: "vision-pro-occlusion-behind.png", alt: "Apple Vision Pro에서 ToyBiplane이 실제 TreasureChest 뒤에서 Occlusion으로 가려진 화면") -->
-            }
-
-            @Step {
-                **비행기가 다시 앞으로 나올 때 보이는지 확인합니다.** 궤도의 앞쪽으로 돌아온 비행기가 다시 완전히 보여야 합니다. 계속 가려져 있다면 geometry의 크기나 위치를 확인합니다. <!-- @Image(source: "vision-pro-occlusion-front.png", alt: "Apple Vision Pro에서 ToyBiplane이 TreasureChest 앞쪽으로 돌아와 다시 완전히 보이는 화면") -->
-            }
-        }
-
-        Occlusion 경계는 geometry의 정밀도와 추적 정렬에 영향을 받습니다. 현재 프로젝트에서는 TreasureChest 뒤를 지나는 비행기가 가려지는 동작을 Apple Vision Pro에서 확인했습니다. 다만 모든 거리, 조명, 시점에서 완벽한 경계를 보장하는 성능 검증은 아닙니다.
-
-        <!-- TODO: ToyBiplane이 앞쪽에 보이는 상태, 측면을 지나는 상태, 뒤쪽에서 가려지는 상태, 다시 앞쪽으로 나타나는 상태의 실제 촬영 자료 추가 -->
-    }
-
-    @Section(title: "전체 제작 흐름과 결과 확인하기") {
-        @ContentAndMedia {
-            실기기에서 본 결과는 Chapter 1~3에서 만든 각 자산과 설정이 연결된 최종 출력입니다.
+            Chapter 1~3의 결과는 다음 순서로 하나의 Object Tracking 경험을 만듭니다.
 
             ```text
             현실 물체
-              ↓ 같은 형태와 크기의 3D 표현
+              ↓
             USDZ
-              ↓ Create ML 학습
+              ↓
+            Create ML
+              ↓
             .referenceobject
-              ↓ RCP Object Anchor의 추적 대상
-            TreasureChestAnchor
-              ↓ visionOS Immersive Space에서 활성화
-            Object Tracking
-              ↓ 같은 tracked 좌표계의 가상 콘텐츠
+              ↓
+            Object Anchor
+              ↓
+            tracked Transform
+              ↓
+            ToyBiplane
+              ↓
             Orbit Animation + Occlusion
             ```
-
-            @Image(source: device-validation-flow, alt: "현실 물체에서 reference object와 Object Anchor를 거쳐 Animation과 Occlusion을 검증하는 전체 흐름")
         }
 
         @Steps {
             @Step {
-                **실제 물체 인식을 확인합니다.** 준비한 실제 물체를 바라보았을 때 Object Anchor 아래의 콘텐츠가 나타납니다.
+                **실제 물체 인식을 확인합니다.** 준비한 물체를 바라봤을 때 Object Anchor 아래의 콘텐츠가 나타납니다.
             }
 
             @Step {
-                **가상 콘텐츠 배치를 확인합니다.** `ToyBiplane`과 궤도 중심이 실제 물체를 기준으로 올바른 위치에 있습니다.
+                **가상 콘텐츠 위치를 확인합니다.** `ToyBiplane`이 `TreasureChestAnchor`의 tracked 좌표계를 기준으로 올바른 위치에 나타납니다.
             }
 
             @Step {
-                **Animation과 반복을 확인합니다.** 비행기가 `Pivot`을 중심으로 돌고, 한 바퀴 뒤에도 계속 재생됩니다.
+                **반복 Animation을 확인합니다.** 비행기가 `Pivot`을 중심으로 돌고 한 바퀴 뒤에도 계속 움직입니다.
             }
 
             @Step {
@@ -160,38 +132,38 @@
             }
         }
 
-        네 결과가 모두 확인되면 기본 Object Tracking Tutorial의 제작과 실기기 검증을 완료한 것입니다.
+        네 가지 결과가 모두 확인되면 기본 Object Tracking 경험이 완성된 것입니다.
     }
 
-    @Section(title: "문제가 발생한 단계 찾기") {
+    @Section(title: "문제가 있다면 어디부터 확인할까?") {
         @ContentAndMedia {
-            한 번에 모든 설정을 바꾸지 마세요. 실제 결과가 처음 달라지는 지점부터 거꾸로 확인합니다. 아래 흐름은 성능 분석이 아니라 기본 구성 오류를 찾는 체크리스트입니다.
+            한 번에 여러 설정을 수정하지 말고, 결과가 처음 달라지는 단계부터 확인합니다. 인식, Transform, Animation, Occlusion 순서로 범위를 좁히면 문제의 원인을 빠르게 찾을 수 있습니다.
 
-            @Image(source: validation-diagnostic-flow, alt: "인식, Transform, Animation, Occlusion 순서로 문제 위치를 좁히는 진단 흐름")
+            @Image(source: validation-diagnostic-flow, alt: "물체 인식, Transform, Animation, Occlusion 순서로 문제 원인을 찾는 진단 흐름")
         }
 
         @Steps {
             @Step {
-                **실제 물체를 인식하지 못하면 추적 자산과 Object Anchor를 확인합니다.** 실제 물체가 `.referenceobject`와 대응하는지 살펴봅니다. 올바른 Reference Object가 연결됐는지, Viewing Angles가 관찰 방향을 포함하는지도 확인하세요.
+                **실제 물체를 인식하지 못하면 추적 설정을 확인합니다.** 실제 물체와 `.referenceobject`가 대응하는지, Viewing Angles가 관찰 방향을 포함하는지, 올바른 Reference Object가 Object Anchor에 연결됐는지 살펴봅니다.
             }
 
             @Step {
-                **물체는 인식하지만 가상 콘텐츠 위치가 이상하면 Transform을 확인합니다.** `TreasureChestAnchor` 아래 계층 구조와 각 Entity의 로컬 Transform을 살펴봅니다. Reference Object cue와 가상 콘텐츠의 정렬도 확인하세요.
+                **물체는 인식하지만 가상 콘텐츠 위치가 이상하면 정렬을 확인합니다.** Anchor 계층 구조, Entity의 로컬 Transform, Reference Object cue와 geometry의 정렬을 차례로 살펴봅니다.
             }
 
             @Step {
-                **비행기가 나타나지만 움직이지 않으면 Animation 연결을 확인합니다.** `OrbitToyBiplane`, `LoopOrbitToyBiplane`, `OnAddedToScene`이 순서대로 연결되었는지 확인합니다.
+                **`ToyBiplane`이 움직이지 않으면 Animation 연결을 확인합니다.** `OrbitToyBiplane`, `LoopOrbitToyBiplane`, `OnAddedToScene`이 순서대로 연결됐는지 살펴봅니다.
             }
 
             @Step {
-                **비행기가 잘못된 중심을 돌면 Pivot을 확인합니다.** `Pivot`의 위치와 Orbit Action의 Pivot 참조를 살펴봅니다. `Pivot`이 `TreasureChestAnchor` 좌표계 안에 있는지도 확인하세요.
+                **비행기가 잘못된 중심을 돌면 `Pivot`을 확인합니다.** `Pivot`의 Transform과 Orbit Action의 Pivot reference가 올바른지 살펴봅니다.
             }
 
             @Step {
-                **비행기가 보물상자 뒤에서도 보이면 Occlusion을 확인합니다.** Occlusion geometry가 실제 물체와 정렬되었는지, 실제 Mesh의 Material Slot에 `OcclusionMaterial`이 적용되었는지 확인합니다.
+                **비행기가 실제 물체 뒤에서도 보이면 Occlusion을 확인합니다.** Occlusion geometry의 정렬, `Geometry > Mesh`, `OcclusionMaterial` 적용을 차례로 살펴봅니다.
             }
         }
 
-        이 기본 흐름으로 원인을 찾기 어렵다면 추적 상실과 재인식, Timeline 상태, 조명별 인식률 같은 항목을 별도의 심화 검증으로 다룹니다.
+        이 Tutorial은 기본 구성의 연결을 확인하는 검증입니다. 추적 상실과 재인식, 조명별 인식률, 빠른 물체 이동, 성능 측정은 별도의 심화 검증 범위입니다.
     }
 }
