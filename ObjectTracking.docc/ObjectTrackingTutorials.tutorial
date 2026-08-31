@@ -1,5 +1,17 @@
 @Tutorials(name: "Object Tracking 공간 경험 만들기") {
     @Intro(title: "현실의 물체에 가상 콘텐츠 연결하기") {
+        **예상 소요 시간: 약 1시간 30분**
+
+        예상 소요 시간에는 Create ML의 Object Tracking Training 대기 시간이 포함되지 않습니다. Training 시간은 사용하는 Mac과 자산에 따라 달라질 수 있습니다.
+
+        **선행 지식**
+
+        - Swift 기본 문법
+        - SwiftUI View의 기본 구조
+        - Xcode에서 프로젝트를 탐색하고 실행하는 기본 방법
+        - USDZ가 3D 모델 파일 형식이라는 기본 개념
+        - Reality Composer Pro의 Entity와 Component 개념을 알고 있으면 도움이 됩니다.
+
         Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면,  
         먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.  
         실제 물체와 같은 형태와 크기의 USDZ 3D 모델을 준비하고,  
