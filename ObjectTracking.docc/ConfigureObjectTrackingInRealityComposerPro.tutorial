@@ -1,4 +1,4 @@
-@Tutorial(time: 35) {
+@Tutorial(time: 15) {
     @Intro(title: "Reality Composer Pro에서 Object Tracking 설정하기") {
         Chapter 1에서는 현실 물체를 인식하는 데  
         사용할 `.referenceobject`를 만들었습니다.  

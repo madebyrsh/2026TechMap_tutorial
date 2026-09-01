@@ -1,27 +1,19 @@
 @Tutorials(name: "Object Tracking 공간 경험 만들기") {
     @Intro(title: "현실의 물체에 가상 콘텐츠 연결하기") {
-        **예상 소요 시간: 약 1시간 30분**
+        > Important: 예상 소요 시간에는 Create ML의 Object Tracking Training 완료를 기다리는 시간이 포함되지 않습니다. Training 시간은 사용하는 Mac과 자산에 따라 달라질 수 있습니다.
 
-        예상 소요 시간에는 Create ML의 Object Tracking Training 대기 시간이 포함되지 않습니다. Training 시간은 사용하는 Mac과 자산에 따라 달라질 수 있습니다.
-
-        **선행 지식**
-
-        - Swift 기본 문법
-        - SwiftUI View의 기본 구조
-        - Xcode에서 프로젝트를 탐색하고 실행하는 기본 방법
-        - USDZ가 3D 모델 파일 형식이라는 기본 개념
-        - Reality Composer Pro의 Entity와 Component 개념을 알고 있으면 도움이 됩니다.
-
-        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면,  
-        먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.  
-        실제 물체와 같은 형태와 크기의 USDZ 3D 모델을 준비하고,  
+        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면, 먼저 그 물체의 모습을 알려 주는 자료가 필요합니다. 실제 물체와 같은 형태와 크기의 USDZ 3D 모델을 준비하고,
         Create ML에서 Object Tracking용 `.referenceobject` 파일을 만듭니다.
 
-        Reality Composer Pro에서는 이 파일을 추적 대상에 연결하고  
-        현실 물체를 기준으로 가상 콘텐츠를 배치합니다.  
+        Reality Composer Pro에서는 이 파일을 Object Anchor의 추적 대상에 연결하고 현실 물체를 기준으로 가상 콘텐츠를 배치합니다.
         가상 비행기의 Animation과 실제 보물상자에 가려지는 Occlusion도 추가합니다.
 
         학습은 추적 자산 만들기, Object Tracking 경험 구성하기, 가상 콘텐츠 확장하기, 실기기 검증 순서로 진행합니다. 마지막에는 Apple Vision Pro에서 모든 요소가 하나의 경험으로 연결되는지 확인합니다.
+
+        **선행 지식**
+
+        - 실제 물체를 스캔해 Object Tracking에 사용할 USDZ 3D 모델을 만드는 기본 과정
+        - iPhone/iPad의 Reality Composer 앱을 활용한 3D Object Capture
     }
 
     @Chapter(name: "추적 자산 만들기") {

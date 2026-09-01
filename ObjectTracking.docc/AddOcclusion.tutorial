@@ -1,4 +1,4 @@
-@Tutorial(time: 30) {
+@Tutorial(time: 15) {
     @Intro(title: "실제 물체에 맞는 Occlusion 추가하기") {
         Orbit Animation만 적용하면 `ToyBiplane`이   
         실제 TreasureChest 뒤를 지나도 항상 앞에 보일 수 있습니다.   

@@ -1,4 +1,4 @@
-@Tutorial(time: 35) {
+@Tutorial(time: 15) {
     @Intro(title: "ToyBiplane에 Orbit Animation 추가하기") {
         `TreasureChestAnchor`는 실제 보물상자를 따라가지만 `ToyBiplane`은 아직 한 위치에 머뭅니다. 비행기를 움직이려면 궤도의 중심과 Animation을 구성해야 합니다.
 

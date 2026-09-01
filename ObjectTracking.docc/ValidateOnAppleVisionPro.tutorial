@@ -1,4 +1,4 @@
-@Tutorial(time: 25) {
+@Tutorial(time: 10) {
     @Intro(title: "Apple Vision Pro에서 전체 경험 검증하기") {
         Chapter 1~3에서 만든 Object Tracking 경험을 Apple Vision Pro에서 최종 확인합니다. 새로운 기능을 추가하는 단계가 아니라, 지금까지 만든 기능이 하나의 경험으로 자연스럽게 연결되는지 점검하는 마지막 단계입니다.
 

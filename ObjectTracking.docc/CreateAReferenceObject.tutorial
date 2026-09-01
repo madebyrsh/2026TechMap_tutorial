@@ -1,4 +1,4 @@
-@Tutorial(time: 30) {
+@Tutorial(time: 20) {
     @Intro(title: "USDZ로 Reference Object 만들기") {
         Vision Pro가 현실의 특정 물체를 인식하고 계속 추적하려면,  
         먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.

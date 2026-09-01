@@ -1,4 +1,4 @@
-@Tutorial(time: 55) {
+@Tutorial(time: 15) {
     @Intro(title: "RCP Scene을 visionOS에서 불러오기") {
         Reality Composer Pro에서 Object Anchor를 구성해도   
         저장된 Scene이 앱 화면에 자동으로 나타나지는 않습니다.   
