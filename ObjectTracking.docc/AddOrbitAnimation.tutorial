@@ -26,7 +26,11 @@
             }
 
             @Step {
-                **Pivot의 위치를 궤도 중심으로 조정합니다.** TreasureChest 예제의 Position은 `(0, 4, 0)`입니다. Anchor 원점보다 4cm 높은 곳을 중심으로 사용합니다. 자신의 물체에서는 Reference Object cue를 보면서 원하는 중심을 정하세요. 
+                **Pivot의 위치를 궤도 중심으로 조정합니다.**
+                TreasureChest 예제의 Position은 `(0, 4, 0)`입니다.
+                여기서 Y 값은 높이를 나타내며, X와 Z를 `0`으로 두어
+                Anchor 원점의 수평 위치를 유지한 채 4cm 위를 회전 중심으로 사용합니다.
+                자신의 물체에서는 Reference Object cue를 보면서 원하는 중심을 정하세요.
                 
                 @Image(source: "rcp-pivot-transform.png", alt: "Reality Composer Pro에서 Pivot의 Position을 궤도 중심으로 조정하는 화면")
             }
