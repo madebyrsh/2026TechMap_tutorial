@@ -151,8 +151,10 @@
             }
 
             @Step {
-                **Dimensions를 실제 물체와 비교합니다.** 표시된  
-                가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다.  
+                **Dimensions를 실제 물체와 비교합니다.**
+                표시된 가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다.
+                TreasureChest 예제에서는 Width `실제 값`, Height `실제 값`, Depth `실제 값`으로 표시됩니다.
+                이 값은 예제 물체의 크기이므로 자신의 물체에서는 직접 측정한 값을 기준으로 확인하세요.
                 값이 다르면 Training 전에 원본 USDZ의 Scale을 바로잡습니다. 
                  @Image(source: "create-ml-model-settings.png", alt: "Create ML에서 USDZ 모델의 Dimensions를 확인하는 화면") 
             }
