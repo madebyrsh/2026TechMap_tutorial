@@ -11,6 +11,11 @@
         각 Step의 코드 화면은 작업 중인 파일 전체를 보여 줍니다.   
         Step을 이동하면 설명하는 영역으로 강조가 이동하므로   
         새 코드가 파일의 어디에 놓이는지 확인할 수 있습니다.
+        
+        이 Tutorial에서는 `AppModel.swift`를 새로 만들고,
+        `ObjectTrackingWithRCPApp.swift`, `ImmersiveView.swift`,
+        `ContentView.swift`, `ImmersiveSpaceButton.swift`는
+        기존 파일을 수정합니다.
 
         
     }
