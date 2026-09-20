@@ -26,7 +26,11 @@
             }
 
             @Step {
-                **Pivot의 위치를 궤도 중심으로 조정합니다.** TreasureChest 예제의 Position은 `(0, 4, 0)`입니다. Anchor 원점보다 4cm 높은 곳을 중심으로 사용합니다. 자신의 물체에서는 Reference Object cue를 보면서 원하는 중심을 정하세요. 
+                **Pivot의 위치를 궤도 중심으로 조정합니다.**
+                TreasureChest 예제의 Position은 `(0, 4, 0)`입니다.
+                여기서 Y 값은 높이를 나타내며, X와 Z를 `0`으로 두어
+                Anchor 원점의 수평 위치를 유지한 채 4cm 위를 회전 중심으로 사용합니다.
+                자신의 물체에서는 Reference Object cue를 보면서 원하는 중심을 정하세요.
                 
                 @Image(source: "rcp-pivot-transform.png", alt: "Reality Composer Pro에서 Pivot의 Position을 궤도 중심으로 조정하는 화면")
             }
@@ -82,7 +86,14 @@
 
     @Section(title: "반복 Timeline과 Behavior 연결하기") {
         @ContentAndMedia {
-            `OrbitToyBiplane`은 한 번의 Orbit을 정의합니다. Scene이 추가될 때 자동으로 시작하고 계속 반복하려면 이를 재생하는 Timeline이 필요합니다. 이 Timeline을 Trigger와 Action을 가진 Behavior에 연결합니다.
+            `OrbitToyBiplane`은 한 번의 Orbit을 정의합니다.
+            Scene이 추가될 때 자동으로 시작하고 계속 반복하려면 이를 재생하는 Timeline이 필요합니다.
+            이 Timeline을 Trigger와 Action을 가진 Behavior에 연결합니다.
+
+            Trigger는 Behavior가 언제 시작될지를 정하고,
+            Action은 그때 실행할 동작을 정합니다.
+            여기서는 `TreasureChestAnchor`가 Scene에 추가되는 것이 Trigger이고,
+            `LoopOrbitToyBiplane`을 재생하는 것이 Action입니다.
 
             @Image(source: orbit-timeline-structure, alt: "OnAddedToScene Behavior가 LoopOrbitToyBiplane을 실행하고 다시 OrbitToyBiplane을 반복 재생하는 연결")
         }

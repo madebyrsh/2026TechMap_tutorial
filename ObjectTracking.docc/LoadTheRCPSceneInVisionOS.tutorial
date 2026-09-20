@@ -11,6 +11,11 @@
         각 Step의 코드 화면은 작업 중인 파일 전체를 보여 줍니다.   
         Step을 이동하면 설명하는 영역으로 강조가 이동하므로   
         새 코드가 파일의 어디에 놓이는지 확인할 수 있습니다.
+        
+        이 Tutorial에서는 `AppModel.swift`를 새로 만들고,
+        `ObjectTrackingWithRCPApp.swift`, `ImmersiveView.swift`,
+        `ContentView.swift`, `ImmersiveSpaceButton.swift`는
+        기존 파일을 수정합니다.
 
         
     }
@@ -39,7 +44,10 @@
         @ContentAndMedia {
             앞에서 만든 `AppModel`은 아직 어느 View에도 연결되지 않았습니다. App 구조체에서 인스턴스를 한 번 만들고 Window와 Immersive Space에 같은 객체를 전달합니다.
 
-            Object Tracking은 visionOS의 Window나 Volume이 아니라 `ImmersiveSpace`에서 동작합니다. 현실 물체를 계속 볼 수 있도록 passthrough를 유지하는 `mixed` 스타일을 사용합니다.
+            Object Tracking은 visionOS의 Window나 Volume이 아니라 `ImmersiveSpace`에서 동작합니다.
+            현실 물체를 계속 볼 수 있도록 passthrough를 유지하는 `mixed` 스타일을 사용합니다.
+            `mixed`는 현실과 가상 콘텐츠를 함께 보이게 하는 표시 방식이며,
+            실제 물체의 행동을 감지하거나 가상 콘텐츠를 자동으로 나타나게 하는 기능은 아닙니다.
         }
 
         @Steps {

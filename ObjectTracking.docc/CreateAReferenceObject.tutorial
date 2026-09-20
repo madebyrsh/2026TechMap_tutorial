@@ -1,4 +1,4 @@
-@Tutorial(time: 20) {
+@Tutorial(time: 10) {
     @Intro(title: "USDZ로 Reference Object 만들기") {
         Vision Pro가 현실의 특정 물체를 인식하고 계속 추적하려면,  
         먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.
@@ -53,6 +53,11 @@
             [Object Capture 공식 문서](https://developer.apple.com/documentation/realitykit/realitykit-object-capture),   
             [사진 촬영 가이드](https://developer.apple.com/documentation/realitykit/capturing-photographs-for-realitykit-object-capture/), 
             [Meet Object Capture for iOS](https://developer.apple.com/videos/play/wwdc2023/10191/)에서 확인하세요.
+            
+            @Image(
+                   source: "usdz-model-inspection.png",
+                   alt: "3D Viewer에서 실제 추적 대상과 같은 형태의 TreasureChest USDZ 모델을 확인하는 화면"
+                   )
         }
 
         @Steps {
@@ -146,8 +151,10 @@
             }
 
             @Step {
-                **Dimensions를 실제 물체와 비교합니다.** 표시된  
-                가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다.  
+                **Dimensions를 실제 물체와 비교합니다.**
+                표시된 가로, 높이, 깊이를 현실 물체의 측정값과 비교합니다.
+                TreasureChest 예제에서는 Width `실제 값`, Height `실제 값`, Depth `실제 값`으로 표시됩니다.
+                이 값은 예제 물체의 크기이므로 자신의 물체에서는 직접 측정한 값을 기준으로 확인하세요.
                 값이 다르면 Training 전에 원본 USDZ의 Scale을 바로잡습니다. 
                  @Image(source: "create-ml-model-settings.png", alt: "Create ML에서 USDZ 모델의 Dimensions를 확인하는 화면") 
             }
@@ -223,9 +230,10 @@
         MyObject.referenceobject
         ```
 
-        Reference Object 제작을 마쳤습니다.  
-        다음 Tutorial에서는 이 파일을 Reality Composer Pro의  
-        Object Anchor에 연결해 현실 물체를 추적 대상으로 설정합니다.  
+        Reference Object 제작을 마쳤습니다.
+        이 단계가 끝나면 저장한 위치에 `MyObject.referenceobject` 파일이 있어야 합니다.
+        다음 Tutorial에서는 이 파일을 Reality Composer Pro의
+        Object Anchor에 연결해 현실 물체를 추적 대상으로 설정합니다.
         최종 추적 품질은 대응하는 실제 물체와 Apple Vision Pro에서 확인합니다.
     }
 }
