@@ -230,9 +230,10 @@
         MyObject.referenceobject
         ```
 
-        Reference Object 제작을 마쳤습니다.  
-        다음 Tutorial에서는 이 파일을 Reality Composer Pro의  
-        Object Anchor에 연결해 현실 물체를 추적 대상으로 설정합니다.  
+        Reference Object 제작을 마쳤습니다.
+        이 단계가 끝나면 저장한 위치에 `MyObject.referenceobject` 파일이 있어야 합니다.
+        다음 Tutorial에서는 이 파일을 Reality Composer Pro의
+        Object Anchor에 연결해 현실 물체를 추적 대상으로 설정합니다.
         최종 추적 품질은 대응하는 실제 물체와 Apple Vision Pro에서 확인합니다.
     }
 }
