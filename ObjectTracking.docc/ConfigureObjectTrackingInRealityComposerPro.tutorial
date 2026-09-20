@@ -175,6 +175,11 @@
             }
         }
 
-        Reality Composer Pro 안의 Object Tracking 구성은 완료됐습니다. <doc:LoadTheRCPSceneInVisionOS>에서는 Swift가 `ObjectTrackingScene`을 불러와 Mixed Immersive Space의 `RealityView`에 추가하도록 연결합니다.
+        Reality Composer Pro 안의 Object Tracking 구성은 완료됐습니다.
+        이 단계가 끝나면 `TreasureChestAnchor`에 Object Anchoring이 설정되어 있고,
+        `ToyBiplane`이 그 Anchor 아래의 자식 Entity로 배치되어 있어야 합니다.
+
+        <doc:LoadTheRCPSceneInVisionOS>에서는 Swift가 `ObjectTrackingScene`을 불러와
+        Mixed Immersive Space의 `RealityView`에 추가하도록 연결합니다.
     }
 }
