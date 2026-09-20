@@ -97,7 +97,10 @@
             }
 
             @Step {
-                **반투명 배치 가이드를 확인합니다.** Anchor Object를 연결하면 3D View에 현실 물체를 나타내는 반투명 모델이 나타납니다. 이 모델은 앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치를 맞추는 가이드입니다.
+                **반투명 배치 가이드를 확인합니다.**
+                Anchor Object를 연결하면 3D View에 현실 물체를 나타내는 반투명 모델이 나타납니다.
+                이 반투명 모델을 이 Tutorial에서는 `Reference Object cue`라고 부릅니다.
+                앱에 표시할 콘텐츠가 아니라 가상 Entity의 위치와 방향을 실제 물체에 맞추기 위한 배치 가이드입니다.
 
                 @Image(source: "rcp-object-anchor-settings3.png", alt: "Reality Composer Pro의 3D View에 TreasureChest Reference Object cue가 나타난 화면")
 
