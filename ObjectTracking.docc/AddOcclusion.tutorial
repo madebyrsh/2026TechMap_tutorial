@@ -140,6 +140,10 @@
             }
         }
 
-        Occlusion 효과는 geometry의 정밀도와 추적 정렬에 영향을 받습니다. 이 Tutorial은 특정 거리, 조명이나 모든 시점에서 완벽한 경계를 보장하지 않습니다.
+        ToyBiplane이 TreasureChest 앞에서는 보이고 뒤로 이동할 때 겹치는 부분이 가려진다면
+        기본 Occlusion 구성이 완료된 것입니다.
+
+        Occlusion 효과는 geometry의 정밀도와 추적 정렬에 영향을 받습니다.
+        이 Tutorial은 특정 거리, 조명이나 모든 시점에서 완벽한 경계를 보장하지 않습니다.
     }
 }
