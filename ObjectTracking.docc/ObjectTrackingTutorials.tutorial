@@ -9,6 +9,18 @@
         가상 비행기의 Animation과 실제 보물상자에 가려지는 Occlusion도 추가합니다.
 
         학습은 추적 자산 만들기, Object Tracking 경험 구성하기, 가상 콘텐츠 확장하기, 실기기 검증 순서로 진행합니다. 마지막에는 Apple Vision Pro에서 모든 요소가 하나의 경험으로 연결되는지 확인합니다.
+        
+        **시작 전 준비물**
+
+        - **추적할 실제 물체**: Apple Vision Pro가 인식하고 추적할 대상입니다.
+        - **실제 물체를 표현하는 USDZ**: Create ML Object Tracking Training의 입력으로 사용합니다.
+        - **ToyBiplane.usdz**: 실제 물체가 인식된 뒤 그 좌표계를 기준으로 표시하고 애니메이션할 예제 가상 콘텐츠입니다.
+        - **Apple Vision Pro**: 실제 물체 인식과 최종 Object Tracking 경험을 검증할 때 필요합니다.
+
+        완성 예제를 사용하는 경우에는 프로젝트의 TreasureChest와 ToyBiplane 자산을 기준으로 진행합니다.
+        자신의 물체로 실습하는 경우에는 실제 물체와 그 물체를 표현하는 USDZ를 직접 준비해야 합니다.
+
+        `.referenceobject`는 미리 준비하는 파일이 아니라 Chapter 1에서 USDZ를 Create ML로 학습해 생성합니다.
 
         **선행 지식**
 
