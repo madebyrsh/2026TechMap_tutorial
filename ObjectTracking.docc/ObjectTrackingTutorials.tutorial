@@ -1,35 +1,14 @@
 @Tutorials(name: "Object Tracking 공간 경험 만들기") {
-    @Intro(title: "현실의 물체에 가상 콘텐츠 연결하기") {
-        > Important: 예상 소요 시간에는 Create ML의 Object Tracking Training 완료를 기다리는 시간이 포함되지 않습니다. Training 시간은 사용하는 Mac과 자산에 따라 달라질 수 있습니다.
+    @Intro(title: "보물상자 주위를 도는 비행기 만들기") {
+        Apple Vision Pro로 실제 보물상자를 바라보면 가상 비행기 `ToyBiplane`이 그 주위를 돕니다. 비행기는 상자 앞을 지날 때 보이고, 뒤로 돌아가면 상자에 가려집니다(Occlusion).
 
-        Vision Pro가 현실의 특정 물체를 인식하고 계속 따라가려면, 먼저 그 물체의 모습을 알려 주는 자료가 필요합니다. 실제 물체와 같은 형태와 크기의 USDZ 3D 모델을 준비하고,
-        Create ML에서 Object Tracking용 `.referenceobject` 파일을 만듭니다.
+        Create ML에서 USDZ를 학습해 추적에 필요한 `.referenceobject`를 만듭니다. Reality Composer Pro에서 이 파일을 Object Anchor에 연결하고, 비행기의 궤도 애니메이션과 가림 효과를 설정합니다. 그런 다음 이 Scene을 visionOS 앱에서 불러와 Apple Vision Pro로 확인합니다.
 
-        Reality Composer Pro에서는 이 파일을 Object Anchor의 추적 대상에 연결하고 현실 물체를 기준으로 가상 콘텐츠를 배치합니다.
-        가상 비행기의 Animation과 실제 보물상자에 가려지는 Occlusion도 추가합니다.
-
-        학습은 추적 자산 만들기, Object Tracking 경험 구성하기, 가상 콘텐츠 확장하기, 실기기 검증 순서로 진행합니다. 마지막에는 Apple Vision Pro에서 모든 요소가 하나의 경험으로 연결되는지 확인합니다.
-        
         **시작 전 준비물**
 
-        - **추적할 실제 물체**: Apple Vision Pro가 인식하고 추적할 대상입니다.
-        - **실제 물체를 표현하는 USDZ**: Create ML Object Tracking Training의 입력으로 사용합니다.
-        - **ToyBiplane.usdz**: 실제 물체가 인식된 뒤 그 좌표계를 기준으로 표시하고 애니메이션할 예제 가상 콘텐츠입니다.
-        - **Apple Vision Pro**: 실제 물체 인식과 최종 Object Tracking 경험을 검증할 때 필요합니다.
-
-        완성 예제를 사용하는 경우에는 프로젝트의 TreasureChest와 ToyBiplane 자산을 기준으로 진행합니다.
-        자신의 물체로 실습하는 경우에는 실제 물체와 그 물체를 표현하는 USDZ를 직접 준비해야 합니다.
-
-        `.referenceobject`는 미리 준비하는 파일이 아니라 Chapter 1에서 USDZ를 Create ML로 학습해 생성합니다.
-        
-        완성된 예제 구성은
-        [ObjectTrackingWithRCP 예제 프로젝트](https://github.com/madebyrsh/2026TechMap_tutorial/tree/main/ObjectTrackingWithRCP)
-        에서 확인할 수 있습니다.
-
-        **선행 지식**
-
-        - 실제 물체를 스캔해 Object Tracking에 사용할 USDZ 3D 모델을 만드는 기본 과정
-        - iPhone/iPad의 Reality Composer 앱을 활용한 3D Object Capture
+        - 추적할 실제 물체와 그 물체의 형태·크기에 맞는 USDZ가 필요합니다. 예제와 같은 보물상자가 있다면 제공된 TreasureChest 자산을 사용하고, 다른 물체로 실습한다면 그 물체에 맞는 USDZ를 준비하세요.
+        - 가상 비행기 `ToyBiplane.usdz`는 [ObjectTrackingWithRCP 예제 프로젝트](https://github.com/madebyrsh/2026TechMap_tutorial/tree/main/ObjectTrackingWithRCP)에 포함되어 있습니다.
+        - 실제 물체 인식과 최종 동작을 확인하려면 Apple Vision Pro가 필요합니다.
     }
 
     @Chapter(name: "추적 자산 만들기") {

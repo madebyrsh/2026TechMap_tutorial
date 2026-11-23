@@ -1,5 +1,7 @@
 @Tutorial(time: 10) {
     @Intro(title: "USDZ로 Reference Object 만들기") {
+        > Important: 표시된 10분은 직접 실습하는 시간입니다. Create ML 학습이 끝날 때까지 기다리는 시간은 포함하지 않으며, 학습 시간은 Mac 성능과 USDZ의 복잡도, 학습 설정에 따라 달라집니다.
+
         Vision Pro가 현실의 특정 물체를 인식하고 계속 추적하려면,  
         먼저 그 물체의 모습을 알려 주는 자료가 필요합니다.
 
@@ -182,10 +184,6 @@
             이 모델은 현실에서 해당 물체를 인식하고  
             위치와 방향을 추적하는 데 사용됩니다.
 
-            Training 시간은 Mac의 성능, USDZ의 복잡도와  
-            선택한 설정에 따라 달라집니다.  
-            이 Tutorial의 예상 시간에는  
-            Training을 기다리는 시간이 포함되지 않습니다.
         }
 
         @Steps {
