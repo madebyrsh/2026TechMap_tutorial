@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="312" viewBox="0 0 720 312" role="img" aria-labelledby="title description">
+  <title id="title">Pivot Position</title>
+  <desc id="description">TreasureChestAnchor 기준의 Pivot Position은 X 0, Y 4, Z 0센티미터입니다.</desc>
+  <rect width="720" height="312" fill="#f6f7f9"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#182230">
+    <text x="60" y="81" font-size="34" font-weight="600">Pivot Position</text>
+    <text x="60" y="132" font-size="31" fill="#415064">Anchor 기준 (cm)</text>
+    <path d="M60 164H660" fill="none" stroke="#bfc8d2" stroke-width="2"/>
+    <g text-anchor="middle" font-size="31" fill="#415064">
+      <text x="140" y="216">X</text>
+      <text x="360" y="216">Y</text>
+      <text x="580" y="216">Z</text>
+    </g>
+    <g text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="49" font-weight="600">
+      <text x="140" y="272">0</text>
+      <text x="360" y="272" fill="#0056bd">4</text>
+      <text x="580" y="272">0</text>
+    </g>
+  </g>
+</svg>

@@ -15,7 +15,7 @@ Anchor 아래의 Entity는 이 Transform을 다시 계산하지 않습니다. �
                  ↓
         TreasureChestAnchor
                  ↓ local Transform 합성
-      Pivot · ToyBiplane · Occlusion
+      Pivot, ToyBiplane, Occlusion
 ```
 
 ### 세 Entity를 Anchor 아래에 두는 이유

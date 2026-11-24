@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="530" viewBox="0 0 720 530" role="img" aria-labelledby="title description">
+  <title id="title">완성 예제의 Orbit 설정</title>
+  <desc id="description">Axis는 0, 1, 0입니다. Orbit Direction은 Counter Clockwise, Duration은 13초, Revolutions는 1이며 Orient To Path를 켭니다.</desc>
+  <rect width="720" height="530" fill="#f6f7f9"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#182230">
+    <path d="M60 126H660M60 218H660M60 310H660M60 402H660" fill="none" stroke="#bfc8d2" stroke-width="2"/>
+    <g font-size="31" fill="#415064">
+      <text x="60" y="92">Axis</text>
+      <text x="60" y="184">Orbit Direction</text>
+      <text x="60" y="276">Duration</text>
+      <text x="60" y="368">Revolutions</text>
+      <text x="60" y="460">Orient To Path</text>
+    </g>
+    <g font-family="ui-monospace, Menlo, monospace" font-size="32" font-weight="600">
+      <text x="310" y="92">(0, 1, 0)</text>
+      <text x="310" y="184">Counter Clockwise</text>
+      <text x="310" y="276">13 s</text>
+      <text x="310" y="368">1</text>
+    </g>
+    <text x="310" y="460" font-size="34" font-weight="600" fill="#0056bd">켜기</text>
+  </g>
+</svg>

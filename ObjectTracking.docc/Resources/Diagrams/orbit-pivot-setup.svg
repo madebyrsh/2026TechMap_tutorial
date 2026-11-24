@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="388" viewBox="0 0 720 388" role="img" aria-labelledby="title description">
+  <title id="title">Pivot을 배치할 위치</title>
+  <desc id="description">완성 예제에서 ToyBiplane과 Pivot은 둘 다 Root 아래 TreasureChestAnchor의 자식입니다.</desc>
+  <rect width="720" height="388" fill="#f6f7f9"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#182230">
+    <path d="M73 102V151H119M131 174V302H178M131 226H178" fill="none" stroke="#8390a3" stroke-width="3"/>
+    <g font-family="ui-monospace, Menlo, monospace" font-size="40" font-weight="600">
+      <text x="60" y="88">Root</text>
+      <text x="132" y="165">TreasureChestAnchor</text>
+      <text x="192" y="240">ToyBiplane</text>
+      <text x="192" y="316" fill="#0056bd">Pivot</text>
+    </g>
+  </g>
+</svg>

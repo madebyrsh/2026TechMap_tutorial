@@ -36,11 +36,19 @@ Object Tracking용 USDZ는 실제 물체와 충분히 잘 맞아야 합니다.
 
 - **전체 형태**: 튀어나온 부분이나 빈 공간처럼 물체를 구분하는 구조가 반영되어야 합니다.
 - **실제 크기**: 3D 모델의 가로, 높이, 깊이가 현실 물체와 맞아야 합니다.
-- **방향과 원점**: 모델의 앞·뒤와 위·아래가 분명해야 하며, 이후 가상 콘텐츠를 배치할 기준을 이해할 수 있어야 합니다.
+- **방향과 원점**: 모델의 앞뒤와 위아래가 분명해야 하며, 이후 가상 콘텐츠를 배치할 기준을 이해할 수 있어야 합니다.
 - **눈에 띄는 특징**: 손잡이, 모서리, 무늬처럼 물체를 구분하기 쉬운 특징이 빠지지 않아야 합니다.
 - **재질과 표면**: 색, 무늬, 반사와 같은 외형이 현실 물체를 충분히 나타내야 합니다.
 
 3D 모델이 현실 물체를 잘 표현할수록 추적 품질을 높이는 데 도움이 됩니다. 모든 모델이 반드시 사진처럼 보여야 하는 것은 아닙니다. 추적 대상의 형태, 크기, 방향, 주요 외형이 실제 물체와 잘 맞는지가 중요합니다.
+
+### USDZ 파일이 없다면
+
+Blender나 CAD 도구로 모델을 만들거나, Object Capture로 실물을 스캔할 수 있어요. 실습은 USDZ 파일을 준비한 상태에서 시작합니다.
+
+- [Object Capture 공식 문서](https://developer.apple.com/documentation/realitykit/realitykit-object-capture)
+- [사진 촬영 가이드](https://developer.apple.com/documentation/realitykit/capturing-photographs-for-realitykit-object-capture/)
+- [Meet Object Capture for iOS](https://developer.apple.com/videos/play/wwdc2023/10191/)
 
 ### Create ML이 만드는 Reference Object
 

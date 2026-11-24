@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="298" viewBox="0 0 600 298" role="img" aria-labelledby="title desc">
+  <title id="title">시뮬레이터 빌드 확인</title>
+  <desc id="desc">Xcode 실행 대상으로 Apple Vision Pro 시뮬레이터를 고르고, 빌드가 실패하면 Issue navigator에서 오류를 확인합니다.</desc>
+  <style>
+    text { font-family: system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill:#172334; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .context { fill:#345474; }
+  </style>
+  <rect width="600" height="298" rx="24" fill="#F3F5F8"/>
+  <text x="50" y="74" font-size="32" font-weight="640" class="context">Xcode 실행 대상</text>
+  <text x="50" y="124" font-size="37" font-weight="650">Apple Vision Pro 시뮬레이터</text>
+  <path d="M50 151H550" stroke="#BAC7D7" stroke-width="2"/>
+  <text x="50" y="212" font-size="32" font-weight="640" class="context">빌드 실패 시</text>
+  <text x="50" y="256" font-size="38" font-weight="650">Issue navigator</text>
+</svg>

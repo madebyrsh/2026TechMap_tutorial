@@ -1,0 +1,917 @@
+/* Lesson covers with two intro headings and a summary list. */
+.tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) {
+  --panel-gap:clamp(1rem, 3vw, 1.75rem);
+  --panel-padding:clamp(1rem, 2.8vw, 1.65rem);
+  --summary-label-width:6.65rem;
+  --panel-body-size:clamp(1.06rem, 1.5vw, 1.25rem);
+}
+.tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) > .row {
+  width:calc(100% - clamp(2rem, 6vw, 4rem));
+  max-width:980px;
+  margin-inline:auto;
+}
+.tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) > .row > .col {
+  flex:0 0 100%;
+  width:100%;
+  max-width:none;
+  min-width:0;
+}
+.tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) .heading {
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) {
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  grid-template-rows:repeat(6, auto);
+  position:relative;
+  isolation:isolate;
+  min-width:0;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul)::before,
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul)::after {
+  content:"";
+  z-index:-1;
+  border:1px solid var(--color-grid, #555);
+  border-radius:12px;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul)::before { grid-area:1 / 1 / 4 / 2; }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul)::after { grid-area:5 / 1 / 7 / 2; }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > * {
+  min-width:0;
+  margin:0;
+  padding-inline:var(--panel-padding);
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > h2 {
+  font-size:clamp(1.4rem, 2.4vw, 1.65rem);
+  line-height:1.25;
+  padding-top:var(--panel-padding);
+  padding-bottom:.65rem;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > h2:first-of-type { grid-area:1 / 1; }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > p { font-size:var(--panel-body-size); line-height:1.55; }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > p:first-of-type { grid-area:2 / 1; }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > p:nth-of-type(2) {
+  grid-area:3 / 1;
+  padding-top:.7rem;
+  padding-bottom:var(--panel-padding);
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > h2:nth-of-type(2) {
+  grid-area:5 / 1;
+  margin-top:var(--panel-gap);
+  padding-bottom:1rem;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul)::after { margin-top:var(--panel-gap); }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > ul {
+  grid-area:6 / 1;
+  list-style:none;
+  font-size:var(--panel-body-size);
+  line-height:1.5;
+  padding-bottom:var(--panel-padding);
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li + li { margin-top:.55rem; }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li p { margin:0; font-size:var(--panel-body-size); }
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li {
+  display:grid;
+  grid-template-columns:var(--summary-label-width) minmax(0, 1fr);
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li > p:first-child {
+  display:grid;
+  grid-column:1 / -1;
+  grid-template-columns:subgrid;
+  align-items:baseline;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li p:first-child > * {
+  justify-self:start;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li p + p {
+  grid-column:-2 / -1;
+  margin-top:.2rem;
+  text-indent:1px;
+}
+.tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) ul em {
+  color:var(--color-secondary-label, #a1a1a6);
+  font-size:.8rem;
+  font-style:normal;
+}
+.tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) .metadata { display:none; }
+@media (min-width:850px) {
+  .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) {
+    grid-template-columns:minmax(0, 1.22fr) minmax(0, 1fr);
+    grid-template-rows:auto auto 1fr;
+    column-gap:var(--panel-gap);
+  }
+  .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul)::after { grid-area:1 / 2 / 4 / 3; margin-top:0; }
+  .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > h2:nth-of-type(2) { grid-area:1 / 2; margin-top:0; }
+  .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > ul { grid-area:2 / 2 / 4 / 3; }
+}
+@media (min-width:850px) and (max-width:1000px) {
+  .tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) { --summary-label-width:6.15rem; }
+  .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) {
+    grid-template-columns:minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+}
+@media (max-width:480px) {
+  .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) li { grid-template-columns:minmax(0, 1fr); }
+}
+
+/* Separate the action and instructions in the edited lessons. */
+[id="실습에-쓸-USDZ-준비하기"] .step > .content > p,
+[id="Object-Tracking-프로젝트-만들기"] .step > .content > p,
+[id="모델-크기와-인식-방향"] .step > .content > p,
+[id="학습하고-결과-저장하기"] .step > .content > p,
+:is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .step > .content > p {
+  line-height:1.65;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+[id="실습에-쓸-USDZ-준비하기"] .step > .content > p > strong:first-child,
+[id="Object-Tracking-프로젝트-만들기"] .step > .content > p > strong:first-child,
+[id="모델-크기와-인식-방향"] .step > .content > p > strong:first-child,
+[id="학습하고-결과-저장하기"] .step > .content > p > strong:first-child,
+:is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .step > .content > p > strong:first-child {
+  display:block;
+  margin-block-end:.45em;
+}
+[id="실습에-쓸-USDZ-준비하기"] .step > .content > p > br + strong,
+[id="모델-크기와-인식-방향"] .step > .content > p > br + strong {
+  display:inline-block;
+  margin-block-start:.22em;
+}
+@media (min-width:360px) {
+  :is([id="Object-Tracking-프로젝트-만들기"], [id="모델-크기와-인식-방향"], [id="학습하고-결과-저장하기"]) .step .inline-code {
+    white-space:nowrap;
+  }
+}
+
+/* Use word boundaries in the section introductions. */
+:is([id="실습에-쓸-USDZ-준비하기"], [id="Object-Tracking-프로젝트-만들기"], [id="모델-크기와-인식-방향"], [id="학습하고-결과-저장하기"], [id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) > .intro-container :is(.heading, .content p) {
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+:is([id="실습에-쓸-USDZ-준비하기"], [id="Object-Tracking-프로젝트-만들기"], [id="모델-크기와-인식-방향"], [id="학습하고-결과-저장하기"], [id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) > .intro-container .heading {
+  text-wrap:balance;
+}
+/* Text-only introductions don't need to reserve an empty image column. */
+@media (min-width:850px) {
+  :is([id="Object-Tracking-프로젝트-만들기"], [id="모델-크기와-인식-방향"], [id="학습하고-결과-저장하기"], [id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="설정-확인하고-저장하기"]) > .intro-container .col.left {
+    flex-basis:100%;
+    width:100%;
+    max-width:100%;
+  }
+  :is([id="Object-Tracking-프로젝트-만들기"], [id="모델-크기와-인식-방향"], [id="학습하고-결과-저장하기"], [id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="설정-확인하고-저장하기"]) > .intro-container .content {
+    max-width:42rem;
+  }
+}
+
+
+/* Keep both native Get started links on the same visual and touch target. */
+.tutorials-overview .hero .copy-container .button-cta.button-cta,
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action .button-cta.button-cta {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-height:44px;
+  padding:.4rem 1rem;
+  border-radius:999px;
+  white-space:normal;
+}
+
+/* The next lesson has no image, so use the full reading grid for the handoff. */
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action {
+  padding:clamp(1.75rem, 4vw, 3.5rem) 0;
+}
+
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action > .row {
+  box-sizing:border-box;
+  width:calc(100% - clamp(2rem, 6vw, 4rem));
+  max-width:980px;
+  margin-inline:auto;
+  padding:clamp(1.15rem, 3.1vw, 2.25rem);
+  border-radius:20px;
+  background:color-mix(in srgb, var(--color-text, currentColor) 5%, transparent);
+  border:1px solid color-mix(in srgb, var(--color-text, currentColor) 10%, transparent);
+}
+
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action > .row > .col:first-child {
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  justify-items:start;
+  row-gap:.5rem;
+  flex:0 0 100%;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  padding:0;
+}
+
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action .right-column:empty { display:none; }
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action :is(.label, h2, .description, .description p) {
+  margin:0;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action .label {
+  font-size:.875rem;
+  font-weight:600;
+}
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action h2 {
+  max-width:31ch;
+  font-size:clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight:650;
+  line-height:1.24;
+  text-wrap:balance;
+}
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action .description {
+  margin-top:.25rem;
+  line-height:1.6;
+}
+.tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action .button-cta { margin:.75rem 0 0; }
+
+@media (min-width:820px) {
+  .tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action > .row > .col:first-child {
+    grid-template-columns:minmax(0, 1fr) auto;
+    column-gap:2rem;
+  }
+  .tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action :is(.label, h2, .description) { grid-column:1; }
+  .tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action .button-cta {
+    grid-area:1 / 2 / 4 / 3;
+    align-self:center;
+    margin:0;
+  }
+}
+
+/* Soften the step cards without changing DocC's two-column layout. */
+.tutorial:has([id="학습하고-결과-저장하기"]) .steps {
+  --reference-step-edge:color-mix(in srgb, var(--color-text, currentColor) 10%, transparent);
+  --reference-step-focus:color-mix(in srgb, var(--color-text, currentColor) 30%, transparent);
+}
+
+.tutorial:has([id="학습하고-결과-저장하기"]) .steps .step {
+  padding:clamp(1rem, 2.4vw, 1.55rem);
+  border:1px solid var(--reference-step-edge);
+  border-radius:16px;
+}
+
+.tutorial:has([id="학습하고-결과-저장하기"]) .steps .step::before { content:none; }
+
+.tutorial:has([id="학습하고-결과-저장하기"]) .steps .step.focused {
+  border-color:var(--reference-step-focus);
+}
+
+.tutorial:has([id="학습하고-결과-저장하기"]) .steps .step:focus-visible {
+  outline:2px solid var(--color-link, #0066cc);
+  outline-offset:3px;
+}
+
+
+/* Let the final split section meet the next lesson on the same background. */
+@media (min-width:736px) {
+  .tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action { position:relative; }
+  .tutorial:has(:is([id="학습하고-결과-저장하기"], [id="설정-확인하고-저장하기"], [id="AppModel로-상태-만들기"], [id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"])) .call-to-action::before {
+    content:"";
+    position:absolute;
+    z-index:1;
+    inset:auto 0 100%;
+    height:clamp(24px, 4vw, 56px);
+    background:linear-gradient(to bottom, transparent, var(--color-step-background));
+    pointer-events:none;
+  }
+}
+
+/* Start the first RCP image column in the same tone as the introduction. */
+@media (min-width:736px) {
+  :is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .asset-container:not(.for-step-code) {
+    background-color:transparent;
+    background-image:linear-gradient(
+      to bottom,
+      var(--colors-text-background, var(--color-tutorial-background)),
+      var(--background, var(--color-step-background)) clamp(24px, 4vw, 56px)
+    );
+  }
+}
+
+
+:is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step {
+  padding-block:clamp(1.25rem, 1.8vw, 1.6rem);
+}
+
+:is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step-label {
+  margin-bottom:.6rem;
+}
+
+:is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step > .content > p {
+  line-height:1.75;
+}
+
+:is([id="실습용-Scene-열기"], [id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step > .content > p > strong:first-child {
+  margin-block-end:.65em;
+}
+
+/* Blend the lesson cover into the first section, not the image pane. */
+.tutorial-hero:has(.intro .content > h2:nth-of-type(2) + ul) {
+  position:relative;
+}
+
+.tutorial-hero:has(.intro .content > h2:nth-of-type(2) + ul)::after {
+  content:"";
+  position:absolute;
+  z-index:1;
+  inset:auto 0 0;
+  height:clamp(22px, 4vw, 52px);
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    var(--colors-text-background, var(--color-tutorial-background))
+  );
+  pointer-events:none;
+}
+
+
+/* Keep names intact when the reader and the screenshot share a narrow window. */
+:is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step {
+  padding-inline:clamp(.85rem, 2vw, 1.45rem);
+}
+
+:is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .step p .inline-code,
+:is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) > .intro-container .content .inline-code {
+  display:inline-block;
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:normal;
+}
+
+[id="Object-Anchor-설정하기"] > .intro-container .content p {
+  max-width:100%;
+  text-wrap:pretty;
+}
+
+@media (min-width:736px) and (max-width:1000px) {
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .content-container {
+    width:45%;
+    margin-right:clamp(14px, 2vw, 22px);
+  }
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .asset-container {
+    flex:1 1 0;
+    min-width:0;
+    max-width:none;
+    margin-inline-end:calc((100% - 100vw) / 2);
+  }
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .asset-wrapper,
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step-asset picture {
+    width:100%;
+  }
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step-asset {
+    min-height:0;
+    padding-inline:12px;
+  }
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step-asset picture {
+    justify-content:center;
+  }
+  :is([id="Object-Anchor-설정하기"], [id="비행기-배치하기"], [id="설정-확인하고-저장하기"]) .steps .step-asset img {
+    min-height:0;
+    max-width:100%;
+    height:auto;
+  }
+}
+
+
+@media (min-width:736px) and (max-width:849px) {
+  [id="Object-Anchor-설정하기"] > .intro-container .col.left {
+    flex-basis:100%;
+    width:100%;
+    max-width:100%;
+  }
+}
+
+
+[id="비행기-배치하기"] > .intro-container {
+  margin-bottom:clamp(1.75rem, 4vw, 3.25rem);
+}
+
+[id="비행기-배치하기"] > .intro-container .content p {
+  text-wrap:pretty;
+}
+
+@media (min-width:736px) {
+  [id="비행기-배치하기"] > .intro-container .intro {
+    align-items:flex-start;
+  }
+  [id="비행기-배치하기"] > .intro-container .col.left {
+    flex:0 0 47%;
+    max-width:47%;
+  }
+  [id="비행기-배치하기"] > .intro-container .col.right {
+    flex:0 0 53%;
+    max-width:53%;
+    padding-left:clamp(1rem, 2vw, 1.75rem);
+  }
+}
+
+
+[id="비행기-배치하기"] > .intro-container .col.right img {
+  height:auto;
+  min-height:0;
+}
+
+[id="비행기-배치하기"] .steps .step > .content > p {
+  text-wrap:pretty;
+}
+
+/* Swift lesson: give the instructions room without changing the code viewer. */
+.tutorial:has([id="AppModel로-상태-만들기"]) .section > .intro-container :is(.heading, .content p),
+.tutorial:has([id="AppModel로-상태-만들기"]) .steps .step > .content > p {
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+
+.tutorial:has([id="AppModel로-상태-만들기"]) .section > .intro-container .heading {
+  text-wrap:balance;
+}
+
+@media (max-width:735px) {
+  .tutorial:has([id="AppModel로-상태-만들기"]) .section > .intro-container .content p {
+    text-wrap:balance;
+  }
+}
+
+.tutorial:has([id="AppModel로-상태-만들기"]) .steps .step {
+  padding-block:clamp(1.25rem, 1.8vw, 1.6rem);
+  padding-inline:clamp(.85rem, 2vw, 1.45rem);
+}
+
+.tutorial:has([id="AppModel로-상태-만들기"]) .steps .step-label {
+  margin-bottom:.6rem;
+}
+
+.tutorial:has([id="AppModel로-상태-만들기"]) .steps .step > .content > p {
+  line-height:1.75;
+  text-wrap:pretty;
+}
+
+.tutorial:has([id="AppModel로-상태-만들기"]) .steps .step > .content > p > strong:first-child {
+  display:block;
+  margin-block-end:.65em;
+}
+
+.tutorial:has([id="AppModel로-상태-만들기"]) :is(.intro-container .content, .steps .step p) .inline-code {
+  display:inline-block;
+  white-space:nowrap;
+  word-break:normal;
+  overflow-wrap:normal;
+}
+
+@media (min-width:736px) {
+  .tutorial:has([id="AppModel로-상태-만들기"]) .section:not([id="RealityView에-Scene-불러오기"]) > .intro-container .col.left {
+    flex-basis:100%;
+    width:100%;
+    max-width:100%;
+  }
+  .tutorial:has([id="AppModel로-상태-만들기"]) .section:not([id="RealityView에-Scene-불러오기"]) > .intro-container .content {
+    max-width:42rem;
+  }
+}
+
+@media (min-width:736px) and (max-width:1000px) {
+  .tutorial:has([id="AppModel로-상태-만들기"]) .steps .content-container {
+    width:45%;
+    margin-right:clamp(14px, 2vw, 22px);
+  }
+  .tutorial:has([id="AppModel로-상태-만들기"]) .steps .asset-container {
+    flex:1 1 0;
+    min-width:0;
+    max-width:none;
+    margin-inline-end:calc((100% - 100vw) / 2);
+  }
+}
+
+/* Orbit, Occlusion and device lessons use the same reading rhythm as RCP. */
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) {
+  --lesson-reading-gap:clamp(1.1rem, 2.6vw, 2rem);
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) :is(.heading, .section .content p) {
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container {
+  margin-bottom:clamp(1.65rem, 4vw, 3rem);
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .heading {
+  text-wrap:balance;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .content p {
+  line-height:1.65;
+  text-wrap:pretty;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .steps .step {
+  padding-block:clamp(1.25rem, 1.8vw, 1.6rem);
+  padding-inline:clamp(.9rem, 2vw, 1.45rem);
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .steps .step-label {
+  margin-bottom:.65rem;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .steps .step > .content > p {
+  line-height:1.75;
+  text-wrap:pretty;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .steps .step p > strong:first-child {
+  display:block;
+  margin-bottom:.55em;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section .content p .inline-code {
+  display:inline-block;
+  max-width:100%;
+  word-break:normal;
+  overflow-wrap:normal;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .col.right img {
+  min-height:0;
+  height:auto;
+}
+@media (min-width:736px) {
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .intro {
+    align-items:flex-start;
+  }
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .intro:has(.col.right img) .col.left {
+    flex:0 0 47%;
+    max-width:47%;
+  }
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .intro:has(.col.right img) .col.right {
+    flex:0 0 53%;
+    max-width:53%;
+    padding-left:var(--lesson-reading-gap);
+  }
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .intro:not(:has(.col.right img)) .col.left {
+    flex:0 0 100%;
+    max-width:100%;
+  }
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .intro:not(:has(.col.right img)) .content {
+    max-width:43rem;
+  }
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .asset-container:not(.for-step-code) {
+    background-image:linear-gradient(to bottom, var(--colors-text-background, var(--color-tutorial-background)), var(--background, var(--color-step-background)) clamp(24px, 4vw, 56px));
+  }
+}
+
+/* Keep a Korean particle attached to the name before it; allow long paths to wrap. */
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section .content p .inline-code {
+  display:inline;
+}
+@media (max-width:735px) {
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .content p {
+    text-wrap:balance;
+  }
+}
+@media (min-width:736px) {
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section > .intro-container .intro:has(.col.right img) .col.right {
+    padding-top:2rem;
+  }
+}
+
+/* Preserve code names and their Korean particles in the lesson copy. */
+.tutorial:has(:is([id="실습용-Scene-열기"], [id="AppModel로-상태-만들기"])) .section :is(.intro-container .content p,.steps .step p) .inline-code {
+  display:inline;
+}
+
+/* Keep filenames together; the post-step diagnostic paths may still wrap. */
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .section :is(.intro-container .content p,.steps .step p) .inline-code {
+  white-space:nowrap;
+}
+.tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .tutorial-hero .eyebrow {
+  display:none;
+}
+
+@media (min-width:736px) and (max-width:1000px) {
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .steps .content-container {
+    width:45%;
+    margin-right:clamp(14px, 2vw, 22px);
+  }
+  .tutorial:has(:is([id="Anchor-좌표계-안에-회전-중심-만들기"], [id="가림에-쓸-모델-준비하기"], [id="실제-물체-인식-확인하기"])) .steps .asset-container {
+    flex:1 1 0;
+    min-width:0;
+    max-width:none;
+    margin-inline-end:calc((100% - 100vw) / 2);
+  }
+}
+
+/* Match Apple Developer's tutorial accent without recoloring the lesson assets. */
+body:has(:is(.tutorial, .tutorials-overview)),
+body .tutorial-hero .hero,
+body .tutorials-overview .hero {
+  --color-figure-blue:#0066cc;
+  --color-fill-blue:#0071e3;
+  --color-code-line-highlight:color-mix(in srgb, var(--color-figure-blue) 8%, transparent);
+  --color-link:var(--color-figure-blue);
+  --colors-link:var(--color-figure-blue);
+  --color-tutorials-overview-link:#2997ff;
+  --color-nav-link-color-hover:#0066cc;
+  --color-nav-dark-link-color-hover:#2997ff;
+  --color-button-background:#0071e3;
+  --color-button-background-hover:#0077ed;
+  --color-button-background-active:#0066cc;
+  --colors-button-light-background:var(--color-button-background);
+  --colors-button-light-backgroundHover:var(--color-button-background-hover);
+  --colors-button-light-backgroundActive:var(--color-button-background-active);
+  --colors-button-dark-background:var(--color-button-background);
+  --colors-button-dark-backgroundHover:var(--color-button-background-hover);
+  --colors-button-dark-backgroundActive:var(--color-button-background-active);
+}
+body[data-color-scheme="dark"]:has(.tutorial),
+body .tutorial-hero .hero.dark,
+body .tutorials-overview,
+body .tutorials-overview .hero {
+  --color-figure-blue:#2997ff;
+  --color-link:var(--color-figure-blue);
+  --colors-link:var(--color-figure-blue);
+}
+@media (prefers-color-scheme:dark) {
+  body[data-color-scheme="auto"]:has(.tutorial) {
+    --color-figure-blue:#2997ff;
+  }
+}
+
+/* Keep the approved split view and give the text inside it a consistent rhythm. */
+body:has(.tutorial) .tutorial .section > .intro-container .content p,
+body:has(.tutorial) .tutorial .steps .step > .content > p {
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  line-height:1.78;
+  text-wrap:pretty;
+}
+body:has(.tutorial) .tutorial .section > .intro-container .content p + p {
+  margin-top:1em;
+}
+body:has(.tutorial) .tutorial .section > .intro-container {
+  margin-bottom:clamp(1.8rem, 3.6vw, 3.25rem);
+}
+body:has(.tutorial) .tutorial .steps .step {
+  padding-block:clamp(1.35rem, 2.1vw, 1.75rem);
+}
+body:has(.tutorial) .tutorial .steps .step-label {
+  margin-bottom:.75rem;
+}
+body:has(.tutorial) .tutorial .steps .step > .content > p > strong:first-child {
+  display:block;
+  margin-block-end:.7em;
+  text-wrap:balance;
+}
+/* Inline code stays part of its sentence so Korean particles remain attached. */
+body:has(.tutorial) .tutorial .section :is(.intro-container .content p, .step .content p) .inline-code {
+  display:inline;
+  white-space:nowrap;
+}
+@media (max-width:359px), (min-width:736px) and (max-width:849px) {
+  body:has(.tutorial) .tutorial .section :is(.intro-container .content p, .step .content p) .inline-code {
+    white-space:normal;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+}
+@media (max-width:735px) {
+  .tutorial .tutorial-hero .intro .content > p,
+  body:has(.tutorial) .tutorial .section > .intro-container .content p {
+    text-wrap:balance;
+  }
+}
+@media (min-width:736px) and (max-width:1000px) {
+  .tutorial:has([id="실습에-쓸-USDZ-준비하기"]) .steps .content-container {
+    width:45%;
+    margin-right:clamp(14px, 2vw, 22px);
+  }
+  .tutorial:has([id="실습에-쓸-USDZ-준비하기"]) .steps .asset-container {
+    flex:1 1 0;
+    min-width:0;
+    max-width:none;
+    margin-inline-end:calc((100% - 100vw) / 2);
+  }
+}
+
+.tutorials-overview :is(.tutorials-navigation-link, .tutorials-navigation .toggle .text) {
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  line-height:1.45;
+}
+
+/* Device validation: let the cover cards describe the task, with the
+   simulator limits following both cards in their own reading band. */
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .hero:has(.intro .content > h2:nth-of-type(2) + ul) {
+  --panel-padding:clamp(1.1rem, 3vw, 1.85rem);
+  --panel-body-size:clamp(1.03rem, 1.45vw, 1.17rem);
+}
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) {
+  grid-template-rows:repeat(7, auto);
+}
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > p,
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) > ul {
+  line-height:1.72;
+  text-wrap:pretty;
+}
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content > p:nth-of-type(2) {
+  padding-top:.95rem;
+}
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content > p:nth-of-type(3) {
+  grid-area:7 / 1 / 8 / -1;
+  padding-inline:var(--panel-padding);
+  padding-block:.95rem .35rem;
+  margin-block-start:clamp(1.15rem, 2.6vw, 1.9rem);
+  border-top:1px solid var(--color-grid, #555);
+}
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content > p:nth-of-type(3) > strong:first-child {
+  display:inline-block;
+  margin-block-end:.4rem;
+}
+.tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content > ul li + li {
+  margin-top:.85rem;
+}
+#실제-물체-인식-확인하기 > .intro-container .content p + p {
+  margin-top:1.2em;
+}
+#실제-물체-인식-확인하기 > .intro-container .content p .inline-code {
+  white-space:nowrap;
+}
+@media (max-width:359px) {
+  .tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .hero .heading {
+    font-size:1.45rem;
+  }
+  #실제-물체-인식-확인하기 > .intro-container .intro .col.left {
+    width:calc(100% - 2.5rem);
+    max-width:none;
+  }
+}
+@media (max-width:849px) {
+  .tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content > p:nth-of-type(3) {
+    text-wrap:balance;
+  }
+}
+@media (min-width:736px) and (max-width:899px) {
+  #실제-물체-인식-확인하기 > .intro-container .intro {
+    flex-direction:column;
+  }
+  #실제-물체-인식-확인하기 > .intro-container .intro .col {
+    flex:0 1 auto;
+    width:100%;
+    max-width:none;
+    padding-inline:0;
+  }
+  #실제-물체-인식-확인하기 > .intro-container .intro .col.right {
+    align-self:center;
+    width:min(620px, 100%);
+  }
+}
+@media (min-width:900px) {
+  #실제-물체-인식-확인하기 > .intro-container .intro { width:100%; }
+  #실제-물체-인식-확인하기 > .intro-container .intro:has(.col.right img) .col.left {
+    flex-basis:50%;
+    max-width:50%;
+  }
+  #실제-물체-인식-확인하기 > .intro-container .intro:has(.col.right img) .col.right {
+    flex-basis:50%;
+    max-width:50%;
+    padding-left:clamp(1.3rem, 3vw, 2.5rem);
+  }
+}
+@media (min-width:850px) {
+  .tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content:has(> h2:nth-of-type(2) + ul) {
+    grid-template-columns:minmax(0, 1.24fr) minmax(0, 1fr);
+    grid-template-rows:auto auto auto auto;
+  }
+  .tutorial:has([id="실제-물체-인식-확인하기"]) .tutorial-hero .intro .content > p:nth-of-type(3) {
+    grid-row:4;
+  }
+}
+
+/* Medium desktop split: keep longer Reality Composer Pro names inside the step. */
+@media (min-width:1001px) and (max-width:1120px) {
+  .tutorial:has(:is([id="실습용-Scene-열기"], [id="가림에-쓸-모델-준비하기"])) .steps .content-container {
+    width:45%;
+    margin-right:clamp(14px, 2vw, 22px);
+  }
+  .tutorial:has(:is([id="실습용-Scene-열기"], [id="가림에-쓸-모델-준비하기"])) .steps .asset-container {
+    flex:1 1 0;
+    min-width:0;
+    max-width:none;
+    margin-inline-end:calc((100% - 100vw) / 2);
+  }
+}
+
+/* Keep prose on true word boundaries. DocC adds <wbr> within CamelCase
+   and filenames; suppress only these optional breaks in inline prose. */
+body:has(.tutorial) .tutorial :is(.tutorial-hero .intro .content, .section .intro-container .content, .section .step .content) :is(p, li),
+body:has(.tutorial) .tutorial .call-to-action .description p {
+  text-wrap:pretty;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+body:has(.tutorial) .tutorial :is(.tutorial-hero .intro .content, .section .intro-container .content, .section .step .content) .inline-code {
+  display:inline;
+  white-space:nowrap;
+  word-break:keep-all;
+  overflow-wrap:normal;
+}
+body:has(.tutorial) .tutorial :is(.tutorial-hero .intro .content, .section .intro-container .content, .section .step .content) .inline-code wbr,
+.tutorials-overview :is(.hero .content, .learning-path .chapter, #resources) .inline-code wbr {
+  display:none;
+}
+body:has(.tutorial) .tutorial .steps .step > .content > p > strong:first-child {
+  overflow-wrap:break-word;
+}
+.tutorials-overview :is(.hero .content p, .hero .content li, .learning-path .chapter p, #resources p, .tutorials-navigation-link) {
+  text-wrap:pretty;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+
+@media (max-width:359px) {
+  body:has(.tutorial) .tutorial :is(.tutorial-hero .intro .content, .section .intro-container .content, .section .step .content) .inline-code {
+    font-size:.93em;
+  }
+}
+@media (max-width:735px) {
+  .tutorial .section > .intro-container .intro .col.left {
+    width:min(calc(100% - 2rem), 42rem);
+    max-width:none;
+  }
+}
+@media (min-width:736px) and (max-width:1250px) {
+  body:has(.tutorial) .tutorial .steps .content-container {
+    width:48%;
+    margin-right:clamp(14px, 2vw, 22px);
+  }
+  body:has(.tutorial) .tutorial .steps .asset-container {
+    flex:1 1 0;
+    min-width:0;
+    max-width:none;
+    margin-inline-end:calc((100% - 100vw) / 2);
+  }
+}
+
+/* Match the published SwiftUI tutorial quiz, not the generic DocC skin. */
+#Check-Your-Understanding .assessments {
+  color:var(--colors-text);
+  font-family:"SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+#Check-Your-Understanding :is(.banner h2, .quiz .title) {
+  font-family:"SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight:600;
+}
+#Check-Your-Understanding .quiz .choice {
+  border-radius:15px;
+  color:var(--colors-text);
+  font-family:inherit;
+}
+#Check-Your-Understanding .quiz .choice .question p {
+  line-height:1.43;
+}
+#Check-Your-Understanding .quiz .controls .button-cta {
+  border-radius:18px;
+  font-family:inherit;
+}
+#Check-Your-Understanding .quiz .inline-code wbr {
+  display:none;
+}
+#Check-Your-Understanding .quiz :is(.title, .question, .answer) {
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+#Check-Your-Understanding {
+  --colors-header-text:var(--quiz-text, #1d1d1f);
+  --colors-text:var(--quiz-text, #1d1d1f);
+  --colors-grid:var(--quiz-grid, #d2d2d7);
+  --colors-text-background:var(--quiz-option, #fff);
+  --color-tutorial-assessments-background:var(--quiz-panel, #fbfbfd);
+}
+body[data-color-scheme="dark"] #Check-Your-Understanding {
+  --quiz-text:#f5f5f7;
+  --quiz-grid:#424245;
+  --quiz-option:#000;
+  --quiz-panel:#161617;
+}
+@media (prefers-color-scheme:dark) {
+  body[data-color-scheme="auto"] #Check-Your-Understanding,
+  body:not([data-color-scheme]) #Check-Your-Understanding {
+    --quiz-text:#f5f5f7;
+    --quiz-grid:#424245;
+    --quiz-option:#000;
+    --quiz-panel:#161617;
+  }
+}
+@media (max-width:735px) {
+  #Check-Your-Understanding .quiz .controls .button-cta {
+    box-sizing:border-box;
+    display:block;
+    width:min(100%, 14rem);
+    min-width:0;
+    margin-inline:auto;
+    padding-inline:.85rem;
+  }
+}
+@media (max-width:359px) {
+  #Check-Your-Understanding .quiz .choice {
+    min-inline-size:0;
+    padding-inline:1.2rem;
+  }
+}

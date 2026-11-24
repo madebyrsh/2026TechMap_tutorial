@@ -69,7 +69,7 @@ Reality Composer Pro는 다음을 담당합니다.
 
 Swift와 SwiftUI는 다음을 담당합니다.
 
-- `ImmersiveSpace` 등록과 열기·닫기
+- `ImmersiveSpace` 등록과 열기와 닫기
 - `RealityKitContent` bundle에서 Scene 불러오기
 - Scene의 Root Entity를 `RealityView`에 추가
 - 로딩 실패 처리와 사용자 인터페이스 제공

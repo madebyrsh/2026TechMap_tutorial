@@ -1,29 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
-  <title id="title">가상 콘텐츠 확장 흐름</title>
-  <desc id="description">TreasureChestAnchor 좌표계 안에서 Pivot을 중심으로 ToyBiplane이 돌고 Occlusion geometry가 깊이 관계를 만드는 흐름</desc>
-  <rect width="1600" height="900" rx="64" fill="#F5F7FA"/>
-  <text x="800" y="110" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="700" fill="#152033">추적 좌표계 안의 Animation과 Occlusion</text>
-  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif">
-    <rect x="110" y="180" width="1380" height="610" rx="42" fill="#FFFFFF" stroke="#A5B4C8" stroke-width="5"/>
-    <rect x="170" y="235" width="1260" height="110" rx="28" fill="#DCEFE5" stroke="#3B8A65" stroke-width="6"/>
-    <text x="800" y="305" text-anchor="middle" font-size="42" font-weight="700" fill="#152033">TreasureChestAnchor · tracked Transform</text>
-    <path d="M520 345 V425" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
-    <path d="M1080 345 V425" stroke="#63799C" stroke-width="8" stroke-linecap="round"/>
-    <rect x="210" y="425" width="620" height="280" rx="32" fill="#E8F0FC" stroke="#4778B8" stroke-width="5"/>
-    <text x="520" y="482" text-anchor="middle" font-size="36" font-weight="700" fill="#244B7C">Orbit Animation</text>
-    <circle cx="520" cy="590" r="38" fill="#F0E9F8" stroke="#7755A6" stroke-width="5"/>
-    <text x="520" y="600" text-anchor="middle" font-size="24" font-weight="700" fill="#152033">Pivot</text>
-    <path d="M382 590 A138 92 0 1 1 657 590" fill="none" stroke="#4778B8" stroke-width="8" stroke-dasharray="14 12"/>
-    <path d="M655 590 l-28 -15 l7 31 z" fill="#4778B8"/>
-    <rect x="320" y="545" width="145" height="65" rx="20" fill="#FFFFFF" stroke="#4778B8" stroke-width="4"/>
-    <text x="392" y="586" text-anchor="middle" font-size="25" font-weight="700" fill="#152033">ToyBiplane</text>
-    <rect x="890" y="425" width="500" height="280" rx="32" fill="#F7EEE3" stroke="#B87935" stroke-width="5"/>
-    <text x="1140" y="482" text-anchor="middle" font-size="36" font-weight="700" fill="#80501F">Occlusion</text>
-    <path d="M1020 625 L1070 525 H1210 L1260 625 Z" fill="#D8C2A9" fill-opacity="0.35" stroke="#B87935" stroke-width="6" stroke-dasharray="12 10"/>
-    <rect x="955" y="555" width="135" height="62" rx="18" fill="#FFFFFF" stroke="#4778B8" stroke-width="4"/>
-    <text x="1022" y="594" text-anchor="middle" font-size="23" font-weight="700" fill="#152033">앞: 보임</text>
-    <rect x="1190" y="555" width="135" height="62" rx="18" fill="#FFFFFF" stroke="#B65B5B" stroke-width="4"/>
-    <text x="1257" y="594" text-anchor="middle" font-size="23" font-weight="700" fill="#152033">뒤: 가림</text>
-    <text x="800" y="755" text-anchor="middle" font-size="28" fill="#455A7A">같은 Anchor 좌표계를 사용해야 궤도와 깊이 경계가 실제 물체를 따라갑니다.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="590" viewBox="0 0 720 590" role="img" aria-labelledby="title description">
+  <title id="title">상자 앞뒤에서 서로 다르게 보이는 비행기</title>
+  <desc id="description">위에서 본 도식입니다. 비행기는 Pivot 주위를 돌며, 상자와 보는 사람 사이에서는 보이고 상자 건너편에서는 가려집니다.</desc>
+  <rect width="720" height="590" fill="#f6f7f9"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#182230">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+        <path d="M0 0L10 5 0 10Z" fill="#0056bd"/>
+      </marker>
+    </defs>
+    <path d="M260 101V506" stroke="#8390a3" stroke-width="2" stroke-dasharray="6 8"/>
+    <circle cx="260" cy="272" r="161" fill="none" stroke="#0056bd" stroke-width="4"/>
+    <path d="M413 322A161 161 0 0 0 421 277" fill="none" stroke="#0056bd" stroke-width="5" marker-end="url(#arrow)"/>
+    <rect x="197" y="214" width="126" height="116" rx="3" fill="#d9dee7" stroke="#586676" stroke-width="3"/>
+    <circle cx="260" cy="272" r="6" fill="#182230"/>
+    <circle cx="260" cy="111" r="13" fill="#f6f7f9" stroke="#647387" stroke-width="3" stroke-dasharray="4 3"/>
+    <circle cx="260" cy="433" r="13" fill="#0056bd"/>
+    <path d="M279 111H461M324 272H461M279 433H461" stroke="#8390a3" stroke-width="2"/>
+    <path d="M251 516L260 505 269 516" fill="none" stroke="#647387" stroke-width="3"/>
+    <g font-size="34" font-weight="600">
+      <text x="482" y="122">뒤: 가림</text>
+      <text x="482" y="283">보물상자</text>
+      <text x="482" y="445">앞: 보임</text>
+    </g>
+    <text x="260" y="555" font-size="33" text-anchor="middle" fill="#415064">보는 사람</text>
   </g>
 </svg>

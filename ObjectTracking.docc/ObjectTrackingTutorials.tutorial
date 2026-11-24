@@ -1,26 +1,46 @@
-@Tutorials(name: "Object Tracking 공간 경험 만들기") {
-    @Intro(title: "보물상자 주위를 도는 비행기 만들기") {
-        Apple Vision Pro로 실제 보물상자를 바라보면 가상 비행기 `ToyBiplane`이 그 주위를 돕니다. 비행기는 상자 앞을 지날 때 보이고, 뒤로 돌아가면 상자에 가려집니다(Occlusion).
+@Tutorials(name: "visionOS Object Tracking") {
+    @Intro(title: "visionOS에서 Object Tracking 시작하기") {
+        Apple Vision Pro에서 물건을 알아보고 제 위치를 따라가게 만들어요. 보물상자 주위에 비행기를 띄우고, 뒤를 지날 때 가려지게 해요.
 
-        Create ML에서 USDZ를 학습해 추적에 필요한 `.referenceobject`를 만듭니다. Reality Composer Pro에서 이 파일을 Object Anchor에 연결하고, 비행기의 궤도 애니메이션과 가림 효과를 설정합니다. 그런 다음 이 Scene을 visionOS 앱에서 불러와 Apple Vision Pro로 확인합니다.
+        ## 배우는 것
 
-        **시작 전 준비물**
+        - Create ML에 USDZ를 넣고 학습해요.\
+          완성 파일: `.referenceobject`
+        - Reality Composer Pro에서 `Object Anchor`로 비행기의 위치를 잡고 앱에서 불러와요.
+        - 회전과 가림(Occlusion)을 설정하고, 실제 물건에서 결과를 확인해요.
 
-        - 추적할 실제 물체와 그 물체의 형태·크기에 맞는 USDZ가 필요합니다. 예제와 같은 보물상자가 있다면 제공된 TreasureChest 자산을 사용하고, 다른 물체로 실습한다면 그 물체에 맞는 USDZ를 준비하세요.
-        - 가상 비행기 `ToyBiplane.usdz`는 [ObjectTrackingWithRCP 예제 프로젝트](https://github.com/madebyrsh/2026TechMap_tutorial/tree/main/ObjectTrackingWithRCP)에 포함되어 있습니다.
-        - 실제 물체 인식과 최종 동작을 확인하려면 Apple Vision Pro가 필요합니다.
+        ## 준비물
+
+        - **Chapter 1~3:** Mac에서 진행해요. 실물 보물상자나 Apple Vision Pro 없이도 따라 할 수 있어요.
+        - **Chapter 4:** Apple Vision Pro와 학습에 사용한 실물로 추적을 확인해요.
+
+        ## 실습 방법 고르기
+
+        - **내 물건으로 실습**\
+          실물과 모양과 크기가 같은 USDZ를 준비해 Create ML에서 직접 학습해요.\
+          [Chapter 1에서 학습하기](doc:CreateAReferenceObject)
+        - **예제 파일로 실습**\
+          [예제 USDZ와 Reference Object 받기 (ZIP)](/2026TechMap_tutorial/downloads/TreasureChest-example.zip)\
+          보물상자가 없어도 Mac에서 Chapter 2~3을 따라갈 수 있어요.\
+          학습 없이 [Chapter 2에서 시작하기](doc:ConfigureObjectTrackingInRealityComposerPro)
+
+        Create ML 학습 대기 시간은 제외돼요.
+
+        @Image(source: "rcp-toybiplane-placement.png", alt: "Reality Composer Pro에서 보물상자 앵커를 기준으로 가상 비행기의 위치와 크기를 설정하는 화면")
     }
 
-    @Chapter(name: "추적 자산 만들기") {
-        현실 물체를 추적하려면 먼저 그 물체의 형태와 크기를 표현한 USDZ가 필요합니다. 이 장에서는 준비한 USDZ를 Create ML에 넣고, Vision Pro가 물체를 인식할 때 사용할 `.referenceobject`를 만듭니다.
+    @Chapter(name: "Create ML에서 내 물건을 알아보게 준비하기") {
+        실제 물건과 모양과 크기가 맞는 USDZ를 준비해요.\
+        Create ML에 넣고 Apple Vision Pro가 물건을 알아보는 데 쓸 `.referenceobject`를 만들어요.
 
         @Image(source: chapter-reference-object-pipeline, alt: "현실 물체를 표현한 USDZ를 Create ML에서 학습하여 reference object를 만드는 흐름")
 
         @TutorialReference(tutorial: "doc:CreateAReferenceObject")
     }
 
-    @Chapter(name: "Object Tracking 경험 구성하기") {
-        Chapter 1에서 만든 `.referenceobject`를 Reality Composer Pro의 Object Anchor에 연결합니다. 이어서 RCP Scene을 Mixed Immersive Space의 `RealityView`에 추가해 Object Tracking 구성을 visionOS 앱에서 활성화합니다.
+    @Chapter(name: "보물상자를 기준으로 비행기 띄우기") {
+        Chapter 1에서 만들었거나 내려받은 `.referenceobject`를 Reality Composer Pro의 Object Anchor에 연결해요.\
+        저장한 Scene을 Mixed Immersive Space의 `RealityView`에 불러와 visionOS 앱에서 Object Tracking을 시작할 수 있게 해요.
 
         @Image(source: chapter-object-tracking-experience, alt: "reference object를 Reality Composer Pro의 Object Anchor에 연결하고 visionOS RealityView에서 활성화하는 흐름")
 
@@ -28,20 +48,45 @@
         @TutorialReference(tutorial: "doc:LoadTheRCPSceneInVisionOS")
     }
 
-    @Chapter(name: "가상 콘텐츠 확장하기") {
-        추적된 TreasureChest 좌표계 안에 Transform-only `Pivot`을 만듭니다. Timeline과 Behavior를 연결해 `ToyBiplane`이 이 중심을 반복해서 돌게 합니다. 이어서 현실 보물상자와 정렬된 geometry에 Occlusion Material을 적용해 가상 비행기의 앞뒤 깊이 관계를 표현합니다.
+    @Chapter(name: "비행기를 상자 주위로 돌리기") {
+        보물상자를 따라가는 Anchor 아래에 회전 중심인 `Pivot`을 만들어요.\
+        Timeline과 Behavior를 연결해 `ToyBiplane`이 그 중심을 계속 돌게 해요.\
+        상자와 같은 위치에 둔 모델에 Occlusion Material을 적용하면, 비행기가 실제 상자 뒤를 지날 때 가려져요.
 
-        @Image(source: chapter-virtual-content, alt: "TreasureChestAnchor 좌표계 안에서 ToyBiplane이 Pivot을 중심으로 돌고 Occlusion geometry가 깊이 관계를 만드는 흐름")
+        @Image(source: chapter-virtual-content, alt: "보물상자 주위를 도는 비행기가 보는 사람과 상자 사이에서는 보이고 건너편에서는 가려지는 도식")
 
         @TutorialReference(tutorial: "doc:AddOrbitAnimation")
         @TutorialReference(tutorial: "doc:AddOcclusion")
     }
 
-    @Chapter(name: "실기기에서 검증하기") {
-        Mac에서 자산과 Scene 구성을 마치면 Apple Vision Pro에서 실제 TreasureChest를 바라보며 전체 연결을 확인합니다. 물체 인식, 가상 콘텐츠 배치, 반복 Orbit Animation, Occlusion을 차례로 관찰합니다. 문제가 있다면 어느 단계부터 확인해야 하는지도 알아봅니다.
+    @Chapter(name: "Apple Vision Pro에서 확인하기") {
+        Mac에서 준비한 앱을 Apple Vision Pro에서 열고 학습에 쓴 실물과 함께 확인해요.\
+        물건을 알아보는지, 비행기가 제 위치에서 계속 도는지, 상자 뒤에서 가려지는지 순서대로 봐요.\
+        예상과 다르다면 어느 설정부터 다시 볼지도 알아봐요.
 
         @Image(source: chapter-device-validation, alt: "Apple Vision Pro에서 실제 물체 인식부터 가상 콘텐츠, 반복 Animation과 Occlusion까지 순서대로 검증하는 흐름")
 
         @TutorialReference(tutorial: "doc:ValidateOnAppleVisionPro")
+    }
+
+    @Resources {
+        **보물상자 예제 파일**\
+        두 파일을 받고 Chapter 2부터 시작해요.\
+        필요한 파일만 따로 받아도 돼요.\
+        [두 파일 한 번에 받기 (ZIP)](/2026TechMap_tutorial/downloads/TreasureChest-example.zip)\
+        [TreasureChest.usdz](/2026TechMap_tutorial/downloads/TreasureChest.usdz)\
+        [TreasureChest.referenceobject](/2026TechMap_tutorial/downloads/TreasureChest.referenceobject)\
+        \
+        Chapter 4에서 실제로 물건을 알아보는지 확인하려면 학습에 사용한 것과 같은 실물 보물상자가 필요해요.\
+        \
+        **Apple Developer 영상**\
+        [Create ML 학습 영상 보기](https://developer.apple.com/videos/play/wwdc2024/10101/?time=307)\
+        영상 5:07부터 Reference Object를 만드는 방법이 나와요.
+
+        @SampleCode(destination: "https://github.com/madebyrsh/2026TechMap_tutorial/tree/main/ObjectTrackingWithRCP") {
+            완성 프로젝트에서 두 가지를 볼 수 있어요.\
+            예제 비행기 `ToyBiplane.usdz`와 Reality Composer Pro의 설정이에요.
+            - [프로젝트 열기](https://github.com/madebyrsh/2026TechMap_tutorial/tree/main/ObjectTrackingWithRCP)
+        }
     }
 }
