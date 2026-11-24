@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="296" viewBox="0 0 600 296" role="img" aria-labelledby="title desc">
+  <title id="title">Scene 로드 실패 로그 확인</title>
+  <desc id="desc">Xcode Console에 오브젝트 트래킹 Scene 로드 실패가 보이면 Scene 이름과 realityKitContentBundle을 확인합니다.</desc>
+  <style>
+    text { font-family: system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill:#172334; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .context { fill:#345474; }
+  </style>
+  <rect width="600" height="296" rx="24" fill="#F3F5F8"/>
+  <text x="50" y="76" font-size="37" font-weight="650">Scene 로드 실패</text>
+  <path d="M50 110H550" stroke="#BAC7D7" stroke-width="2"/>
+  <text x="50" y="183" font-size="34" font-weight="660" class="code">ObjectTrackingScene</text>
+  <text x="50" y="249" font-size="34" font-weight="660" class="code">realityKitContentBundle</text>
+</svg>

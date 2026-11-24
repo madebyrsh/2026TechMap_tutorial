@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="264" viewBox="0 0 760 264" role="img" aria-labelledby="title description">
+<title id="title">USDZ를 추가한 Scene 계층</title><desc id="description">TreasureChestAnchor의 Occlusion 아래에 OcclusionTreasureChest USDZ가 있습니다.</desc>
+<rect width="760" height="264" fill="#F2F5F8"/>
+<g font-family="-apple-system, sans-serif"><text x="42" y="77" text-anchor="start" font-size="40" font-weight="700" fill="#182434">TreasureChestAnchor</text><text x="95" y="148" text-anchor="start" font-size="40" font-weight="700" fill="#182434">Occlusion</text><rect x="134" y="176" width="579" height="57" rx="12" fill="#E3ECF7" stroke="#E3ECF7" stroke-width="2"/><text x="148" y="219" text-anchor="start" font-size="40" font-weight="700" fill="#1767B4">OcclusionTreasureChest</text><path d="M55 93 V134" fill="none" stroke="#8C9EB2" stroke-width="3" /><path d="M55 134 H72" fill="none" stroke="#8C9EB2" stroke-width="3" /><path d="M108 164 V205" fill="none" stroke="#8C9EB2" stroke-width="3" /><path d="M108 205 H125" fill="none" stroke="#8C9EB2" stroke-width="3" /></g>
+</svg>

@@ -1,146 +1,199 @@
 @Tutorial(time: 15) {
-    @Intro(title: "ToyBiplane에 Orbit Animation 추가하기") {
-        `TreasureChestAnchor`는 실제 보물상자를 따라가지만 `ToyBiplane`은 아직 한 위치에 머뭅니다. 비행기를 움직이려면 궤도의 중심과 Animation을 구성해야 합니다.
+    @Intro(title: "비행기를 보물상자 주위로 돌리기") {
+        지금 비행기는 보물상자를 따라가지만, 상자 기준으로 제자리에 있어요.\
+        이번에는 상자 위에 궤도 중심을 잡고 비행기가 그 주위를 계속 돌게 해요.
 
-        이 Tutorial에서는 Anchor 좌표계 안에 Transform-only `Pivot`을 만듭니다. Timeline과 Behavior를 연결해 `ToyBiplane`이 이 중심을 반복해서 돌게 합니다.
+        ## 이번 실습
 
-        완성된 Orbit은 `ToyBiplane`을 Target으로 사용하고 형제 Entity인 `Pivot`을 회전 중심으로 삼습니다. `ToyBiplane`을 `Pivot`의 자식으로 만들지 않습니다.
+        `TreasureChestAnchor` 아래에 위치만 지정하는 `Pivot`⁠을 만들어요.\
+        비행기와 `Pivot`⁠을 같은 Anchor 아래에 나란히 둬요.\
+        Timeline과 Behavior도 연결해요.
 
+        ## 실습 요약
+
+        - **준비할 것:** 비행기를 배치한 RCP Scene
+        - **설정할 항목:** Pivot, Orbit, 반복 재생
+        - **실습 시간:** **15분**
     }
 
     @Section(title: "Anchor 좌표계 안에 회전 중심 만들기") {
         @ContentAndMedia {
-            Orbit에는 움직일 Target과 회전 중심이 필요합니다. 중심을 별도의 Transform Entity로 만들면 모델 geometry를 움직이지 않고도 궤도의 위치를 조절할 수 있습니다.
+            Orbit에는 움직일 대상과 중심이 필요해요.\
+            Transform Entity를 회전 중심으로 써요.\
+            비행기는 그대로 두고 궤도만 옮길 수 있어요.
 
-            완성 Scene을 살펴본다면 같은 이름의 Entity를 다시 만들지 말고 기존 `Pivot`의 설정을 확인하세요. 자신의 Scene을 구성한다면 아래 순서대로 추가합니다.
+            완성 예제에는 `Pivot`⁠이 이미 있어요. 설정을 살펴봐요.\
+            직접 구성하는 경우에는 아래 순서대로 추가해요.
 
-            @Image(source: tracked-transform-hierarchy, alt: "TreasureChestAnchor 아래 Pivot, ToyBiplane, Occlusion이 형제로 배치된 hierarchy")
+            @Image(source: tracked-transform-hierarchy, alt: "TreasureChestAnchor 아래 Pivot, ToyBiplane, Occlusion이 나란히 놓인 구조")
         }
 
         @Steps {
             @Step {
-                **TreasureChestAnchor 아래에 Transform Entity를 추가합니다.** 이름을 `Pivot`으로 바꿉니다. `Pivot`이 `ToyBiplane`의 부모가 아니라 Anchor 아래의 형제인지 확인하세요. 
-                
-                @Image(source: "rcp-pivot-hierarchy.png", alt: "Reality Composer Pro Hierarchy에서 Pivot과 ToyBiplane이 TreasureChestAnchor 아래 형제로 배치된  화면")
+                **Anchor 아래에 회전 중심을 추가해요.** `TreasureChestAnchor` 아래에 Transform Entity를 추가해요.\
+                이름은 `Pivot`⁠으로 바꿔요.\
+                `Pivot`⁠과 `ToyBiplane`⁠은 같은 Anchor 아래에 나란히 놓아요.\
+                비행기를 `Pivot` 아래에 넣지 않아요.
 
+                @Image(source: orbit-pivot-setup, alt: "TreasureChestAnchor 아래에 ToyBiplane과 Pivot이 같은 깊이에 놓인 계층도")
             }
 
             @Step {
-                **Pivot의 위치를 궤도 중심으로 조정합니다.**
-                TreasureChest 예제의 Position은 `(0, 4, 0)`입니다.
-                여기서 Y 값은 높이를 나타내며, X와 Z를 `0`으로 두어
-                Anchor 원점의 수평 위치를 유지한 채 4cm 위를 회전 중심으로 사용합니다.
-                자신의 물체에서는 Reference Object cue를 보면서 원하는 중심을 정하세요.
-                
-                @Image(source: "rcp-pivot-transform.png", alt: "Reality Composer Pro에서 Pivot의 Position을 궤도 중심으로 조정하는 화면")
+                **회전 중심의 위치를 잡아요.** 예제 `Pivot`의 Position: `(0, 4, 0)`⁠cm\
+                X와 Z는 Anchor 원점에 둬요.\
+                높이인 Y만 4cm 위로 올려요.\
+                다른 물건을 쓴다면 반투명 Reference Object를 보며\
+                회전 중심을 잡아요.
+
+                @Image(source: orbit-pivot-position, alt: "Anchor 원점에서 Pivot을 Y축으로 4cm 올린 위치를 나타낸 그림")
             }
 
             @Step {
-                **ToyBiplane의 시작 위치를 확인합니다.** 현재 예제의 Position은 `(-10, 3, 0)`, Scale은 `(0.15, 0.15, 0.15)`입니다. Pivot과 Target의 위치 차이가 궤도 반지름을 만듭니다. 비행기를 Pivot과 같은 위치에 두지 마세요. 
-                
+                **비행기의 시작 위치를 확인해요.** 예제 `ToyBiplane`의 Position: `(-10, 3, 0)`⁠cm\
+                Scale은 `(0.15, 0.15, 0.15)`⁠예요.\
+                위에서 본 비행기와 중심의 거리가 궤도 반지름이에요.\
+                비행기를 `Pivot`⁠과 다른 위치에 둬요.
+
                 @Image(source: "rcp-toybiplane-placement.png", alt: "Reality Composer Pro에서 ToyBiplane의 시작 Position과 Scale을 확인하는 화면")
             }
         }
-
-        <!-- TODO: 실제 RCP Scene navigator에서 TreasureChestAnchor 아래 Pivot과 ToyBiplane 형제 관계를 보여 주는 screenshot 추가 -->
-        <!-- TODO: Pivot과 ToyBiplane Transform Inspector를 같은 3D View 문맥에서 보여 주는 screenshot 추가 -->
     }
 
     @Section(title: "Orbit Timeline 구성하기") {
         @ContentAndMedia {
-            Timeline에는 시간에 따라 실행할 Action을 담습니다. 첫 번째 Timeline은 한 바퀴의 Orbit을 정의합니다. 반복 재생은 다음 Section에서 별도의 Timeline과 Behavior로 연결합니다.
+            Timeline은 어떤 Action을 언제 실행할지 정해요.\
+            먼저 비행기가 한 바퀴 도는 Timeline을 만들어요.\
+            자동 시작과 반복은 다음 섹션에서 설정해요.
 
-            @Image(source: orbit-timeline-structure, alt: "OrbitToyBiplane Timeline의 Orbit action이 ToyBiplane target과 Pivot을 참조하는 구조")
+            @Image(source: orbit-action-target, alt: "Orbit Action의 Target은 ToyBiplane이고 Pivot Entity는 Pivot이라는 그림")
         }
 
         @Steps {
             @Step {
-                **Timeline 편집기에서 Timeline을 만듭니다.** 새 Timeline을 추가하고 `OrbitToyBiplane`으로 이름을 바꿉니다. 한 바퀴의 움직임을 정의하는 Timeline임을 이름으로 구분할 수 있습니다. 
-                
-                @Image(source: "rcp-orbit-animation.png", alt: "Reality Composer Pro Timeline 편집기에서 OrbitToyBiplane Timeline을 만든 화면")
+                **한 바퀴를 담을 Timeline을 만들어요.** Timeline 편집기에서 새 Timeline을 추가해요.\
+                이름은 `OrbitToyBiplane`⁠으로 지정해요.\
+                반복 재생용 Timeline과 구분되는 이름이에요.
+
+                @Image(source: "rcp-orbit-animation.png", alt: "Reality Composer Pro Timeline 편집기의 Create Timeline 버튼")
             }
 
             @Step {
-                **Orbit Action을 Track에 추가합니다.** `Target`에서 `TreasureChestAnchor/ToyBiplane`을 선택합니다. 실제로 위치가 변하는 Entity는 `ToyBiplane`입니다.  
-                
-                @Image(source: "rcp-orbit-animation2.png", alt: "Reality Composer Pro의 Orbit Action에서 ToyBiplane을 Target으로 선택한 화면")
+                **움직일 대상을 골라요.** Track에 `Orbit` Action을 추가해요.\
+                Hierarchy에서 `Target`을 골라요.\
+                `TreasureChestAnchor` 아래의 `ToyBiplane`이에요.
+
+                @Image(source: "rcp-orbit-animation2.png", alt: "Orbit Action의 Target으로 ToyBiplane을 선택한 화면")
             }
 
             @Step {
-                **Orbit Action의 Pivot을 설정합니다.** 회전 중심을 지정하는 항목에서 `TreasureChestAnchor/Pivot`을 선택합니다. Target과 Pivot을 반대로 선택하지 않았는지 계층 구조를 확인하세요. 
-                
-                @Image(source: "rcp-orbit-animation3.png", alt: "Reality Composer Pro의 Orbit Action에서 TreasureChestAnchor 아래 Pivot을 회전 중심으로 선택한 화면")
+                **비행기가 돌 중심을 골라요.** Orbit에서 `Pivot Entity`를 찾아요.\
+                `TreasureChestAnchor` 아래의 `Pivot`⁠을 선택해요.\
+                두 항목이 가리키는 대상을 확인해요.\
+                Target: 비행기\
+                Pivot Entity: 회전 중심
+
+                @Image(source: orbit-action-target, alt: "Orbit의 Target은 ToyBiplane, Pivot Entity는 Pivot인 설정표")
             }
 
             @Step {
-                **Orbit의 경로를 설정합니다.** 완성 예제는 Axis를 Y `(0, 1, 0)`, Direction을 Counter Clockwise, Duration을 13초로 설정합니다. `Orient To Path`도 활성화합니다. Timeline 미리보기에서 비행기가 수평으로 돌며 진행 방향을 바라보는지 확인하세요. 
-                
-                @Image(source: "rcp-orbit-animation4.png", alt: "Reality Composer Pro에서 Orbit의 Y Axis와 Counter Clockwise 방향, 13초 Duration, Orient To Path를 설정한 화면")
+                **도는 방향과 속도를 정해요.** `Axis`⁠를 Y 방향 `(0, 1, 0)`⁠으로 두면 비행기가 수평으로 돌아요.\
+                `Orbit Direction`:\
+                `Counter Clockwise`\
+                `Duration`: 13초\
+                `Revolutions`: 1\
+                `Orient To Path`⁠를 켜요.\
+                미리보기에서 비행기가 진행 방향을 보는지 확인해요.
+
+                @Image(source: orbit-action-settings, alt: "Y축 방향, 반시계 방향, 13초, 한 바퀴, Orient To Path 설정표")
             }
         }
 
-        저장된 Scene에서 `target`은 `/Root/TreasureChestAnchor/ToyBiplane`을 가리킵니다. `pivotEntity`는 `/Root/TreasureChestAnchor/Pivot`을 가리킵니다. 두 prim path를 보면 Entity가 형제임을 알 수 있습니다.
-
-        <!-- TODO: 실제 OrbitToyBiplane Timeline 전체와 선택된 Orbit Inspector를 함께 보여 주는 screenshot 추가 -->
+        저장한 Scene의 `/Root` 아래에서 Anchor를 찾아요.\
+        예제의 Anchor 이름:\
+        `TreasureChestAnchor`\
+        `target`⁠이 가리키는 비행기: `ToyBiplane`\
+        `pivotEntity`⁠가 가리키는 회전 중심: `Pivot`\
+        비행기와 회전 중심이 같은 Anchor 바로 아래에 나란히 있다는 뜻이에요.
     }
 
     @Section(title: "반복 Timeline과 Behavior 연결하기") {
         @ContentAndMedia {
-            `OrbitToyBiplane`은 한 번의 Orbit을 정의합니다.
-            Scene이 추가될 때 자동으로 시작하고 계속 반복하려면 이를 재생하는 Timeline이 필요합니다.
-            이 Timeline을 Trigger와 Action을 가진 Behavior에 연결합니다.
+            `OrbitToyBiplane`⁠에는 한 바퀴의 움직임만 들어 있어요.\
+            계속 돌게 하려면 이 Timeline을 반복 재생할 Timeline을 만들어요.
 
-            Trigger는 Behavior가 언제 시작될지를 정하고,
-            Action은 그때 실행할 동작을 정합니다.
-            여기서는 `TreasureChestAnchor`가 Scene에 추가되는 것이 Trigger이고,
-            `LoopOrbitToyBiplane`을 재생하는 것이 Action입니다.
+            Behavior의 Trigger는 시작할 때를 정해요.\
+            Action은 그때 할 일을 정해요.\
+            `TreasureChestAnchor`⁠가 Scene에 추가되면\
+            `LoopOrbitToyBiplane`⁠을 재생해요.
 
-            @Image(source: orbit-timeline-structure, alt: "OnAddedToScene Behavior가 LoopOrbitToyBiplane을 실행하고 다시 OrbitToyBiplane을 반복 재생하는 연결")
+            @Image(source: orbit-timeline-structure, alt: "OnAddedToScene이 LoopOrbitToyBiplane을 시작하고 한 바퀴의 OrbitToyBiplane이 반복되는 구조")
         }
 
         @Steps {
             @Step {
-                **LoopOrbitToyBiplane Timeline을 만듭니다.** 기존의 Timeline의 이름을 `OrbitToyBiplane`을 변경합니다. 하단의 + 버튼을 눌러 LoopOrbitToyBiplane Timeline을 만들고    `OrbitToyBiplane`을 클릭 후 드래그 하여 LoopOrbitToyBiplane Timeline에 끌어다 놓습니다. ToyBiplane이 끊김없이 계속해서 궤도를 회전하게 만들기 위해 Inspector의 `Repeat Forever` 반복 옵션을  설정하세요.
-                
-                @Image(source: "rcp-loop-animation.png", alt: "Reality Composer Pro에서 OrbitToyBiplane을 반복 재생하는 LoopOrbitToyBiplane Timeline을 설정한 화면")
+                **한 바퀴를 반복할 Timeline을 만들어요.** `OrbitToyBiplane`⁠이 기존 Timeline의 이름인지 확인해요.\
+                편집기 하단의 `+`로 새 Timeline을 만들어요.\
+                새 이름: `LoopOrbitToyBiplane`\
+                기존 `OrbitToyBiplane`⁠을 새 Timeline으로 끌어 놓아요.\
+                `Repeat Forever`⁠를 Inspector에서 켜요.
+
+                @Image(source: orbit-timeline-structure, alt: "OrbitToyBiplane을 LoopOrbitToyBiplane에서 반복하는 도식")
             }
 
             @Step {
-                **TreasureChestAnchor에 On Added To Scene Behavior를 만듭니다.** Behaviors에서 `On Added To Scene` Trigger를 추가합니다. 이 Trigger는 `TreasureChestAnchor`가 실행 중인 Scene에 참여할 때 Action을 시작합니다. 
-                
-                @Image(source: "rcp-on-added-to-scene-behavior.png", alt: "Reality Composer Pro에서 TreasureChestAnchor에 On Added To Scene Trigger를 추가한 화면")
+                **자동으로 재생할 때를 정해요.** `TreasureChestAnchor`⁠의 Behaviors를 열어요.\
+                `On Added To Scene` Trigger를 추가해요.\
+                실행 중인 Scene에 Anchor가 추가되면 이 Trigger가 연결된 Action을 시작해요.
+
+                @Image(source: "rcp-on-added-to-scene-behavior.png", alt: "TreasureChestAnchor에 On Added To Scene Trigger를 추가한 화면")
             }
 
             @Step {
-                **Behavior의 Play Timeline Action에 LoopOrbitToyBiplane을 연결합니다.** Action이 `LoopOrbitToyBiplane`을 재생하는지 확인합니다. Scene 미리보기에서 비행기가 한 바퀴 뒤에도 멈추지 않고 계속 도는지 살펴보세요. 
-                
-                @Image(source: "rcp-on-added-to-scene-behavior2.png", alt: "Reality Composer Pro의 OnAddedToScene Behavior에서 LoopOrbitToyBiplane을 재생하도록 연결한 화면")
+                **반복 Timeline을 재생하도록 연결해요.** Behavior의 `Play Timeline` Action에서 `LoopOrbitToyBiplane`⁠을 선택해요.\
+                Scene 미리보기에서 비행기가 한 바퀴 뒤에도 계속 도는지 확인해요.
+
+                @Image(source: orbit-timeline-structure, alt: "Anchor의 On Added To Scene에서 LoopOrbitToyBiplane을 재생하도록 연결한 도식")
             }
         }
-
-        <!-- TODO: 실제 LoopOrbitToyBiplane Timeline 전체 screenshot 추가 -->
-        <!-- TODO: 실제 OnAddedToScene Behavior의 trigger와 Play Timeline action 전체 screenshot 추가 -->
     }
 
     @Section(title: "Orbit 결과 점검하기") {
         @ContentAndMedia {
-            Animation만 재생되는지 보지 말고 Transform 관계와 반복 연결도 함께 점검합니다. Simulator 또는 RCP 미리보기에서는 Timeline 구성을 확인할 수 있습니다. 움직이는 현실 물체를 기준으로 궤도가 유지되는지는 Apple Vision Pro에서 확인해야 합니다.
+            비행기가 어디를 중심으로 도는지 봐요.\
+            한 바퀴 뒤에도 계속 도는지 살펴봐요.\
+            Reality Composer Pro 미리보기 또는\
+            visionOS 시뮬레이터에서 Timeline을 확인해요.
+
+            Apple Vision Pro에서 실물을 옮겨 봐요.\
+            비행기가 옮긴 물건 주위를 계속 도는지 확인해요.
         }
 
         @Steps {
             @Step {
-                **Hierarchy를 확인합니다.** `Pivot`과 `ToyBiplane`이 `TreasureChestAnchor` 아래의 형제이고 Pivot에 별도의 Anchoring Component가 없는지 확인합니다.
+                **Hierarchy를 확인해요.** `TreasureChestAnchor` 아래를 열어요.\
+                `Pivot`⁠과 `ToyBiplane`⁠이 나란히 있어야 해요.\
+                `Pivot`⁠에 Anchoring Component는 없어요.
+
+                @Image(source: orbit-pivot-setup, alt: "TreasureChestAnchor 아래에 ToyBiplane과 Pivot이 같은 깊이에 놓인 계층도")
             }
 
             @Step {
-                **한 바퀴의 경로를 확인합니다.** 비행기가 Pivot을 중심으로 원하는 반지름과 높이를 유지하고 진행 방향을 바라보는지 확인합니다.
+                **한 바퀴의 경로를 확인해요.** 비행기가 `Pivot`⁠에서 일정한 거리와 높이를 유지하며 도는지 봐요.\
+                비행기의 앞부분이 날아가는 방향을 바라보는지도 확인해요.
+
+                @Image(source: orbit-action-settings, alt: "Y축 방향, 반시계 방향, 13초, 한 바퀴, Orient To Path 설정표")
             }
 
             @Step {
-                **반복 연결을 확인합니다.** `OnAddedToScene → LoopOrbitToyBiplane → OrbitToyBiplane` 순서로 연결되고 Animation이 반복되는지 확인합니다.
+                **반복 재생이 이어지는지 확인해요.** `OnAddedToScene`⁠이 반복 Timeline을 시작해요.\
+                반복 Timeline: `LoopOrbitToyBiplane`\
+                반복할 움직임: `OrbitToyBiplane`
+
+                @Image(source: orbit-timeline-structure, alt: "Anchor의 On Added To Scene에서 LoopOrbitToyBiplane을 재생하도록 연결한 도식")
             }
         }
 
-        다음 <doc:AddOcclusion>에서는 같은 Anchor 좌표계에 실제 TreasureChest 형태의 보이지 않는 geometry를 배치해 비행기의 앞뒤 깊이 관계를 표현합니다.
+        다음 <doc:AddOcclusion>에서 보이지 않는 보물상자 모델을 같은 Anchor 아래에 넣어요.\
+        비행기가 상자 뒤를 지날 때 가려지는 것처럼 보여요.
     }
 }

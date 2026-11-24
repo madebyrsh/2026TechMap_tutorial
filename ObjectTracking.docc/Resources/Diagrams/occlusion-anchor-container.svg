@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="193" viewBox="0 0 760 193" role="img" aria-labelledby="title description">
+<title id="title">Occlusion을 추가한 Scene 계층</title><desc id="description">TreasureChestAnchor 아래에 Occlusion 컨테이너가 있습니다.</desc>
+<rect width="760" height="193" fill="#F2F5F8"/>
+<g font-family="-apple-system, sans-serif"><text x="42" y="77" text-anchor="start" font-size="40" font-weight="700" fill="#182434">TreasureChestAnchor</text><rect x="81" y="105" width="632" height="57" rx="12" fill="#E3ECF7" stroke="#E3ECF7" stroke-width="2"/><text x="95" y="148" text-anchor="start" font-size="40" font-weight="700" fill="#1767B4">Occlusion</text><path d="M55 93 V134" fill="none" stroke="#8C9EB2" stroke-width="3" /><path d="M55 134 H72" fill="none" stroke="#8C9EB2" stroke-width="3" /></g>
+</svg>

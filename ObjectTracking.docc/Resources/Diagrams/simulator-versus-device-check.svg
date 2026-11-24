@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="294" viewBox="0 0 600 294" role="img" aria-labelledby="title desc">
+  <title id="title">시뮬레이터와 실기기 확인 범위</title>
+  <desc id="desc">visionOS 시뮬레이터에서는 앱 실행과 Scene 연결을 확인합니다. Vision Pro 실기기에서는 실물 인식과 비행기 위치를 확인합니다.</desc>
+  <style>
+    text { font-family: system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; fill:#172334; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .context { fill:#345474; }
+  </style>
+  <rect width="600" height="294" rx="24" fill="#F3F5F8"/>
+  <text x="50" y="74" font-size="32" font-weight="640" class="context">visionOS 시뮬레이터</text>
+  <text x="50" y="122" font-size="37" font-weight="650">앱 실행 · Scene 연결</text>
+  <path d="M50 151H550" stroke="#BAC7D7" stroke-width="2"/>
+  <text x="50" y="208" font-size="32" font-weight="640" class="context">Apple Vision Pro 실기기</text>
+  <text x="50" y="256" font-size="37" font-weight="650">실물 인식 · 비행기 위치</text>
+</svg>

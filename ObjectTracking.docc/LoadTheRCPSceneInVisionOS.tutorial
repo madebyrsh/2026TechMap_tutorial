@@ -1,169 +1,236 @@
 @Tutorial(time: 15) {
-    @Intro(title: "RCP Scene을 visionOS에서 불러오기") {
-        Reality Composer Pro에서 Object Anchor를 구성해도   
-        저장된 Scene이 앱 화면에 자동으로 나타나지는 않습니다.   
-        Swift에서 `RealityKitContent` 번들의 Scene을 불러와 `RealityView`에 추가해야 합니다.
+    @Intro(title: "visionOS에서 RCP Scene 불러오기") {
+        Swift로 저장한 Scene을 불러와요.\
+        불러온 Scene을 `RealityView`⁠에 넣어요.\
+        버튼으로 Immersive Space를 열고 닫아요.
 
-        이 Tutorial에서는 Immersive Space의 상태를 관리하고   
-        RCP Scene을 불러오는 흐름을 연결합니다.   
-        완성하면 버튼으로 Object Tracking 공간을 열고 닫을 수 있습니다.
+        ## 이번 실습
 
-        각 Step의 코드 화면은 작업 중인 파일 전체를 보여 줍니다.   
-        Step을 이동하면 설명하는 영역으로 강조가 이동하므로   
-        새 코드가 파일의 어디에 놓이는지 확인할 수 있습니다.
-        
-        이 Tutorial에서는 `AppModel.swift`를 새로 만들고,
-        `ObjectTrackingWithRCPApp.swift`, `ImmersiveView.swift`,
-        `ContentView.swift`, `ImmersiveSpaceButton.swift`는
-        기존 파일을 수정합니다.
+        스텝마다 수정할 파일 전체가 보여요.\
+        강조된 줄을 보면 코드를 넣을 위치를 알 수 있어요.
 
-        
+        ## 실습 요약
+
+        - **준비할 것:** 저장한 RCP Scene
+        - **만들 파일:** `AppModel.swift`
+        - **실습 시간:** **15분**
     }
 
-    @Section(title: "AppModel에 Immersive Space 상태 만들기") {
+    @Section(title: "AppModel로 상태 만들기") {
         @ContentAndMedia {
-            사용자가 Object Tracking 경험을 열고 닫으려면 앱이 현재 Immersive Space 상태를 알아야 합니다. 먼저 여러 View가 함께 사용할 상태의 기준인 `AppModel`을 만듭니다.
+            Space가 열렸는지에 따라 버튼의 동작이 달라져요.
+
+            여러 View가 읽을 상태를 `AppModel`⁠에 만들어요.
         }
 
         @Steps {
             @Step {
-                **AppModel.swift에 관찰 가능한 상태 객체를 만듭니다.** 새 `AppModel.swift` 파일에서 `@Observable`을 적용한 `class`를 선언합니다. `@MainActor`를 사용하면 UI가 읽는 상태를 main actor에서 관리할 수 있습니다. 이 Step을 마치면 상태를 담을 빈 객체가 준비됩니다.
+                **`AppModel.swift`⁠를 만들어요.** 새 파일에 `AppModel` 클래스를 선언해요.\
+                \
+                `@Observable`⁠을 붙여 View가 상태 변화를 읽게 해요.\
+                `@MainActor`⁠에서 UI 상태를 관리해요.
 
                 @Code(name: "AppModel.swift", file: "AppModel-FocusStructure.swift", previousFile: "AppModel-BeforeStructure.swift")
             }
 
             @Step {
-                **AppModel 안에 Immersive Space 상태를 추가합니다.** `closed`는 닫힘, `inTransition`은 전환 중, `open`은 열림을 나타냅니다. 앱을 실행하면 Space가 닫혀 있으므로 초기값은 `.closed`입니다. 이제 버튼과 App이 같은 상태를 사용할 수 있습니다.
+                **세 가지 상태를 추가해요.** 닫혀 있을 때: `closed`\
+                열거나 닫는 중: `inTransition`\
+                열려 있을 때: `open`\
+                \
+                앱을 처음 열 땐 Space가 닫혀 있어요.\
+                처음 상태는 `.closed`⁠예요.
 
                 @Code(name: "AppModel.swift", file: "AppModel-FocusState.swift", previousFile: "AppModel-BeforeState.swift")
             }
         }
     }
 
-    @Section(title: "App에서 상태를 공유하고 Immersive Space 등록하기") {
+    @Section(title: "상태를 공유하고 Space 등록하기") {
         @ContentAndMedia {
-            앞에서 만든 `AppModel`은 아직 어느 View에도 연결되지 않았습니다. App 구조체에서 인스턴스를 한 번 만들고 Window와 Immersive Space에 같은 객체를 전달합니다.
+            창과 Immersive Space에 같은 `AppModel`⁠을 넘겨요.\
+            그래야 버튼과 Space가 같은 상태를 봐요.
 
-            Object Tracking은 visionOS의 Window나 Volume이 아니라 `ImmersiveSpace`에서 동작합니다.
-            현실 물체를 계속 볼 수 있도록 passthrough를 유지하는 `mixed` 스타일을 사용합니다.
-            `mixed`는 현실과 가상 콘텐츠를 함께 보이게 하는 표시 방식이며,
-            실제 물체의 행동을 감지하거나 가상 콘텐츠를 자동으로 나타나게 하는 기능은 아닙니다.
+            실물과 비행기가 함께 보이는 모드로 등록해요.\
+            모드 설정: `.mixed`.\
+            앞에서 만든 Object Anchor가 실물을 알아봐요.
         }
 
         @Steps {
             @Step {
-                **ObjectTrackingWithRCPApp에서 AppModel을 생성해 Window에 전달합니다.** App이 유지할 `AppModel`을 `@State`로 한 번 만듭니다. 이 객체를 `ContentView`의 environment에 넣으면 Window 안의 버튼도 같은 상태를 읽을 수 있습니다.
+                **AppModel을 만들고 창에 넘겨요.** 앱에서 `@State`⁠로 `AppModel`⁠을 한 번 만들어요.\
+                \
+                창 안의 버튼도 같은 상태를 읽을 수 있게 해요.\
+                `ContentView`⁠에 붙일 코드:\
+                `.environment(appModel)`
 
                 @Code(name: "ObjectTrackingWithRCPApp.swift", file: "App-FocusSharedModel.swift", previousFile: "App-BeforeSharedModel.swift")
             }
 
             @Step {
-                **같은 AppModel을 사용하는 Mixed Immersive Space를 등록합니다.** `ObjectTrackingSpace` ID로 `ImmersiveSpace`를 만들고 Content로 `ImmersiveView`를 연결합니다. `.mixed` 스타일을 사용하면 현실 TreasureChest와 가상 콘텐츠를 함께 볼 수 있습니다. 다음 단계에서는 비어 있는 `ImmersiveView`에 RCP Scene을 넣습니다.
+                **Immersive Space를 등록해요.** Space ID: `ObjectTrackingSpace`\
+                나중에 버튼에서 이 이름으로 Space를 열어요.\
+                \
+                `ImmersiveView`⁠에도 같은 `appModel`⁠을 넘겨요.\
+                마지막으로 `.mixed`⁠를 골라요.\
+                현실과 비행기가 함께 보여요.
 
                 @Code(name: "ObjectTrackingWithRCPApp.swift", file: "App-FocusImmersiveSpace.swift", previousFile: "App-BeforeImmersiveSpace.swift")
             }
         }
     }
 
-    @Section(title: "ImmersiveView에서 RCP Scene 불러오기") {
+    @Section(title: "RealityView에 Scene 불러오기") {
         @ContentAndMedia {
-            `RealityView`는 SwiftUI 안에서 RealityKit Entity를 표시하는 공간입니다. RCP 자산은 로컬 Swift 패키지인 `RealityKitContent`에 있습니다. 따라서 이 모듈과 번들을 사용해 Scene을 불러옵니다.
+            Scene은 아래 패키지에 저장돼요.\
+            `RealityKitContent`
 
-            @Image(source: rcp-scene-runtime-flow, alt: "ObjectTrackingScene이 RealityKitContent bundle에서 ImmersiveView의 RealityView로 전달되는 흐름")
+            Swift에서 Scene 전체를 불러와요.\
+            표시할 곳: `RealityView`
+
+            Anchor와 비행기의 배치는 이미 Scene에 있어요.\
+            Swift에서 위치를 다시 계산할 필요는 없어요.
+
+            @Image(source: rcp-scene-runtime-flow, alt: "RealityKitContent의 ObjectTrackingScene을 RealityView로 불러오는 흐름")
         }
 
         @Steps {
             @Step {
-                **ImmersiveView.swift에 RealityView의 기본 구조를 만듭니다.** `SwiftUI`, `RealityKit`, `RealityKitContent`를 import합니다. 그런 다음 `RealityView`의 비동기 `content` closure를 준비합니다. 아직 Scene을 추가하지 않았으므로 Object Anchor는 활성화되지 않습니다.
+                **ImmersiveView에 RealityView를 만들어요.** 아래 세 모듈을 가져와요.\
+                `SwiftUI`\
+                `RealityKit`\
+                `RealityKitContent`\
+                \
+                이제 Scene을 넣을 `content` 클로저를 준비해요.
 
                 @Code(name: "ImmersiveView.swift", file: "ImmersiveView-FocusStructure.swift", previousFile: "ImmersiveView-BeforeStructure.swift")
             }
 
             @Step {
-                **`content` closure에서 ObjectTrackingScene을 불러와 추가합니다.** `Entity(named:in:)`에는 Object Anchor가 아니라 `ObjectTrackingScene.usda`의 Scene 이름을 전달합니다. 불러온 Root Entity를 `content.add`로 추가해야 RCP의 Anchor와 자식 Entity가 실행 중인 공간에 참여합니다. 로딩에 실패하면 Console 메시지에서 Scene 이름과 번들 연결을 확인하세요.
+                **Scene을 불러와 화면에 추가해요.** `Entity(named:in:)`⁠에 Anchor 이름이 아니라 Scene 이름을 넣어요.\
+                예제에서는 `ObjectTrackingScene`⁠이에요.\
+                \
+                Scene을 불러올 번들:\
+                `realityKitContentBundle`\
+                불러온 Entity를 `content.add`⁠로 추가해요.\
+                실패하면 Xcode Console에서 이름과 번들을 확인해요.
 
                 @Code(name: "ImmersiveView.swift", file: "ImmersiveView-FocusLoad.swift", previousFile: "ImmersiveView-BeforeLoad.swift")
             }
         }
-
-        이 단계가 끝나면 `ImmersiveView`가 나타날 때 `ObjectTrackingScene` 전체를 불러올 수 있습니다. Swift가 `TreasureChestAnchor`의 Transform을 직접 계산하거나 자식 Entity에 복사할 필요는 없습니다.
     }
 
-    @Section(title: "Window에 Object Tracking 버튼 표시하기") {
+    @Section(title: "창에 시작 버튼 놓기") {
         @ContentAndMedia {
-            앱을 실행하면 먼저 Window가 보입니다. 사용자가 Object Tracking 경험을 시작할 수 있도록 `ContentView`에 전용 버튼을 배치합니다.
+            앱을 실행하면 먼저 창이 보여요.\
+            이 창에 Object Tracking을 시작할 버튼을 놓아요.
         }
 
         @Steps {
             @Step {
-                **ContentView.swift에 ImmersiveSpaceButton을 배치합니다.** 이 View는 버튼 동작을 직접 구현하지 않고 별도의 `ImmersiveSpaceButton`을 보여 줍니다. Window에 Object Tracking 시작 버튼을 배치할 수 있습니다.
+                **`ContentView`⁠에 버튼을 넣어요.** 수정할 파일: `ContentView.swift`\
+                추가할 버튼: `ImmersiveSpaceButton`\
+                \
+                이번엔 창에 버튼만 보여줘요.\
+                열고 닫는 동작은 다음 단계에서 연결해요.
 
                 @Code(name: "ContentView.swift", file: "ContentView-FocusButton.swift", previousFile: "ContentView-BeforeButton.swift")
             }
         }
     }
 
-    @Section(title: "버튼 UI를 현재 상태와 연결하기") {
+    @Section(title: "버튼을 현재 상태와 연결하기") {
         @ContentAndMedia {
-            `ImmersiveSpaceButton`은 App이 environment에 넣은 `AppModel`을 읽습니다. SwiftUI environment에서는 Space를 열고 닫는 비동기 Action을 가져옵니다.
+            버튼은 `AppModel`⁠의 상태에 맞는 동작을 보여줘요.\
+            Space를 여닫을 땐 SwiftUI environment의 동작을 써요.
         }
 
         @Steps {
             @Step {
-                **ImmersiveSpaceButton.swift에서 상태와 Action을 연결합니다.** 버튼 제목은 `.closed`, `.inTransition`, `.open` 상태에 따라 바뀝니다. 전환 중에는 여러 요청이 겹치지 않도록 버튼을 비활성화합니다. 버튼을 누르면 다음 Step에서 작성할 `toggleImmersiveSpace()`를 호출합니다.
+                **상태에 따라 버튼 문구를 바꿔요.** 닫힘: ‘오브젝트 트래킹 시작’\
+                열림: ‘오브젝트 트래킹 종료’\
+                \
+                전환 중에는 ‘처리 중...’을 표시하고 버튼을 잠가요.\
+                버튼을 누르면 다음 단계에서 작성할 함수를 호출해요.\
+                호출할 함수: `toggleImmersiveSpace()`
 
                 @Code(name: "ImmersiveSpaceButton.swift", file: "ImmersiveSpaceButton-FocusUI.swift", previousFile: "ImmersiveSpaceButton-BeforeUI.swift")
             }
         }
     }
 
-    @Section(title: "버튼으로 Immersive Space 열고 닫기") {
+    @Section(title: "버튼으로 Space 열고 닫기") {
         @ContentAndMedia {
-            버튼 UI가 상태를 읽을 수 있게 됐지만 아직 Space를 여닫는 함수가 없습니다. `toggleImmersiveSpace()` 안에서 현재 상태에 따라 다른 비동기 작업을 실행합니다.
+            이제 버튼이 눌렸을 때 할 일을 연결해요.\
+            상태에 따라 Space를 열거나 닫아요.\
+            전환이 끝나기 전에는 다시 실행하지 않아요.
         }
 
         @Steps {
             @Step {
-                **닫힌 상태에서 ObjectTrackingSpace를 엽니다.** 먼저 상태를 `.inTransition`으로 바꿉니다. App에서 등록한 것과 같은 `ObjectTrackingSpace` ID로 Space를 여세요. 성공하면 `.open`, 취소되거나 실패하면 `.closed`로 바꿉니다. 이제 버튼으로 `ImmersiveView`와 RCP Scene을 활성화할 수 있습니다.
+                **닫혀 있으면 Space를 열어요.** 먼저 상태를 `.inTransition`⁠으로 바꿔요.\
+                앱에 등록한 ID로 Space를 열어요.\
+                예제 ID: `ObjectTrackingSpace`\
+                \
+                열리면 `.open`⁠으로 바꿔요.\
+                취소되거나 실패하면 `.closed`⁠로 돌아가요.
 
                 @Code(name: "ImmersiveSpaceButton.swift", file: "ImmersiveSpaceButton-FocusOpen.swift", previousFile: "ImmersiveSpaceButton-BeforeOpen.swift")
             }
 
             @Step {
-                **열린 상태에서는 Space를 닫고 전환 중에는 기다립니다.** `dismissImmersiveSpace()`가 끝나면 상태를 `.closed`로 되돌립니다. `.inTransition`에서는 새 작업을 시작하지 않습니다. 하나의 버튼으로 열기와 닫기를 안전하게 처리할 수 있습니다.
+                **열려 있으면 Space를 닫아요.** 먼저 상태를 `.inTransition`⁠으로 바꿔요.\
+                닫기 함수: `dismissImmersiveSpace()`\
+                닫기 함수가 끝나면 `.closed`⁠로 되돌려요.\
+                \
+                전환 중에는 새 작업을 시작하지 않아요.
 
                 @Code(name: "ImmersiveSpaceButton.swift", file: "ImmersiveSpaceButton-FocusClose.swift", previousFile: "ImmersiveSpaceButton-BeforeClose.swift")
             }
         }
     }
 
-    @Section(title: "Chapter 2 결과 확인하기") {
+    @Section(title: "시뮬레이터에서 확인하기") {
         @ContentAndMedia {
-            Chapter 2에서는 RCP Object Anchor 구성과 Swift Scene 로딩이 하나의 실행 흐름으로 연결됐는지 확인합니다.
+            여기서는 Apple Vision Pro 없이 확인할 수 있어요.\
+            visionOS 시뮬레이터에서 앱을 빌드해요.\
+            버튼으로 Space를 열고 닫을 수 있는지 봐요.
 
-            Simulator 빌드 성공은 Swift 코드와 RealityKitContent 자산이 컴파일된다는 뜻입니다. 실제 TreasureChest 인식 성공을 의미하지는 않습니다. 현실 물체 인식은 이후 Apple Vision Pro 검증 Tutorial에서 확인합니다.
+            Scene을 불러왔다고 실물을 인식한 건 아니에요.\
+            실물 추적은 Chapter 4에서 Apple Vision Pro로 확인해요.
         }
 
         @Steps {
             @Step {
-                **코드와 RealityKitContent를 빌드합니다.** Xcode에서 visionOS Simulator를 선택하고 Build를 실행해 단계별 코드와 RCP 자산에 컴파일 오류가 없는지 확인합니다.
+                **앱을 빌드해요.** Xcode에서 visionOS 시뮬레이터를 선택하고 빌드해요.\
+                빌드 결과에서 Swift 코드와 RCP 자산의 오류를 확인해요.
+
+                @Image(source: simulator-build-check, alt: "실행 대상으로 Apple Vision Pro 시뮬레이터를 고르고 빌드에 실패하면 Issue navigator를 확인하는 그림")
             }
 
             @Step {
-                **버튼 상태 변화를 확인합니다.** 닫힘, 처리 중, 열림 상태에 따라 버튼 문구가 바뀌고 전환 중에는 버튼이 비활성화되는지 확인합니다. 
+                **버튼을 눌러 열고 닫아 봐요.** 앱을 실행한 뒤 버튼을 눌러요.\
+                \
+                상태에 따라 버튼 문구가 바뀌는지 봐요.\
+                전환 중에는 버튼이 잠겨 있어야 해요.
 
-                @Image(source: "visionos-app-button-closed.png", alt: "visionOS Simulator에서 오브젝트 트래킹 시작 버튼이 표시된 닫힘 상태 화면")
+                @Image(source: "visionos-app-button-closed.png", alt: "visionOS 시뮬레이터에 오브젝트 트래킹 시작 버튼이 표시된 화면")
             }
 
             @Step {
-                **Immersive Space를 열어 Scene 로딩을 확인합니다.** Space를 연 뒤 Xcode Console에 `오브젝트 트래킹 Scene 로드 실패` 메시지가 나타나지 않는지 확인합니다.
+                **Scene을 불러왔는지 확인해요.** Space를 연 뒤 Xcode Console을 봐요.\
+                \
+                ‘오브젝트 트래킹 Scene 로드 실패’가 보이면 Scene 이름과 번들을 다시 확인해요.
+
+                @Image(source: simulator-scene-console-check, alt: "Scene 로드 실패 문구가 보이면 ObjectTrackingScene 이름과 realityKitContentBundle을 확인하는 그림")
             }
 
             @Step {
-                **검증 범위를 구분합니다.** Simulator에서는 Scene 로딩 흐름까지만 확인하고, Reference Object 인식과 가상 콘텐츠의 실물 정렬은 Apple Vision Pro에서 검증합니다.
+                **시뮬레이터에서 확인할 범위를 구분해요.** 여기서는 앱과 Scene이 연결되는 것까지 확인해요.\
+                실물 인식과 비행기의 위치는 Chapter 4에서 확인해요.
+
+                @Image(source: simulator-versus-device-check, alt: "시뮬레이터에서 확인할 앱과 Scene 연결, Apple Vision Pro에서 확인할 실물 인식과 비행기 위치를 비교한 그림")
             }
         }
-
-        Chapter 2를 마쳤습니다. 각 코드 Step에서 표시한 파일이 곧 완성 파일이므로 별도의 축약 코드와 다시 비교할 필요가 없습니다. 다음 Chapter에서는 추적된 TreasureChest 좌표계 안에 Orbit Animation과 Occlusion을 추가합니다.
     }
 }

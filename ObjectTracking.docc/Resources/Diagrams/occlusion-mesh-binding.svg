@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="285" viewBox="0 0 760 285" role="img" aria-labelledby="title description">
+<title id="title">Mesh의 Material Binding 설정</title><desc id="description">Geometry 아래 Mesh를 선택하고 Inspector의 Material Binding을 OcclusionMaterial로 지정한 도식입니다.</desc>
+<rect width="760" height="285" fill="#F2F5F8"/>
+<g font-family="-apple-system, sans-serif"><text x="46" y="68" text-anchor="start" font-size="44" font-weight="700" fill="#182434">Geometry → Mesh</text><path d="M46 103 H714" fill="none" stroke="#c7d1dc" stroke-width="2" /><text x="46" y="168" text-anchor="start" font-size="39" font-weight="700" fill="#182434">Material Binding</text><text x="46" y="243" text-anchor="start" font-size="43" font-weight="700" fill="#1767B4">OcclusionMaterial</text></g>
+</svg>
